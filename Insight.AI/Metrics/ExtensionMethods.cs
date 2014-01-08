@@ -27,6 +27,17 @@ namespace Insight.AI.Metrics
     public static class ExtensionMethods
     {
         /// <summary>
+        /// Calculates the similarity between two vectors.  Uses cosine similarity by default.
+        /// </summary>
+        /// <param name="u">1st vector</param>
+        /// <param name="v">2nd vector</param>
+        /// <returns>Similarity between the two vectors</returns>
+        public static double SimilarityTo(this InsightVector u, InsightVector v)
+        {
+            return new CosineSimilarity().CalculateSimilarity(u, v);
+        }
+
+        /// <summary>
         /// Calculates the similarity between two vectors.
         /// </summary>
         /// <param name="u">1st vector</param>
@@ -44,6 +55,17 @@ namespace Insight.AI.Metrics
                 default:
                     return new PearsonCorrelation().CalculateSimilarity(u, v);
             }
+        }
+
+        /// <summary>
+        /// Calculates the distance between two vectors.  Uses euclidean distance by default.
+        /// </summary>
+        /// <param name="u">1st vector</param>
+        /// <param name="v">2nd vector</param>
+        /// <returns>Distance between the two vectors</returns>
+        public static double DistanceFrom(this InsightVector u, InsightVector v)
+        {
+            return new EuclideanDistance().CalculateDistance(u, v);
         }
 
         /// <summary>

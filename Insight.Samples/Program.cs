@@ -45,7 +45,7 @@ namespace Insight.Samples
             Console.WriteLine(v.Data.ToString("F4", null));
             Console.WriteLine(Environment.NewLine);
 
-            double distance = u.DistanceFrom(v, DistanceMethod.EuclideanDistance);
+            double distance = u.DistanceFrom(v);
             Console.WriteLine("Euclidean distance (u, v) = {0}", distance.ToString("F4"));
             Console.WriteLine(Environment.NewLine);
 
@@ -57,7 +57,7 @@ namespace Insight.Samples
             Console.WriteLine("Manhattan distance (u, v) = {0}", distance.ToString("F4"));
             Console.WriteLine(Environment.NewLine);
 
-            double similarity = u.SimilarityTo(v, SimilarityMethod.CosineSimilarity);
+            double similarity = u.SimilarityTo(v);
             Console.WriteLine("Cosine similarity (u, v) = {0}", similarity.ToString("F4"));
             Console.WriteLine(Environment.NewLine);
 

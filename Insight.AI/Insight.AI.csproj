@@ -66,8 +66,6 @@
     <Compile Include="Optimization\SimpleHillClimbing.cs" />
     <Compile Include="Optimization\SimulatedAnnealingResults.cs" />
     <Compile Include="Optimization\HillClimbingResults.cs" />
-    <Compile Include="Optimization\Enumerations.cs" />
-    <Compile Include="Optimization\ExtensionMethods.cs" />
     <Compile Include="Optimization\HillClimbing.cs" />
     <Compile Include="Optimization\Interfaces\ILocalSearchResults.cs" />
     <Compile Include="Optimization\Interfaces\ILocalSearch.cs" />
