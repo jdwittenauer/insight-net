@@ -18,8 +18,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using Insight.AI.DataStructures;
 using Insight.AI.Metrics;
 using Insight.AI.Dimensionality;

@@ -111,6 +111,7 @@ namespace Insight.AI.Optimization
         private SimulatedAnnealingResults<T> PerformSimulatedAnnealing(
             T initialValue, List<Func<T, T>> transforms, Func<T, double> evaluate, int? iterations)
         {
+            // TODO
             throw new NotImplementedException();
         }
     }
