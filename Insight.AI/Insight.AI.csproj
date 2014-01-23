@@ -82,6 +82,15 @@
     <Compile Include="Optimization\Interfaces\ILocalSearchResults.cs" />
     <Compile Include="Optimization\Interfaces\ILocalSearch.cs" />
     <Compile Include="Optimization\SimulatedAnnealing.cs" />
+    <Compile Include="Preprocessing\DataCleanser.cs" />
+    <Compile Include="Preprocessing\DataLoader.cs" />
+    <Compile Include="Recommendation\ContentBasedRecommender.cs" />
+    <Compile Include="Recommendation\Enumerationscs.cs" />
+    <Compile Include="Recommendation\HybridCollaborativeFilter.cs" />
+    <Compile Include="Recommendation\HybridRecommender.cs" />
+    <Compile Include="Recommendation\Interfaces\IRecommender.cs" />
+    <Compile Include="Recommendation\ModelCollaborativeFilter.cs" />
+    <Compile Include="Recommendation\NeighborhoodCollaborativeFilter.cs" />
     <Compile Include="Regression\Enumerations.cs" />
     <Compile Include="Regression\Interfaces\IRegression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,12 +103,16 @@
     <Compile Include="Regression\LinearRegression.cs" />
     <Compile Include="Regression\LogisticRegression.cs" />
     <Compile Include="Regression\RidgeRegression.cs" />
+    <Compile Include="Training\Bagging\BreimanBagging.cs" />
+    <Compile Include="Training\Boosting\AdaBoost.cs" />
+    <Compile Include="Training\Interfaces\IBoostingMethod.cs" />
+    <Compile Include="Training\Interfaces\ICrossValidationMethod.cs" />
+    <Compile Include="Training\Interfaces\IEnsembleAlgorithm.cs" />
+    <Compile Include="Training\Interfaces\IBaggingMethod.cs" />
+    <Compile Include="Training\Interfaces\IRandomForest.cs" />
+    <Compile Include="Training\RandomForest\BreimanRandomForest.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Preprocessing\" />
-    <Folder Include="Recommendation\" />
-    <Folder Include="Training\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
