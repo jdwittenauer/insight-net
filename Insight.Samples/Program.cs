@@ -21,7 +21,7 @@ using System.Globalization;
 using Insight.AI.DataStructures;
 using Insight.AI.Metrics;
 using Insight.AI.Dimensionality;
-using Insight.AI.Optimization;
+using Insight.AI.Optimization.LocalSearch;
 
 namespace Insight.Samples
 {

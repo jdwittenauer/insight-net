@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using Insight.AI.Optimization.Interfaces;
 
-namespace Insight.AI.Optimization
+namespace Insight.AI.Optimization.LocalSearch
 {
     /// <summary>
     /// Class that encapsulates the simple hill climbing algorithm.
@@ -32,19 +32,17 @@ namespace Insight.AI.Optimization
     /// improvement is found.  Relies on a target function or heuristic to determine
     /// the quality of a solution.
     /// 
-    /// Stochastic hill climbing is a variation of the algorithm that iteratively selects
-    /// a neighbor solution from the available options and non-deterministically "jumps"
-    /// to that solution if the probability, based on a function of the difference between
-    /// the scores and the number of iterations already performed, is within some random 
-    /// threshold.
+    /// Simple hill climbing is a variation of the algorithm that takes the first
+    /// available solution that is considered "better" than the best solution that
+    /// had previously been found.
     /// </remarks>
     /// <seealso cref="http://en.wikipedia.org/wiki/Hill_climbing"/>
-    public class StochasticHillClimbing<T> : HillClimbing<T>
+    public class SimpleHillClimbing<T> : HillClimbing<T>
     {
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public StochasticHillClimbing() : base() { }
+        public SimpleHillClimbing() : base() { }
 
         /// <summary>
         /// Performs the simple hill climbing algorithm on the starting solution using the
@@ -67,35 +65,30 @@ namespace Insight.AI.Optimization
             if (transforms.Count == 0 || transforms[0] == null)
                 throw new Exception("Must provide at least 1 valid transform.");
 
-            int iter = 1, maxIterations = 10000;
+            int iter = 0, maxIterations = int.MaxValue;
             if (iterations != null)
                 maxIterations = iterations.Value;
 
-            Random generator = new Random();
+            T bestSolution = initialValue, currentSolution = initialValue;
+            double bestScore = double.MinValue, currentScore = double.MinValue;
 
-            T candidateSolution = initialValue, currentSolution = initialValue;
-            double candidateScore = double.MinValue, currentScore = double.MinValue;
-
-            while (iter <= maxIterations)
+            do
             {
-                int selector = generator.Next(0, transforms.Count - 1);
-                double threshold = generator.NextDouble();
-
-                currentSolution = transforms[selector](candidateSolution);
-                currentScore = evaluate(currentSolution);
-
-                double probability = 1 / (1 + (Math.Pow(Math.E, candidateScore - currentScore)) / iter);
-
-                if (probability > threshold)
-                {
-                    candidateSolution = currentSolution;
-                    candidateScore = currentScore;
-                }
-
                 iter++;
-            }
+                bestSolution = currentSolution;
+                bestScore = currentScore;
 
-            return new HillClimbingResults<T>(candidateSolution, candidateScore);
+                foreach (var transform in transforms)
+                {
+                    currentSolution = transform(bestSolution);
+                    currentScore = evaluate(currentSolution);
+
+                    if (currentScore > bestScore)
+                        break;
+                }
+            } while (currentScore > bestScore && iter < maxIterations);
+
+            return new HillClimbingResults<T>(bestSolution, bestScore);
         }
     }
 }

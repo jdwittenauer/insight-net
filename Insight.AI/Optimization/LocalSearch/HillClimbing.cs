@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using Insight.AI.Optimization.Interfaces;
 
-namespace Insight.AI.Optimization
+namespace Insight.AI.Optimization.LocalSearch
 {
     /// <summary>
     /// Class that encapsulates the hill climbing algorithm.
