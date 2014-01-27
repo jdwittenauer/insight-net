@@ -64,6 +64,8 @@
     <Compile Include="DataStructures\InsightMatrix.cs" />
     <Compile Include="DataStructures\InsightVector.cs" />
     <Compile Include="Dimensionality\Enumerations.cs" />
+    <Compile Include="Dimensionality\IndependentComponentAnalysis.cs" />
+    <Compile Include="Dimensionality\MultiDimensionalScaling.cs" />
     <Compile Include="Dimensionality\SingularValueDecomposition.cs" />
     <Compile Include="Dimensionality\ExtensionMethods.cs" />
     <Compile Include="Dimensionality\Interfaces\IFeatureExtraction.cs" />

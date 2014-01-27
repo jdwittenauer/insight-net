@@ -67,6 +67,8 @@ namespace Insight.Samples
             Console.WriteLine("Pearson correlation (u, v) = {0}", similarity.ToString("F4"));
             Console.WriteLine(Environment.NewLine);
 
+            Console.ReadKey();
+
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("Feature Extraction Examples");
             Console.WriteLine("------------------------------");
@@ -103,12 +105,14 @@ namespace Insight.Samples
             Console.WriteLine(lda.Data.ToString("F4", NumberFormatInfo.InvariantInfo));
             Console.WriteLine(Environment.NewLine);
 
+            Console.ReadKey();
+
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("Optimization Examples");
             Console.WriteLine("------------------------------");
             Console.WriteLine(Environment.NewLine);
 
-            var hillClimber = new SimpleHillClimbing<double>();
+            var simpleHillClimber = new SimpleHillClimbing<double>();
             var transforms = new List<Func<double, double>>();
             transforms.Add(x => x + 1);
             transforms.Add(x => x - 1);
@@ -116,13 +120,33 @@ namespace Insight.Samples
             transforms.Add(x => x - 0.3);
             transforms.Add(x => x + 0.1);
             transforms.Add(x => x - 0.1);
-            var solution = hillClimber.FindMaxima(
-                0, 
-                transforms, 
+            var solution = simpleHillClimber.FindMaxima(
+                0,
+                transforms,
                 x => Math.Abs(x) - (x * x));
-            Console.WriteLine("Solution = {0}", solution.Solution);
-            Console.WriteLine("Score = {0}", solution.Score);
+            Console.WriteLine("Simple hill climber solution = {0}", solution.Solution);
+            Console.WriteLine("Simple hill climber score = {0}", solution.Score);
             Console.WriteLine(Environment.NewLine);
+
+            var steepestAscentHillClimber = new SteepestAscentHillClimbing<double>();
+            var solution2 = steepestAscentHillClimber.FindMaxima(
+                0,
+                transforms,
+                x => Math.Abs(x) - (x * x));
+            Console.WriteLine("Steepest ascent hill climber solution = {0}", solution2.Solution);
+            Console.WriteLine("Steepest ascent hill climber score = {0}", solution2.Score);
+            Console.WriteLine(Environment.NewLine);
+
+            var stocasticHillClimber = new StochasticHillClimbing<double>();
+            var solution3 = stocasticHillClimber.FindMaxima(
+                0,
+                transforms,
+                x => Math.Abs(x) - (x * x));
+            Console.WriteLine("Stocastic hill climber solution = {0}", solution3.Solution);
+            Console.WriteLine("Stocastic hill climber score = {0}", solution3.Score);
+            Console.WriteLine(Environment.NewLine);
+
+            Console.ReadKey();
         }
     }
 }
