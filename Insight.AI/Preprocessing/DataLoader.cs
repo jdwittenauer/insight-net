@@ -29,7 +29,7 @@ namespace Insight.AI.Preprocessing
         /// Imports data from a file with comma-separated values.
         /// </summary>
         /// <param name="path">File path</param>
-        /// <param name="separator">Character separator</param>
+        /// <param name="separator">Separator character</param>
         /// <param name="firstRowAsNames">Indicates if the first row contains atribute names</param>
         /// <returns>Matrix instantiated with the imported data</returns>
         public static InsightMatrix ImportFromCSV(string path, char separator, bool firstRowAsNames)
@@ -54,10 +54,11 @@ namespace Insight.AI.Preprocessing
         /// <summary>
         /// Imports data from a database.
         /// </summary>
-        /// <param name="connection">ODBC connection string</param>
+        /// <param name="connection">Connection string</param>
+        /// <param name="connectionType">Conection type</param>
         /// <param name="query">SQL statement to that produces result set to import</param>
         /// <returns>Matrix instantiated with the imported data</returns>
-        public static InsightMatrix ImportFromDatabase(string connection, string query)
+        public static InsightMatrix ImportFromDatabase(string connection, string connectionType, string query)
         {
             // TODO
             throw new NotImplementedException();

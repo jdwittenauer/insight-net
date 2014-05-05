@@ -61,6 +61,11 @@
     <Compile Include="Clustering\HierarchalClustering.cs" />
     <Compile Include="Clustering\Interfaces\IClustering.cs" />
     <Compile Include="Clustering\KMeansClustering.cs" />
+    <Compile Include="Common\CSVClient.cs" />
+    <Compile Include="Common\ExcelClient.cs" />
+    <Compile Include="Common\OLEDBClient.cs" />
+    <Compile Include="Common\SQLClient.cs" />
+    <Compile Include="DataStructures\DataFrame.cs" />
     <Compile Include="DataStructures\InsightMatrix.cs" />
     <Compile Include="DataStructures\InsightVector.cs" />
     <Compile Include="Dimensionality\Enumerations.cs" />
@@ -91,6 +96,7 @@
     <Compile Include="Optimization\Interfaces\ILocalSearch.cs" />
     <Compile Include="Optimization\LocalSearch\SimulatedAnnealing.cs" />
     <Compile Include="Preprocessing\DataCleanser.cs" />
+    <Compile Include="Preprocessing\DataConverter.cs" />
     <Compile Include="Preprocessing\DataLoader.cs" />
     <Compile Include="Recommendation\ContentBasedRecommender.cs" />
     <Compile Include="Recommendation\Enumerationscs.cs" />
