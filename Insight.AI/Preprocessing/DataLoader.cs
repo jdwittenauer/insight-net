@@ -19,11 +19,48 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Insight.AI.DataStructures;
 
 namespace Insight.AI.Preprocessing
 {
-    public class DataLoader
+    public static class DataLoader
     {
-        // TODO
+        /// <summary>
+        /// Imports data from a file with comma-separated values.
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="separator">Character separator</param>
+        /// <param name="firstRowAsNames">Indicates if the first row contains atribute names</param>
+        /// <returns>Matrix instantiated with the imported data</returns>
+        public static InsightMatrix ImportFromCSV(string path, char separator, bool firstRowAsNames)
+        {
+            // TODO
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Imports data from an Excel spreadsheet.
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="sheetNumber">Sheet number</param>
+        /// <param name="firstRowAsNames">Indicates if the first row contains atribute names</param>
+        /// <returns>Matrix instantiated with the imported data</returns>
+        public static InsightMatrix ImportFromExcel(string path, int sheetNumber, bool firstRowAsNames)
+        {
+            // TODO
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Imports data from a database.
+        /// </summary>
+        /// <param name="connection">ODBC connection string</param>
+        /// <param name="query">SQL statement to that produces result set to import</param>
+        /// <returns>Matrix instantiated with the imported data</returns>
+        public static InsightMatrix ImportFromDatabase(string connection, string query)
+        {
+            // TODO
+            throw new NotImplementedException();
+        }
     }
 }

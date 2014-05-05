@@ -22,7 +22,7 @@ using System.Text;
 
 namespace Insight.AI.Preprocessing
 {
-    public class DataCleanser
+    public static class DataCleanser
     {
         // TODO
     }
