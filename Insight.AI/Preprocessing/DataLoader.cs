@@ -42,10 +42,10 @@ namespace Insight.AI.Preprocessing
         /// Imports data from an Excel spreadsheet.
         /// </summary>
         /// <param name="path">File path</param>
-        /// <param name="sheetNumber">Sheet number</param>
+        /// <param name="sheetName">Sheet name</param>
         /// <param name="firstRowAsNames">Indicates if the first row contains atribute names</param>
         /// <returns>Matrix instantiated with the imported data</returns>
-        public static InsightMatrix ImportFromExcel(string path, int sheetNumber, bool firstRowAsNames)
+        public static InsightMatrix ImportFromExcel(string path, string sheetName, bool firstRowAsNames)
         {
             // TODO
             throw new NotImplementedException();

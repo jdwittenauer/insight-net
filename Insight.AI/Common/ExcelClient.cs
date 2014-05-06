@@ -18,9 +18,9 @@
 using System;
 using System.Data;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Insight.AI.Common
 {
@@ -30,13 +30,75 @@ namespace Insight.AI.Common
         /// Parses data from an Excel spreadsheet into a data table.
         /// </summary>
         /// <param name="path">File path</param>
-        /// <param name="sheetNumber">Sheet number</param>
+        /// <param name="sheetName">Sheet name</param>
         /// <param name="firstRowAsNames">Indicates if the first row contains atribute names</param>
         /// <returns>Data table containing the parsed data</returns>
-        public static DataTable ParseExcelFile(string path, int sheetNumber, bool firstRowAsNames)
+        public static DataTable ParseExcelFile(string path, string sheetName, bool firstRowAsNames)
         {
-            // TODO
-            throw new NotImplementedException();
+            DataTable table = new DataTable();
+            using (SpreadsheetDocument spreadSheetDocument = SpreadsheetDocument.Open(path, false))
+            {
+                spreadSheetDocument.WorkbookPart.Workbook.CalculationProperties.FullCalculationOnLoad = false;
+                WorkbookPart workbookPart = spreadSheetDocument.WorkbookPart;
+                IEnumerable<Sheet> sheets = spreadSheetDocument.WorkbookPart.Workbook
+                    .GetFirstChild<Sheets>()
+                    .Elements<Sheet>();
+                string relationshipId = sheets.Where(x => x.Name == sheetName).First().Id.Value;
+                WorksheetPart worksheetPart = (WorksheetPart)spreadSheetDocument.WorkbookPart
+                    .GetPartById(relationshipId);
+                Worksheet workSheet = worksheetPart.Worksheet;
+                SheetData sheetData = workSheet.GetFirstChild<SheetData>();
+                IEnumerable<Row> rows = sheetData.Descendants<Row>();
+
+                int i = 0;
+                foreach (Cell cell in rows.ElementAt(0))
+                {
+                    table.Columns.Add(i.ToString());
+                    i++;
+                }
+
+                foreach (Row row in rows)
+                {
+                    DataRow tempRow = table.NewRow();
+
+                    for (int j = 0; j < row.Descendants<Cell>().Count(); j++)
+                    {
+                        tempRow[j] = GetCellValue(spreadSheetDocument, row.Descendants<Cell>().ElementAt(j));
+                    }
+
+                    table.Rows.Add(tempRow);
+                }
+            }
+
+            return table;
+        }
+
+        /// <summary>
+        /// Helper method that parses out a cell's value
+        /// </summary>
+        /// <param name="document">Open XML spreadhsheet document</param>
+        /// <param name="cell">Cell</param>
+        /// <returns>String representing the cell's value</returns>
+        private static string GetCellValue(SpreadsheetDocument document, Cell cell)
+        {
+            if (cell.CellValue != null)
+            {
+                SharedStringTablePart stringTablePart = document.WorkbookPart.SharedStringTablePart;
+                string value = cell.CellValue.InnerXml;
+
+                if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
+                {
+                    return stringTablePart.SharedStringTable.ChildElements[Int32.Parse(value)].InnerText;
+                }
+                else
+                {
+                    return value;
+                }
+            }
+            else
+            {
+                return String.Empty;
+            }
         }
     }
 }
