@@ -19,10 +19,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Insight.AI.Training.Interfaces;
 
-namespace Insight.AI.Training.Interfaces
+namespace Insight.AI.Training.Model
 {
-    public interface IRandomForest : IEnsembleAlgorithm
+    public class ModelState : IModelState
     {
         // TODO
     }

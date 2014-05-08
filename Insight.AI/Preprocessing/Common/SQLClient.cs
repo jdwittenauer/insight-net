@@ -18,7 +18,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Insight.AI.Common
+namespace Insight.AI.Preprocessing.Common
 {
     /// <summary>
     /// This static class exposes methods for connecting to SQL data sources.

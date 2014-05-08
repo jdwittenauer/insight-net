@@ -21,9 +21,9 @@ using System.Linq;
 using System.Text;
 using Insight.AI.Training.Interfaces;
 
-namespace Insight.AI.Training.RandomForest
+namespace Insight.AI.Training.Ensemble
 {
-    public class BreimanRandomForest : IRandomForest
+    public class BreimanRandomForest : IEnsembleMethod
     {
         // TODO
     }

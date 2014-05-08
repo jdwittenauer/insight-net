@@ -22,7 +22,7 @@ using System.Text;
 
 namespace Insight.AI.Training.Interfaces
 {
-    public interface ICrossValidationMethod
+    public interface IEnsembleMethod
     {
         // TODO
     }

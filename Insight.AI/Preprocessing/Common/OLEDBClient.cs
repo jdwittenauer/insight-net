@@ -18,7 +18,7 @@
 using System.Data;
 using System.Data.OleDb;
 
-namespace Insight.AI.Common
+namespace Insight.AI.Preprocessing.Common
 {
     /// <summary>
     /// This static class exposes methods for connecting to OLEDB data sources.

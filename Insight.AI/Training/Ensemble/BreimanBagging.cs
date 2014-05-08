@@ -21,9 +21,9 @@ using System.Linq;
 using System.Text;
 using Insight.AI.Training.Interfaces;
 
-namespace Insight.AI.Training.CrossValidation
+namespace Insight.AI.Training.Ensemble
 {
-    public class KFoldCrossValidation : ICrossValidationMethod
+    public class BreimanBagging : IEnsembleMethod
     {
         // TODO
     }

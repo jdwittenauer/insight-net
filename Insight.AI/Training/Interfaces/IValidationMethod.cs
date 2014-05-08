@@ -19,11 +19,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Insight.AI.Training.Interfaces;
 
-namespace Insight.AI.Training.Bagging
+namespace Insight.AI.Training.Interfaces
 {
-    public class BreimanBagging : IBaggingMethod
+    public interface IValidationMethod
     {
         // TODO
     }

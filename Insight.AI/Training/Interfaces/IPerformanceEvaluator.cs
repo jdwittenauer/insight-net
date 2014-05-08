@@ -22,7 +22,7 @@ using System.Text;
 
 namespace Insight.AI.Training.Interfaces
 {
-    public interface IBoostingMethod : IEnsembleAlgorithm
+    public interface IPerformanceEvaluator
     {
         // TODO
     }

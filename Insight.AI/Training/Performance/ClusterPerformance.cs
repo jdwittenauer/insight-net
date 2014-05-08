@@ -19,10 +19,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Insight.AI.Training.Interfaces;
 
-namespace Insight.AI.Training.Interfaces
+namespace Insight.AI.Training.Performance
 {
-    public interface IBaggingMethod : IEnsembleAlgorithm
+    public class ClusterPerformance : IPerformanceEvaluator
     {
         // TODO
     }

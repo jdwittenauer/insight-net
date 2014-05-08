@@ -21,9 +21,9 @@ using System.Linq;
 using System.Text;
 using Insight.AI.Training.Interfaces;
 
-namespace Insight.AI.Training.Boosting
+namespace Insight.AI.Training.Ensemble
 {
-    public class AdaBoost : IBoostingMethod
+    public class AdaBoost : IEnsembleMethod
     {
         // TODO
     }

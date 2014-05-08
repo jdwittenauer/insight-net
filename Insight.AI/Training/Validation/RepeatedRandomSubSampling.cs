@@ -19,10 +19,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Insight.AI.Training.Interfaces;
 
-namespace Insight.AI.Training.Interfaces
+namespace Insight.AI.Training.CrossValidation
 {
-    public interface IEnsembleAlgorithm
+    public class RepeatedRandomSubSampling : IValidationMethod
     {
         // TODO
     }

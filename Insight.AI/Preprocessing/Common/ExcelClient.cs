@@ -22,7 +22,7 @@ using System.Linq;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 
-namespace Insight.AI.Common
+namespace Insight.AI.Preprocessing.Common
 {
     public static class ExcelClient
     {

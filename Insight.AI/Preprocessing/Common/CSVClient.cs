@@ -19,7 +19,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 
-namespace Insight.AI.Common
+namespace Insight.AI.Preprocessing.Common
 {
     public static class CSVClient
     {

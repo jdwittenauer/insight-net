@@ -66,10 +66,10 @@
     <Compile Include="Clustering\HierarchalClustering.cs" />
     <Compile Include="Clustering\Interfaces\IClustering.cs" />
     <Compile Include="Clustering\KMeansClustering.cs" />
-    <Compile Include="Common\CSVClient.cs" />
-    <Compile Include="Common\ExcelClient.cs" />
-    <Compile Include="Common\OLEDBClient.cs" />
-    <Compile Include="Common\SQLClient.cs" />
+    <Compile Include="Preprocessing\Common\CSVClient.cs" />
+    <Compile Include="Preprocessing\Common\ExcelClient.cs" />
+    <Compile Include="Preprocessing\Common\OLEDBClient.cs" />
+    <Compile Include="Preprocessing\Common\SQLClient.cs" />
     <Compile Include="DataStructures\DataFrame.cs" />
     <Compile Include="DataStructures\InsightMatrix.cs" />
     <Compile Include="DataStructures\InsightVector.cs" />
@@ -122,16 +122,19 @@
     <Compile Include="Regression\LinearRegression.cs" />
     <Compile Include="Regression\LogisticRegression.cs" />
     <Compile Include="Regression\RidgeRegression.cs" />
-    <Compile Include="Training\Bagging\BreimanBagging.cs" />
-    <Compile Include="Training\Boosting\AdaBoost.cs" />
-    <Compile Include="Training\CrossValidation\KFoldCrossValidation.cs" />
-    <Compile Include="Training\CrossValidation\RepeatedRandomSubSampling.cs" />
-    <Compile Include="Training\Interfaces\IBoostingMethod.cs" />
-    <Compile Include="Training\Interfaces\ICrossValidationMethod.cs" />
-    <Compile Include="Training\Interfaces\IEnsembleAlgorithm.cs" />
-    <Compile Include="Training\Interfaces\IBaggingMethod.cs" />
-    <Compile Include="Training\Interfaces\IRandomForest.cs" />
-    <Compile Include="Training\RandomForest\BreimanRandomForest.cs" />
+    <Compile Include="Training\Ensemble\BreimanBagging.cs" />
+    <Compile Include="Training\Ensemble\AdaBoost.cs" />
+    <Compile Include="Training\Interfaces\IModelState.cs" />
+    <Compile Include="Training\Interfaces\IPerformanceEvaluator.cs" />
+    <Compile Include="Training\Model\ModelState.cs" />
+    <Compile Include="Training\Performance\ClassificationPerformance.cs" />
+    <Compile Include="Training\Performance\ClusterPerformance.cs" />
+    <Compile Include="Training\Performance\RegressionPerformance.cs" />
+    <Compile Include="Training\Validation\KFoldCrossValidation.cs" />
+    <Compile Include="Training\Validation\RepeatedRandomSubSampling.cs" />
+    <Compile Include="Training\Interfaces\IValidationMethod.cs" />
+    <Compile Include="Training\Interfaces\IEnsembleMethod.cs" />
+    <Compile Include="Training\Ensemble\BreimanRandomForest.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
