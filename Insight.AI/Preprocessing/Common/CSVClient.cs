@@ -32,50 +32,50 @@ namespace Insight.AI.Preprocessing.Common
         /// <returns>Data table containing the parsed data</returns>
         public static DataTable ParseCSVFile(string path, char separator, bool firstRowAsNames)
         {
-            var table = new DataTable();
-            StreamReader reader = new StreamReader(path);
-
-            var headerTokens = reader.ReadLine().Split(separator).ToList();
-
-            if (firstRowAsNames)
+            using (StreamReader reader = new StreamReader(path))
             {
-                for (int i = 0; i < headerTokens.Count; i++)
+                var table = new DataTable();
+                var headerTokens = reader.ReadLine().Split(separator).ToList();
+
+                if (firstRowAsNames)
                 {
-                    table.Columns.Add(headerTokens[i].Trim());
-                }  
-            }
-            else
-            {
-                for (int i = 0; i < headerTokens.Count; i++)
+                    for (int i = 0; i < headerTokens.Count; i++)
+                    {
+                        table.Columns.Add(headerTokens[i].Trim());
+                    }
+                }
+                else
                 {
-                    table.Columns.Add();
+                    for (int i = 0; i < headerTokens.Count; i++)
+                    {
+                        table.Columns.Add();
+                    }
+
+                    DataRow row = table.NewRow();
+
+                    for (int i = 0; i < headerTokens.Count; i++)
+                    {
+                        row[i] = headerTokens[i].Trim();
+                    }
+
+                    table.Rows.Add(row);
                 }
 
-                DataRow row = table.NewRow();
-
-                for (int i = 0; i < headerTokens.Count; i++)
+                while (!reader.EndOfStream)
                 {
-                    row[i] = headerTokens[i].Trim();
+                    var tokens = reader.ReadLine().Split(separator).ToList();
+                    DataRow row = table.NewRow();
+
+                    for (int i = 0; i < tokens.Count; i++)
+                    {
+                        row[i] = tokens[i].Trim();
+                    }
+
+                    table.Rows.Add(row);
                 }
 
-                table.Rows.Add(row);
+                return table;
             }
-
-            while (!reader.EndOfStream)
-            {
-                var tokens = reader.ReadLine().Split(separator).ToList();
-                DataRow row = table.NewRow();
-
-                for (int i = 0; i < tokens.Count; i++)
-                {
-                    row[i] = tokens[i].Trim();
-                }
-
-                table.Rows.Add(row);
-            }
-
-            reader.Close();
-            return table;
         }
     }
 }

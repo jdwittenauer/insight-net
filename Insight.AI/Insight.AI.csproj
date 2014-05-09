@@ -104,7 +104,7 @@
     <Compile Include="Preprocessing\DataConverter.cs" />
     <Compile Include="Preprocessing\DataLoader.cs" />
     <Compile Include="Recommendation\ContentBasedRecommender.cs" />
-    <Compile Include="Recommendation\Enumerationscs.cs" />
+    <Compile Include="Recommendation\Enumerations.cs" />
     <Compile Include="Recommendation\HybridCollaborativeFilter.cs" />
     <Compile Include="Recommendation\HybridRecommender.cs" />
     <Compile Include="Recommendation\Interfaces\IRecommender.cs" />

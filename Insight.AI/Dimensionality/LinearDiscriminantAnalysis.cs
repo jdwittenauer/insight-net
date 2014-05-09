@@ -155,8 +155,7 @@ namespace Insight.AI.Dimensionality
                     x + (DenseMatrix)(y.Key * (y.Value.Data - totalMean.Data).ToColumnMatrix() * 
                     (y.Value.Data - totalMean.Data).ToColumnMatrix().Transpose())));
 
-            // Compute the LDA projection and perform eigenvalue decomposition
-            // on the projected matrix
+            // Compute the LDA projection and perform eigenvalue decomposition on the projected matrix
             InsightMatrix projection = new InsightMatrix(
                 (DenseMatrix)(withinClassScatter.Data.Inverse() * betweenClassScatter.Data));
             Evd evd = projection.Data.Evd();
@@ -173,8 +172,7 @@ namespace Insight.AI.Dimensionality
             }
             else if (percentThreshold != null)
             {
-                // Limit to a percent of the variance in the data set
-                // (represented by the sum of the eigenvalues)
+                // Limit to a percent of the variance in the data set (represented by the sum of the eigenvalues)
                 double totalVariance = EigenValues.Data.Sum() * percentThreshold.Value;
                 double accumulatedVariance = 0;
                 Rank = 0;
@@ -193,8 +191,7 @@ namespace Insight.AI.Dimensionality
                 int index = EigenValues.Data.MaximumIndex();
                 projectionVectors.Data.SetColumn(i, EigenVectors.Data.Column(index));
 
-                // Set this position to zero so the next iteration captures the
-                // next-largest eigenvalue
+                // Set this position to zero so the next iteration captures the next-largest eigenvalue
                 EigenValues.Data[index] = 0;
             }
 
@@ -214,8 +211,7 @@ namespace Insight.AI.Dimensionality
             }
 
             // Concatenate back into a single matrix
-            InsightMatrix result = classes.Aggregate((x, y) => 
-                new InsightMatrix((DenseMatrix)x.Data.Stack(y.Data)));
+            InsightMatrix result = classes.Aggregate((x, y) => new InsightMatrix((DenseMatrix)x.Data.Stack(y.Data)));
 
             return result;
         }

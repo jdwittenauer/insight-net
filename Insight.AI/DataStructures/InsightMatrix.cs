@@ -262,7 +262,7 @@ namespace Insight.AI.DataStructures
                 throw new Exception("Matrix size does not match specified column index.");
 
             // Sort the input matrix
-            InsightMatrix sortedMatrix = this.OrderByColumnValues(columnIndex);
+            InsightMatrix sortedMatrix = this.Sort(columnIndex);
 
             // Get the distinct set of values
             int rowCount = sortedMatrix.Data.RowCount;
@@ -295,7 +295,7 @@ namespace Insight.AI.DataStructures
         /// </summary>
         /// <param name="columnIndex">Column to use for sorting</param>
         /// <returns>Row-sorted matrix</returns>
-        private InsightMatrix OrderByColumnValues(int columnIndex)
+        private InsightMatrix Sort(int columnIndex)
         {
             if (this == null || this.Data == null)
                 throw new Exception("Matrix must be instantiated.");

@@ -35,9 +35,9 @@ namespace Insight.AI.Preprocessing.Common
         /// <returns>Data table containing the parsed data</returns>
         public static DataTable ParseExcelFile(string path, string sheetName, bool firstRowAsNames)
         {
-            DataTable table = new DataTable();
             using (SpreadsheetDocument spreadSheetDocument = SpreadsheetDocument.Open(path, false))
             {
+                DataTable table = new DataTable();
                 spreadSheetDocument.WorkbookPart.Workbook.CalculationProperties.FullCalculationOnLoad = false;
                 WorkbookPart workbookPart = spreadSheetDocument.WorkbookPart;
                 IEnumerable<Sheet> sheets = spreadSheetDocument.WorkbookPart.Workbook
@@ -68,9 +68,9 @@ namespace Insight.AI.Preprocessing.Common
 
                     table.Rows.Add(tempRow);
                 }
-            }
 
-            return table;
+                return table;
+            }
         }
 
         /// <summary>

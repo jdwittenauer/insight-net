@@ -17,9 +17,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using Insight.AI.DataStructures;
+using Insight.AI.Preprocessing.Common;
 
 namespace Insight.AI.Preprocessing
 {
@@ -34,8 +36,47 @@ namespace Insight.AI.Preprocessing
         /// <returns>Matrix instantiated with the imported data</returns>
         public static InsightMatrix ImportFromCSV(string path, char separator, bool firstRowAsNames)
         {
-            // TODO
-            throw new NotImplementedException();
+            var table = CSVClient.ParseCSVFile(path, separator, firstRowAsNames);
+            int rowCount = table.Rows.Count, columnCount = table.Columns.Count;
+            var columnIsNumeric = new List<bool>();
+
+            for (int i = 0; i < columnCount; i++)
+            {
+                // TODO - Need to determine if the column is numeric
+                columnIsNumeric.Add(true);
+            }
+
+            var numericColumnCount = columnIsNumeric.Where(x => x == true).Count();
+            var data = new List<List<double>>();
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                var row = new List<double>();
+
+                for (int j = 0; j < columnCount; j++)
+                {
+                    // If the column isn't numeric then skip it - eventually we'll need a
+                    // more advanced data structure than can hang on to text data such as labels
+                    if (columnIsNumeric[j])
+                    {
+                        double value;
+                        if (double.TryParse(table.Rows[i][j].ToString(), out value))
+                        {
+                            row.Add(value);
+                        }
+                        else
+                        {
+                            // If the value can't be parsed then just insert a zero - this is a very 
+                            // naive approach but will work as a starting point
+                            row.Add(0);
+                        }
+                    }
+                }
+
+                data.Add(row);
+            }
+
+            return new InsightMatrix(rowCount, numericColumnCount, data);
         }
 
         /// <summary>
