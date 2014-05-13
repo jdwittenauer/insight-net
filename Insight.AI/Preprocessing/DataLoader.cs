@@ -42,7 +42,9 @@ namespace Insight.AI.Preprocessing
 
             for (int i = 0; i < columnCount; i++)
             {
-                // TODO - Need to determine if the column is numeric
+                // Need to determine if the column is numeric
+
+
                 columnIsNumeric.Add(true);
             }
 
