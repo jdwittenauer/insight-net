@@ -62,8 +62,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\iris.data" />
-    <None Include="Data\iris.names" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
