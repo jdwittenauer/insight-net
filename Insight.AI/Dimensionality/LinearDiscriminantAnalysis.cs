@@ -99,7 +99,6 @@ namespace Insight.AI.Dimensionality
         /// are used to specify the critera or methodology used to limit the number of features 
         /// in the transformed data set.  Only one extra parameter must be specified.
         /// </summary>
-        /// <remarks>Class information should be located in the first column of the data set</remarks>
         /// <param name="matrix">Input matrix</param>
         /// <param name="featureLimit">Maximum number of features in the new data set</param>
         /// <param name="percentThreshold">Specifies the percent of the concept variance to use
@@ -120,7 +119,7 @@ namespace Insight.AI.Dimensionality
             }
 
             // Derive a sub-matrix for each class in the data set
-            List<InsightMatrix> classes = matrix.Decompose(0);
+            List<InsightMatrix> classes = matrix.Decompose(matrix.Label);
 
             // Calculate the mean and covariance matrix for each class
             List<KeyValuePair<int, InsightVector>> meanVectors = new List<KeyValuePair<int, InsightVector>>();

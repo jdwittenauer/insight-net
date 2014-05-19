@@ -33,14 +33,22 @@ namespace Insight.AI.Preprocessing
         /// <param name="path">File path</param>
         /// <param name="separator">Separator character</param>
         /// <param name="firstRowAsNames">Indicates if the first row contains atribute names</param>
+        /// <param name="label">Indicates the column of the class label or prediction target</param>
         /// <returns>Matrix instantiated with the imported data</returns>
-        public static InsightMatrix ImportFromCSV(string path, char separator, bool firstRowAsNames)
+        public static InsightMatrix ImportFromCSV(string path, char separator, bool firstRowAsNames, int? label)
         {
             var table = CSVClient.ParseCSVFile(path, separator, firstRowAsNames);
 
-            // For now we're ignoring labels such as column names -
-            // need a better data structure to keep track of labels
-            return ParseTableIntoNumericList(table);
+            // For now we're ignoring text such as column names -
+            // need a better data structure to keep track of text values
+            var matrix = ParseTableIntoNumericList(table);
+
+            if (label != null)
+            {
+                matrix.Label = label.Value;
+            }
+
+            return matrix;
         }
 
         /// <summary>
@@ -49,14 +57,22 @@ namespace Insight.AI.Preprocessing
         /// <param name="path">File path</param>
         /// <param name="sheetName">Sheet name</param>
         /// <param name="firstRowAsNames">Indicates if the first row contains atribute names</param>
+        /// <param name="label">Indicates the column of the class label or prediction target</param>
         /// <returns>Matrix instantiated with the imported data</returns>
-        public static InsightMatrix ImportFromExcel(string path, string sheetName, bool firstRowAsNames)
+        public static InsightMatrix ImportFromExcel(string path, string sheetName, bool firstRowAsNames, int? label)
         {
             var table = ExcelClient.ParseExcelFile(path, sheetName, firstRowAsNames);
 
-            // For now we're ignoring labels such as column names -
-            // need a better data structure to keep track of labels
-            return ParseTableIntoNumericList(table);
+            // For now we're ignoring text such as column names -
+            // need a better data structure to keep track of text values
+            var matrix = ParseTableIntoNumericList(table);
+
+            if (label != null)
+            {
+                matrix.Label = label.Value;
+            }
+
+            return matrix;
         }
 
         /// <summary>
@@ -65,8 +81,9 @@ namespace Insight.AI.Preprocessing
         /// <param name="connection">Connection string</param>
         /// <param name="connectionType">Conection type</param>
         /// <param name="query">SQL statement to that produces result set to import</param>
+        /// <param name="label">Indicates the column of the class label or prediction target</param>
         /// <returns>Matrix instantiated with the imported data</returns>
-        public static InsightMatrix ImportFromDatabase(string connection, string connectionType, string query)
+        public static InsightMatrix ImportFromDatabase(string connection, string connectionType, string query, int? label)
         {
             DataTable table;
             if (connectionType == "MS SQL")
@@ -78,9 +95,16 @@ namespace Insight.AI.Preprocessing
                 table = OLEDBClient.RunQuery(connection, query);
             }
 
-            // For now we're ignoring labels such as column names -
-            // need a better data structure to keep track of labels
-            return ParseTableIntoNumericList(table);
+            // For now we're ignoring text such as column names -
+            // need a better data structure to keep track of text values
+            var matrix = ParseTableIntoNumericList(table);
+
+            if (label != null)
+            {
+                matrix.Label = label.Value;
+            }
+
+            return matrix;
         }
 
         /// <summary>
@@ -123,7 +147,7 @@ namespace Insight.AI.Preprocessing
                 for (int j = 0; j < columnCount; j++)
                 {
                     // If the column isn't numeric then skip it - eventually we'll need a
-                    // more advanced data structure than can hang on to text data such as labels
+                    // more advanced data structure than can hang on to text data
                     if (columnIsNumeric[j])
                     {
                         double value;

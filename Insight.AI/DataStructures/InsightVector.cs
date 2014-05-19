@@ -83,6 +83,15 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
+        /// Returns a formatted string representation of the vector.
+        /// </summary>
+        /// <returns>String representation of the vector</returns>
+        public override string ToString()
+        {
+            return this.Data.ToString("F4", null);
+        }
+
+        /// <summary>
         /// Centers the vector by subtracting each value by the mean.
         /// </summary>
         /// <returns>Centered vector</returns>

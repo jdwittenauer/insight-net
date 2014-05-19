@@ -17,11 +17,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Insight.AI.DataStructures;
-using Insight.AI.Metrics;
 using Insight.AI.Dimensionality;
+using Insight.AI.Metrics;
 using Insight.AI.Optimization.LocalSearch;
+using Insight.AI.Preprocessing;
 
 namespace Insight.Samples
 {
@@ -35,12 +35,12 @@ namespace Insight.Samples
 
             InsightVector u = new InsightVector(new double[] { 1, 2, 3, 4, 5 });
             Console.WriteLine("Vector u:");
-            Console.WriteLine(u.Data.ToString("F4", null));
+            Console.WriteLine(u.ToString());
             Console.WriteLine(Environment.NewLine);
 
             InsightVector v = new InsightVector(new double[] { 5, 4, 3, 2, 1 });
             Console.WriteLine("Vector v:");
-            Console.WriteLine(v.Data.ToString("F4", null));
+            Console.WriteLine(v.ToString());
             Console.WriteLine(Environment.NewLine);
 
             double distance = u.DistanceFrom(v);
@@ -79,17 +79,17 @@ namespace Insight.Samples
                 { 2.0, 1.6 }, { 1.0, 1.1 }, { 1.5, 1.6 }, { 1.1, 0.9 } 
             });
             Console.WriteLine("First test matrix:");
-            Console.WriteLine(matrix.Data.ToString("F4", NumberFormatInfo.InvariantInfo));
+            Console.WriteLine(matrix.ToString());
             Console.WriteLine(Environment.NewLine);
 
             var pca = matrix.ExtractFeatures(ExtractionMethod.PrincipalComponentAnalysis, 1);
             Console.WriteLine("Result of principal components analysis:");
-            Console.WriteLine(pca.Data.ToString("F4", NumberFormatInfo.InvariantInfo));
+            Console.WriteLine(pca.ToString());
             Console.WriteLine(Environment.NewLine);
 
             var svd = matrix.ExtractFeatures(ExtractionMethod.SingularValueDecomposition, 1);
             Console.WriteLine("Result of singular value decomposition:");
-            Console.WriteLine(svd.Data.ToString("F4", NumberFormatInfo.InvariantInfo));
+            Console.WriteLine(svd.ToString());
             Console.WriteLine(Environment.NewLine);
 
             InsightMatrix matrix2 = new InsightMatrix(new double[,] { 
@@ -97,12 +97,12 @@ namespace Insight.Samples
                 { 2, 9, 10 }, { 2, 6, 8 }, { 2, 9, 5 }, { 2, 8, 7 }, { 2, 10, 8 } 
             });
             Console.WriteLine("Second test matrix:");
-            Console.WriteLine(matrix2.Data.ToString("F4", NumberFormatInfo.InvariantInfo));
+            Console.WriteLine(matrix2.ToString());
             Console.WriteLine(Environment.NewLine);
 
             var lda = matrix2.ExtractFeatures(ExtractionMethod.LinearDiscriminantAnalysis);
             Console.WriteLine("Result of linear discriminant analysis:");
-            Console.WriteLine(lda.Data.ToString("F4", NumberFormatInfo.InvariantInfo));
+            Console.WriteLine(lda.ToString());
             Console.WriteLine(Environment.NewLine);
 
             Console.ReadKey();
@@ -147,6 +147,14 @@ namespace Insight.Samples
             Console.WriteLine(Environment.NewLine);
 
             Console.ReadKey();
+
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Data Loading Examples");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine(Environment.NewLine);
+
+            // TODO - Test data loading functions
+            //InsightMatrix matrix3 = DataLoader.ImportFromCSV("", ',', false, null);
         }
     }
 }

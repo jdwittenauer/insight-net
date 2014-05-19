@@ -29,6 +29,12 @@ namespace Insight.AI.DataStructures
     public class InsightMatrix
     {
         /// <summary>
+        /// Indicates which column in the data set contains the class label or predicted
+        /// value.  Used for supervised learning tasks.
+        /// </summary>
+        public int Label { get; set; }
+
+        /// <summary>
         /// Math.NET matrix implementation.  Used for all matrix calculations.
         /// </summary>
         public Matrix Data { get; private set; }
@@ -94,6 +100,15 @@ namespace Insight.AI.DataStructures
         public InsightMatrix(Matrix matrix)
         {
             Data = matrix;
+        }
+
+        /// <summary>
+        /// Returns a formatted string representation of the matrix.
+        /// </summary>
+        /// <returns>String representation of the matrix</returns>
+        public override string ToString()
+        {
+            return this.Data.ToString("F4", null);
         }
 
         /// <summary>
@@ -208,11 +223,21 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
+        /// Calculates the correlation matrix.
+        /// </summary>
+        /// <param name="isCentered">Indicates if the data set is already centered</param>
+        /// <returns>Correlation matrix</returns>
+        public InsightMatrix CorrelationMatrix(bool isCentered = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Calculates the covariance matrix.
         /// </summary>
         /// <param name="isCentered">Indicates if the data set is already centered</param>
         /// <returns>Covariance matrix</returns>
-        public InsightMatrix CovarianceMatrix(bool isCentered)
+        public InsightMatrix CovarianceMatrix(bool isCentered = false)
         {
             if (this == null || this.Data == null)
                 throw new Exception("Matrix must be instantiated.");
