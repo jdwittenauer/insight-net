@@ -37,15 +37,80 @@ namespace Insight.AI.Preprocessing
         public static InsightMatrix ImportFromCSV(string path, char separator, bool firstRowAsNames)
         {
             var table = CSVClient.ParseCSVFile(path, separator, firstRowAsNames);
+
+            // For now we're ignoring labels such as column names -
+            // need a better data structure to keep track of labels
+            return ParseTableIntoNumericList(table);
+        }
+
+        /// <summary>
+        /// Imports data from an Excel spreadsheet.
+        /// </summary>
+        /// <param name="path">File path</param>
+        /// <param name="sheetName">Sheet name</param>
+        /// <param name="firstRowAsNames">Indicates if the first row contains atribute names</param>
+        /// <returns>Matrix instantiated with the imported data</returns>
+        public static InsightMatrix ImportFromExcel(string path, string sheetName, bool firstRowAsNames)
+        {
+            var table = ExcelClient.ParseExcelFile(path, sheetName, firstRowAsNames);
+
+            // For now we're ignoring labels such as column names -
+            // need a better data structure to keep track of labels
+            return ParseTableIntoNumericList(table);
+        }
+
+        /// <summary>
+        /// Imports data from a database.
+        /// </summary>
+        /// <param name="connection">Connection string</param>
+        /// <param name="connectionType">Conection type</param>
+        /// <param name="query">SQL statement to that produces result set to import</param>
+        /// <returns>Matrix instantiated with the imported data</returns>
+        public static InsightMatrix ImportFromDatabase(string connection, string connectionType, string query)
+        {
+            DataTable table;
+            if (connectionType == "MS SQL")
+            {
+                table = SQLClient.RunQuery(connection, query);
+            }
+            else
+            {
+                table = OLEDBClient.RunQuery(connection, query);
+            }
+
+            // For now we're ignoring labels such as column names -
+            // need a better data structure to keep track of labels
+            return ParseTableIntoNumericList(table);
+        }
+
+        /// <summary>
+        /// Parses a data table into a numeric matrix.
+        /// </summary>
+        /// <param name="table">Data table</param>
+        /// <returns>Numeric matrix</returns>
+        private static InsightMatrix ParseTableIntoNumericList(DataTable table)
+        {
             int rowCount = table.Rows.Count, columnCount = table.Columns.Count;
             var columnIsNumeric = new List<bool>();
 
             for (int i = 0; i < columnCount; i++)
             {
                 // Need to determine if the column is numeric
+                bool isNumeric = true;
+                for (int j = 0; j < 10; j++)
+                {
+                    if (j < rowCount)
+                    {
+                        double value;
+                        if (table.Rows[j][i] != null && !double.TryParse(table.Rows[j][i].ToString(), out value))
+                        {
+                            // Couldn't parse value into a number
+                            isNumeric = false;
+                        }
+                    }
+                }
 
-
-                columnIsNumeric.Add(true);
+                columnIsNumeric.Add(isNumeric);
             }
 
             var numericColumnCount = columnIsNumeric.Where(x => x == true).Count();
@@ -79,32 +144,6 @@ namespace Insight.AI.Preprocessing
             }
 
             return new InsightMatrix(rowCount, numericColumnCount, data);
-        }
-
-        /// <summary>
-        /// Imports data from an Excel spreadsheet.
-        /// </summary>
-        /// <param name="path">File path</param>
-        /// <param name="sheetName">Sheet name</param>
-        /// <param name="firstRowAsNames">Indicates if the first row contains atribute names</param>
-        /// <returns>Matrix instantiated with the imported data</returns>
-        public static InsightMatrix ImportFromExcel(string path, string sheetName, bool firstRowAsNames)
-        {
-            // TODO
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Imports data from a database.
-        /// </summary>
-        /// <param name="connection">Connection string</param>
-        /// <param name="connectionType">Conection type</param>
-        /// <param name="query">SQL statement to that produces result set to import</param>
-        /// <returns>Matrix instantiated with the imported data</returns>
-        public static InsightMatrix ImportFromDatabase(string connection, string connectionType, string query)
-        {
-            // TODO
-            throw new NotImplementedException();
         }
     }
 }
