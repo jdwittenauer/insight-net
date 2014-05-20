@@ -70,37 +70,62 @@ namespace Insight.Samples
             Console.ReadKey();
 
             Console.WriteLine(Environment.NewLine);
-            Console.WriteLine("Feature Extraction Examples");
+            Console.WriteLine("Covariance & Correlation Examples");
             Console.WriteLine("------------------------------");
             Console.WriteLine(Environment.NewLine);
 
             InsightMatrix matrix = new InsightMatrix(new double[,] { 
+                { 2.1, 8 }, { 2.5, 12 }, { 4.0, 14 }, { 3.6, 10 }
+            });
+
+            Console.WriteLine("Example matrix:");
+            Console.WriteLine(matrix.ToString());
+            Console.WriteLine(Environment.NewLine);
+
+            var cov = matrix.CovarianceMatrix();
+            Console.WriteLine("Covariance matrix:");
+            Console.WriteLine(cov.ToString());
+            Console.WriteLine(Environment.NewLine);
+
+            var cor = matrix.CorrelationMatrix();
+            Console.WriteLine("Correlation matrix:");
+            Console.WriteLine(cor.ToString());
+            Console.WriteLine(Environment.NewLine);
+
+            Console.ReadKey();
+
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Feature Extraction Examples");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine(Environment.NewLine);
+
+            InsightMatrix matrix2 = new InsightMatrix(new double[,] { 
                 { 2.5, 2.4 }, { 0.5, 0.7 }, { 2.2, 2.9 }, { 1.9, 2.2 }, { 3.1, 3.0 }, { 2.3, 2.7 }, 
                 { 2.0, 1.6 }, { 1.0, 1.1 }, { 1.5, 1.6 }, { 1.1, 0.9 } 
             });
             Console.WriteLine("First test matrix:");
-            Console.WriteLine(matrix.ToString());
+            Console.WriteLine(matrix2.ToString());
             Console.WriteLine(Environment.NewLine);
 
-            var pca = matrix.ExtractFeatures(ExtractionMethod.PrincipalComponentAnalysis, 1);
+            var pca = matrix2.ExtractFeatures(ExtractionMethod.PrincipalComponentAnalysis, 1);
             Console.WriteLine("Result of principal components analysis:");
             Console.WriteLine(pca.ToString());
             Console.WriteLine(Environment.NewLine);
 
-            var svd = matrix.ExtractFeatures(ExtractionMethod.SingularValueDecomposition, 1);
+            var svd = matrix2.ExtractFeatures(ExtractionMethod.SingularValueDecomposition, 1);
             Console.WriteLine("Result of singular value decomposition:");
             Console.WriteLine(svd.ToString());
             Console.WriteLine(Environment.NewLine);
 
-            InsightMatrix matrix2 = new InsightMatrix(new double[,] { 
+            InsightMatrix matrix3 = new InsightMatrix(new double[,] { 
                 { 1, 4, 2 }, { 1, 2, 4 }, { 1, 2, 3 }, { 1, 3, 6 }, { 1, 4, 4 }, 
                 { 2, 9, 10 }, { 2, 6, 8 }, { 2, 9, 5 }, { 2, 8, 7 }, { 2, 10, 8 } 
             });
             Console.WriteLine("Second test matrix:");
-            Console.WriteLine(matrix2.ToString());
+            Console.WriteLine(matrix3.ToString());
             Console.WriteLine(Environment.NewLine);
 
-            var lda = matrix2.ExtractFeatures(ExtractionMethod.LinearDiscriminantAnalysis);
+            var lda = matrix3.ExtractFeatures(ExtractionMethod.LinearDiscriminantAnalysis);
             Console.WriteLine("Result of linear discriminant analysis:");
             Console.WriteLine(lda.ToString());
             Console.WriteLine(Environment.NewLine);
@@ -154,7 +179,7 @@ namespace Insight.Samples
             Console.WriteLine(Environment.NewLine);
 
             // TODO - Test data loading functions
-            //InsightMatrix matrix3 = DataLoader.ImportFromCSV("", ',', false, null);
+            //InsightMatrix matrix4 = DataLoader.ImportFromCSV("", ',', false, null);
         }
     }
 }

@@ -164,7 +164,7 @@ namespace Insight.AI.DataStructures
         /// <summary>
         /// Scales each column in the matrix by dividing each value in the column by the square 
         /// root of the squared sum.  For a column that is already centered, this is equivalent 
-        /// to the standard deviation.
+        /// to dividing by the standard deviation.
         /// </summary>
         /// <returns>Column-scaled matrix</returns>
         public InsightMatrix Scale()
@@ -223,16 +223,6 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Calculates the correlation matrix.
-        /// </summary>
-        /// <param name="isCentered">Indicates if the data set is already centered</param>
-        /// <returns>Correlation matrix</returns>
-        public InsightMatrix CorrelationMatrix(bool isCentered = false)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Calculates the covariance matrix.
         /// </summary>
         /// <param name="isCentered">Indicates if the data set is already centered</param>
@@ -261,7 +251,7 @@ namespace Insight.AI.DataStructures
                         double imean = this.Data.Column(i).Mean(), jmean = this.Data.Column(j).Mean();
                         for (int k = 0; k < rows; k++)
                         {
-                            covariance += (this.Data[i, k] - imean) * (this.Data[j, k] - jmean);
+                            covariance += (this.Data[k, i] - imean) * (this.Data[k, j] - jmean);
                         }
 
                         cov.Data[i, j] = covariance / (rows - 1);
@@ -270,6 +260,50 @@ namespace Insight.AI.DataStructures
             }
 
             return cov;
+        }
+
+        /// <summary>
+        /// Calculates the correlation matrix.
+        /// </summary>
+        /// <param name="isCentered">Indicates if the data set is already centered</param>
+        /// <returns>Correlation matrix</returns>
+        public InsightMatrix CorrelationMatrix(bool isCentered = false)
+        {
+            if (this == null || this.Data == null)
+                throw new Exception("Matrix must be instantiated.");
+
+            var cov = this.CovarianceMatrix();
+            int columns = this.Data.ColumnCount, rows = this.Data.RowCount;
+            var cor = new InsightMatrix(columns);
+
+            var stds = new List<double>();
+
+            for (int i = 0; i < columns; i++)
+            {
+                // Calculate the standard deviation for each feature
+                double std = 0;
+                double mean = this.Data.Column(i).Mean();
+
+                for (int j = 0; j < rows; j++)
+                {
+                    std += Math.Pow((this.Data[j, i] - mean), 2);
+                }
+
+                std = Math.Sqrt(std / (rows - 1));
+                stds.Add(std);
+            }
+
+            for (int i = 0; i < columns; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    // Calculate the correlation by dividing the covariance by the product
+                    // of the standard deviations of the two features
+                    cor.Data[i, j] = cov.Data[i, j] / (stds[i] * stds[j]);
+                }
+            }
+
+            return cor;
         }
 
         /// <summary>
