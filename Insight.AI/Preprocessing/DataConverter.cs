@@ -25,15 +25,6 @@ namespace Insight.AI.Preprocessing
 {
     public static class DataConverter
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="table"></param>
-        /// <param name="caregoryColumn"></param>
-        /// <returns></returns>
-        public static Dictionary<string, int> GetCategoricalConversion(DataTable table, int caregoryColumn)
-        {
-            throw new NotImplementedException();
-        }
+        // TODO
     }
 }

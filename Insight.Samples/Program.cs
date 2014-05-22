@@ -178,7 +178,7 @@ namespace Insight.Samples
             Console.WriteLine("------------------------------");
             Console.WriteLine(Environment.NewLine);
 
-            InsightMatrix iris = DataLoader.ImportFromCSV("../../../data/iris.data", ',', false, null);
+            InsightMatrix iris = DataLoader.ImportFromCSV("../../../data/iris.data", ',', false, 4, true);
 
             Console.WriteLine("Iris data set:");
             Console.WriteLine(iris.ToString());

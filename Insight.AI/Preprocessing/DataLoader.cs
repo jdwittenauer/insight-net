@@ -33,19 +33,21 @@ namespace Insight.AI.Preprocessing
         /// <param name="path">File path</param>
         /// <param name="separator">Separator character</param>
         /// <param name="firstRowAsNames">Indicates if the first row contains atribute names</param>
-        /// <param name="label">Indicates the column of the class label or prediction target</param>
+        /// <param name="labelColumn">Indicates the column of the class label or prediction target</param>
+        /// <param name="convertNominalLabel">Convert a nominal label to an integer</param>
         /// <returns>Matrix instantiated with the imported data</returns>
-        public static InsightMatrix ImportFromCSV(string path, char separator, bool firstRowAsNames, int? label)
+        public static InsightMatrix ImportFromCSV(string path, char separator, bool firstRowAsNames,
+            int? labelColumn, bool? convertNominalLabel)
         {
             var table = CSVClient.ParseCSVFile(path, separator, firstRowAsNames);
 
             // For now we're ignoring text such as column names -
             // need a better data structure to keep track of text values
-            var matrix = ParseTableIntoNumericList(table);
+            var matrix = ParseTableIntoNumericList(table, labelColumn, convertNominalLabel);
 
-            if (label != null)
+            if (labelColumn != null)
             {
-                matrix.Label = label.Value;
+                matrix.Label = labelColumn.Value;
             }
 
             return matrix;
@@ -57,19 +59,21 @@ namespace Insight.AI.Preprocessing
         /// <param name="path">File path</param>
         /// <param name="sheetName">Sheet name</param>
         /// <param name="firstRowAsNames">Indicates if the first row contains atribute names</param>
-        /// <param name="label">Indicates the column of the class label or prediction target</param>
+        /// <param name="labelColumn">Indicates the column of the class label or prediction target</param>
+        /// <param name="convertNominalLabel">Convert a nominal label to an integer</param>
         /// <returns>Matrix instantiated with the imported data</returns>
-        public static InsightMatrix ImportFromExcel(string path, string sheetName, bool firstRowAsNames, int? label)
+        public static InsightMatrix ImportFromExcel(string path, string sheetName, bool firstRowAsNames,
+            int? labelColumn, bool? convertNominalLabel)
         {
             var table = ExcelClient.ParseExcelFile(path, sheetName, firstRowAsNames);
 
             // For now we're ignoring text such as column names -
             // need a better data structure to keep track of text values
-            var matrix = ParseTableIntoNumericList(table);
+            var matrix = ParseTableIntoNumericList(table, labelColumn, convertNominalLabel);
 
-            if (label != null)
+            if (labelColumn != null)
             {
-                matrix.Label = label.Value;
+                matrix.Label = labelColumn.Value;
             }
 
             return matrix;
@@ -81,9 +85,11 @@ namespace Insight.AI.Preprocessing
         /// <param name="connection">Connection string</param>
         /// <param name="connectionType">Conection type</param>
         /// <param name="query">SQL statement to that produces result set to import</param>
-        /// <param name="label">Indicates the column of the class label or prediction target</param>
+        /// <param name="labelColumn">Indicates the column of the class label or prediction target</param>
+        /// <param name="convertNominalLabel">Convert a nominal label to an integer</param>
         /// <returns>Matrix instantiated with the imported data</returns>
-        public static InsightMatrix ImportFromDatabase(string connection, string connectionType, string query, int? label)
+        public static InsightMatrix ImportFromDatabase(string connection, string connectionType,
+            string query, int? labelColumn, bool? convertNominalLabel)
         {
             DataTable table;
             if (connectionType == "MS SQL")
@@ -97,11 +103,11 @@ namespace Insight.AI.Preprocessing
 
             // For now we're ignoring text such as column names -
             // need a better data structure to keep track of text values
-            var matrix = ParseTableIntoNumericList(table);
+            var matrix = ParseTableIntoNumericList(table, labelColumn, convertNominalLabel);
 
-            if (label != null)
+            if (labelColumn != null)
             {
-                matrix.Label = label.Value;
+                matrix.Label = labelColumn.Value;
             }
 
             return matrix;
@@ -111,8 +117,11 @@ namespace Insight.AI.Preprocessing
         /// Parses a data table into a numeric matrix.
         /// </summary>
         /// <param name="table">Data table</param>
+        /// <param name="labelColumn">Indicates the column of the class label or prediction target</param>
+        /// <param name="convertNominalLabel">Convert a nominal label to an integer</param>
         /// <returns>Numeric matrix</returns>
-        private static InsightMatrix ParseTableIntoNumericList(DataTable table)
+        private static InsightMatrix ParseTableIntoNumericList(DataTable table, 
+            int? labelColumn, bool? convertNominalLabel)
         {
             int rowCount = table.Rows.Count, columnCount = table.Columns.Count;
             var columnIsNumeric = new List<bool>();
@@ -138,7 +147,15 @@ namespace Insight.AI.Preprocessing
             }
 
             var numericColumnCount = columnIsNumeric.Where(x => x == true).Count();
+
+            if (labelColumn.HasValue && convertNominalLabel == true && !columnIsNumeric[labelColumn.Value])
+            {
+                // Have a label that isn't numeric but will be converted to integer and included in the data
+                numericColumnCount++;
+            }
+
             var data = new List<List<double>>();
+            var labels = new Dictionary<string, int>();
 
             for (int i = 0; i < rowCount; i++)
             {
@@ -147,7 +164,7 @@ namespace Insight.AI.Preprocessing
                 for (int j = 0; j < columnCount; j++)
                 {
                     // If the column isn't numeric then skip it - eventually we'll need a
-                    // more advanced data structure than can hang on to text data
+                    // more advanced data structure than can deal with text data
                     if (columnIsNumeric[j])
                     {
                         double value;
@@ -161,6 +178,19 @@ namespace Insight.AI.Preprocessing
                             // naive approach but will work as a starting point
                             row.Add(0);
                         }
+                    }
+                    else if (labelColumn.HasValue && labelColumn == j && 
+                        convertNominalLabel.HasValue && convertNominalLabel == true)
+                    {
+                        // Label column, values are text but we need to convert to int
+                        string value = table.Rows[i][j].ToString();
+
+                        if (!labels.ContainsKey(value))
+                        {
+                            labels.Add(value, labels.Count);
+                        }
+
+                        row.Add(Convert.ToDouble(labels[value]));
                     }
                 }
 
