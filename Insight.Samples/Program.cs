@@ -178,8 +178,12 @@ namespace Insight.Samples
             Console.WriteLine("------------------------------");
             Console.WriteLine(Environment.NewLine);
 
-            // TODO - Test data loading functions
-            //InsightMatrix matrix4 = DataLoader.ImportFromCSV("", ',', false, null);
+            InsightMatrix iris = DataLoader.ImportFromCSV("../../../data/iris.data", ',', false, null);
+
+            Console.WriteLine("Iris data set:");
+            Console.WriteLine(iris.ToString());
+
+            Console.ReadKey();
         }
     }
 }

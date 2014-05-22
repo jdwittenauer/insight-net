@@ -81,7 +81,7 @@ namespace Insight.AI.DataStructures
         /// <param name="data">Enumerable data</param>
         public InsightMatrix(int rows, int columns, IEnumerable<IEnumerable<double>> data)
         {
-            Data = DenseMatrix.OfColumns(rows, columns, data);
+            Data = DenseMatrix.OfRows(rows, columns, data);
         }
 
         /// <summary>

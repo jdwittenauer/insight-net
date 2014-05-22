@@ -63,15 +63,20 @@ namespace Insight.AI.Preprocessing.Common
 
                 while (!reader.EndOfStream)
                 {
-                    var tokens = reader.ReadLine().Split(separator).ToList();
-                    DataRow row = table.NewRow();
+                    var line = reader.ReadLine();
 
-                    for (int i = 0; i < tokens.Count; i++)
+                    if (line.Length > 0 && line.Contains(separator))
                     {
-                        row[i] = tokens[i].Trim();
-                    }
+                        var tokens = line.Split(separator).ToList();
+                        DataRow row = table.NewRow();
 
-                    table.Rows.Add(row);
+                        for (int i = 0; i < tokens.Count; i++)
+                        {
+                            row[i] = tokens[i].Trim();
+                        }
+
+                        table.Rows.Add(row);
+                    }
                 }
 
                 return table;
