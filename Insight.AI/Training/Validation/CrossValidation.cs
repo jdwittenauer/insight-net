@@ -19,11 +19,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Insight.AI.Regression.Interfaces;
+using Insight.AI.Training.Interfaces;
 
-namespace Insight.AI.Regression
+namespace Insight.AI.Training.CrossValidation
 {
-    public class RidgeRegression : IRegression
+    public class CrossValidation : IValidationMethod
     {
         // TODO
     }

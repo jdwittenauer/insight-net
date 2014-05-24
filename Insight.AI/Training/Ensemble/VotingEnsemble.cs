@@ -23,7 +23,7 @@ using Insight.AI.Training.Interfaces;
 
 namespace Insight.AI.Training.Ensemble
 {
-    public class BreimanBagging : IEnsembleMethod
+    public class VotingEnsemble : IEnsembleMethod
     {
         // TODO
     }

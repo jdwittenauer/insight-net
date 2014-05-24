@@ -23,7 +23,7 @@ using Insight.AI.Training.Interfaces;
 
 namespace Insight.AI.Training.Ensemble
 {
-    public class AdaBoost : IEnsembleMethod
+    public class StackingEnsemble : IEnsembleMethod
     {
         // TODO
     }

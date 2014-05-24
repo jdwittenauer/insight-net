@@ -106,7 +106,6 @@
     <Compile Include="Recommendation\ContentBasedRecommender.cs" />
     <Compile Include="Recommendation\Enumerations.cs" />
     <Compile Include="Recommendation\HybridCollaborativeFilter.cs" />
-    <Compile Include="Recommendation\HybridRecommender.cs" />
     <Compile Include="Recommendation\Interfaces\IRecommender.cs" />
     <Compile Include="Recommendation\ModelCollaborativeFilter.cs" />
     <Compile Include="Recommendation\NeighborhoodCollaborativeFilter.cs" />
@@ -121,20 +120,18 @@
     <Compile Include="Metrics\PearsonCorrelation.cs" />
     <Compile Include="Regression\LinearRegression.cs" />
     <Compile Include="Regression\LogisticRegression.cs" />
-    <Compile Include="Regression\RidgeRegression.cs" />
-    <Compile Include="Training\Ensemble\BreimanBagging.cs" />
-    <Compile Include="Training\Ensemble\AdaBoost.cs" />
+    <Compile Include="Training\Ensemble\StackingEnsemble.cs" />
+    <Compile Include="Training\Ensemble\BoostingEnsemble.cs" />
     <Compile Include="Training\Interfaces\IModelState.cs" />
     <Compile Include="Training\Interfaces\IPerformanceEvaluator.cs" />
     <Compile Include="Training\Model\ModelState.cs" />
     <Compile Include="Training\Performance\ClassificationPerformance.cs" />
     <Compile Include="Training\Performance\ClusterPerformance.cs" />
     <Compile Include="Training\Performance\RegressionPerformance.cs" />
-    <Compile Include="Training\Validation\KFoldCrossValidation.cs" />
-    <Compile Include="Training\Validation\RepeatedRandomSubSampling.cs" />
+    <Compile Include="Training\Validation\CrossValidation.cs" />
     <Compile Include="Training\Interfaces\IValidationMethod.cs" />
     <Compile Include="Training\Interfaces\IEnsembleMethod.cs" />
-    <Compile Include="Training\Ensemble\BreimanRandomForest.cs" />
+    <Compile Include="Training\Ensemble\VotingEnsemble.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

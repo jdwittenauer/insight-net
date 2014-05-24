@@ -20,7 +20,6 @@ namespace Insight.AI.Regression
     public enum RegressionMethod
     {
         Linear,
-        Logistic,
-        Ridge
+        Logistic
     }
 }

@@ -21,7 +21,6 @@ namespace Insight.AI.Recommendation
     {
         ContentBasedRecommendation,
         HybridCollaborativeFiltering,
-        HybridRecommendation,
         ModelCollaborativeFiltering,
         NeighborhoodCollaborativeFiltering
     }
