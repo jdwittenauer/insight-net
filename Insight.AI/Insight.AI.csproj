@@ -63,8 +63,8 @@
     <Compile Include="Classification\SupportVectorMachineClassifier.cs" />
     <Compile Include="Clustering\Enumerations.cs" />
     <Compile Include="Clustering\ExpectationMaximizationClustering.cs" />
-    <Compile Include="Clustering\HierarchalClustering.cs" />
-    <Compile Include="Clustering\Interfaces\IClustering.cs" />
+    <Compile Include="Clustering\Interfaces\IClusteringMethod.cs" />
+    <Compile Include="Clustering\Interfaces\IClusterResults.cs" />
     <Compile Include="Clustering\KMeansClustering.cs" />
     <Compile Include="Preprocessing\Common\CSVClient.cs" />
     <Compile Include="Preprocessing\Common\ExcelClient.cs" />
@@ -100,8 +100,7 @@
     <Compile Include="Optimization\Interfaces\ILocalSearchResults.cs" />
     <Compile Include="Optimization\Interfaces\ILocalSearch.cs" />
     <Compile Include="Optimization\LocalSearch\SimulatedAnnealing.cs" />
-    <Compile Include="Preprocessing\DataCleanser.cs" />
-    <Compile Include="Preprocessing\DataConverter.cs" />
+    <Compile Include="Preprocessing\DataTransforms.cs" />
     <Compile Include="Preprocessing\DataLoader.cs" />
     <Compile Include="Recommendation\ContentBasedRecommender.cs" />
     <Compile Include="Recommendation\Enumerations.cs" />

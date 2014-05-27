@@ -17,14 +17,22 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
+using Insight.AI.DataStructures;
 
 namespace Insight.AI.Preprocessing
 {
-    public static class DataConverter
+    public static class DataTransforms
     {
-        // TODO
+        /// <summary>
+        /// Add a column of integer-based zero-indexed row identifiers to a data set.
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
+        public static InsightMatrix AddIdentityColumn(InsightMatrix matrix)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -20,7 +20,6 @@ namespace Insight.AI.Clustering
     public enum ClusteringMethod
     {
         ExpectationMaximization,
-        Hierarchal,
         KMeans
     }
 }

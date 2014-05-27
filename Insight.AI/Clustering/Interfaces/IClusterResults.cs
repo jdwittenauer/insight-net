@@ -22,7 +22,7 @@ using System.Text;
 
 namespace Insight.AI.Clustering.Interfaces
 {
-    public interface IClustering
+    public interface IClusterResults
     {
         // TODO
     }

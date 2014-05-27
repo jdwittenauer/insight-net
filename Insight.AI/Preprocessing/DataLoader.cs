@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 using Insight.AI.DataStructures;
 using Insight.AI.Preprocessing.Common;
 

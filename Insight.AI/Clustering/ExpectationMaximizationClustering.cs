@@ -23,7 +23,7 @@ using Insight.AI.Clustering.Interfaces;
 
 namespace Insight.AI.Clustering
 {
-    public class ExpectationMaximizationClustering : IClustering
+    public class ExpectationMaximizationClustering //: IClusteringMethod
     {
         // TODO
     }
