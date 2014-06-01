@@ -23,8 +23,52 @@ using Insight.AI.Clustering.Interfaces;
 
 namespace Insight.AI.Clustering
 {
-    public class ExpectationMaximizationClustering //: IClusteringMethod
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <seealso cref=""/>
+    public sealed class ExpectationMaximizationClustering : IClusteringMethod
     {
-        // TODO
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public ExpectationMaximizationClustering() { }
+
+        /// <summary>
+        /// Cluster the data set into groups of similar instances.
+        /// </summary>
+        /// <param name="matrix">Input matrix</param>
+        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
+        public IClusterResults Cluster(DataStructures.InsightMatrix matrix)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Cluster the data set into groups of similar instances.
+        /// </summary>
+        /// <param name="matrix">Input matrix</param>
+        /// <param name="comparisonMethod">Similarity measure used to compare instances</param>
+        /// <param name="clusters">Number of desired clusters</param>
+        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
+        public IClusterResults Cluster(DataStructures.InsightMatrix matrix, Metrics.Interfaces.ISimilarity comparisonMethod, int clusters)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Cluster the data set into groups of similar instances.
+        /// </summary>
+        /// <param name="matrix">Input matrix</param>
+        /// <param name="comparisonMethod">Distance measure used to compare instances</param>
+        /// <param name="clusters">Number of desired clusters</param>
+        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
+        public IClusterResults Cluster(DataStructures.InsightMatrix matrix, Metrics.Interfaces.IDistance comparisonMethod, int clusters)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

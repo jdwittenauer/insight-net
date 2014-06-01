@@ -19,11 +19,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Insight.AI.DataStructures;
 
 namespace Insight.AI.Clustering.Interfaces
 {
+    /// <summary>
+    /// Interface for returning the results of a clustering operation.
+    /// </summary>
     public interface IClusterResults
     {
-        // TODO
+        /// <summary>
+        /// Gets a matrix of the centroids for each cluster.
+        /// </summary>
+        InsightMatrix Centroids { get; }
+
+        /// <summary>
+        /// Gets the original input data set with a new column appended that indicates
+        /// the cluster that each instance belongs in.
+        /// </summary>
+        InsightMatrix Clusters { get; }
     }
 }

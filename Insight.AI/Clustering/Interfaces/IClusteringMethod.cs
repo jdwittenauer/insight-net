@@ -20,31 +20,34 @@ using Insight.AI.Metrics.Interfaces;
 
 namespace Insight.AI.Clustering.Interfaces
 {
+    /// <summary>
+    /// Interface for clustering a data set.
+    /// </summary>
     public interface IClusteringMethod
     {
         /// <summary>
-        /// 
+        /// Cluster the data set into groups of similar instances.
         /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns></returns>
+        /// <param name="matrix">Input matrix</param>
+        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
         IClusterResults Cluster(InsightMatrix matrix);
 
         /// <summary>
-        /// 
+        /// Cluster the data set into groups of similar instances.
         /// </summary>
-        /// <param name="matrix"></param>
-        /// <param name="comparisonMethod"></param>
-        /// <param name="clusters"></param>
-        /// <returns></returns>
+        /// <param name="matrix">Input matrix</param>
+        /// <param name="comparisonMethod">Similarity measure used to compare instances</param>
+        /// <param name="clusters">Number of desired clusters</param>
+        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
         IClusterResults Cluster(InsightMatrix matrix, ISimilarity comparisonMethod, int clusters);
 
         /// <summary>
-        /// 
+        /// Cluster the data set into groups of similar instances.
         /// </summary>
-        /// <param name="matrix"></param>
-        /// <param name="comparisonMethod"></param>
-        /// <param name="clusters"></param>
-        /// <returns></returns>
+        /// <param name="matrix">Input matrix</param>
+        /// <param name="comparisonMethod">Distance measure used to compare instances</param>
+        /// <param name="clusters">Number of desired clusters</param>
+        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
         IClusterResults Cluster(InsightMatrix matrix, IDistance comparisonMethod, int clusters);
     }
 }
