@@ -32,6 +32,7 @@ namespace Insight.AI.Preprocessing
         /// <returns></returns>
         public static InsightMatrix AddIdentityColumn(InsightMatrix matrix)
         {
+            // TODO
             throw new NotImplementedException();
         }
     }

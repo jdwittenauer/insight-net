@@ -20,16 +20,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Insight.AI.Clustering.Interfaces;
+using Insight.AI.DataStructures;
+using Insight.AI.Metrics;
 
 namespace Insight.AI.Clustering
 {
     /// <summary>
-    /// 
+    /// Class that encapsulates the Expectation-Maximization clustering algorithm.
     /// </summary>
     /// <remarks>
-    /// 
+    /// The Expectation-Maximization (EM) algorithm is an iterative method for finding
+    /// maximum likelihood estimates for paramters in statistical models.
     /// </remarks>
-    /// <seealso cref=""/>
+    /// <seealso cref="http://en.wikipedia.org/wiki/Expectation–maximization_algorithm"/>
     public sealed class ExpectationMaximizationClustering : IClusteringMethod
     {
         /// <summary>
@@ -42,9 +45,9 @@ namespace Insight.AI.Clustering
         /// </summary>
         /// <param name="matrix">Input matrix</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(DataStructures.InsightMatrix matrix)
+        public IClusterResults Cluster(InsightMatrix matrix)
         {
-            throw new NotImplementedException();
+            return PerformEMClustering(matrix, null, null, null);
         }
 
         /// <summary>
@@ -54,9 +57,9 @@ namespace Insight.AI.Clustering
         /// <param name="comparisonMethod">Similarity measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(DataStructures.InsightMatrix matrix, Metrics.Interfaces.ISimilarity comparisonMethod, int clusters)
+        public IClusterResults Cluster(InsightMatrix matrix, SimilarityMethod comparisonMethod, int clusters)
         {
-            throw new NotImplementedException();
+            return PerformEMClustering(matrix, comparisonMethod, null, clusters);
         }
 
         /// <summary>
@@ -66,7 +69,21 @@ namespace Insight.AI.Clustering
         /// <param name="comparisonMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(DataStructures.InsightMatrix matrix, Metrics.Interfaces.IDistance comparisonMethod, int clusters)
+        public IClusterResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters)
+        {
+            return PerformEMClustering(matrix, null, comparisonMethod, clusters);
+        }
+
+        /// <summary>
+        /// Performs the K-Means clustering algorithm on the data set using the provided parameters.
+        /// </summary>
+        /// <param name="matrix">Input matrix</param>
+        /// <param name="similarityMethod">Similarity measure used to compare instances</param>
+        /// <param name="distanceMethod">Distance measure used to compare instances</param>
+        /// <param name="clusters">Number of desired clusters</param>
+        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
+        private IClusterResults PerformEMClustering(InsightMatrix matrix, SimilarityMethod? similarityMethod,
+            DistanceMethod? distanceMethod, int? clusters)
         {
             throw new NotImplementedException();
         }

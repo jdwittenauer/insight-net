@@ -16,7 +16,7 @@
 // along with Insight.NET.  If not, see <http://www.gnu.org/licenses/>.
 
 using Insight.AI.DataStructures;
-using Insight.AI.Metrics.Interfaces;
+using Insight.AI.Metrics;
 
 namespace Insight.AI.Clustering.Interfaces
 {
@@ -39,7 +39,7 @@ namespace Insight.AI.Clustering.Interfaces
         /// <param name="comparisonMethod">Similarity measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        IClusterResults Cluster(InsightMatrix matrix, ISimilarity comparisonMethod, int clusters);
+        IClusterResults Cluster(InsightMatrix matrix, SimilarityMethod comparisonMethod, int clusters);
 
         /// <summary>
         /// Cluster the data set into groups of similar instances.
@@ -48,6 +48,6 @@ namespace Insight.AI.Clustering.Interfaces
         /// <param name="comparisonMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        IClusterResults Cluster(InsightMatrix matrix, IDistance comparisonMethod, int clusters);
+        IClusterResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters);
     }
 }

@@ -20,16 +20,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Insight.AI.Clustering.Interfaces;
+using Insight.AI.DataStructures;
+using Insight.AI.Metrics;
 
 namespace Insight.AI.Clustering
 {
     /// <summary>
-    /// 
+    /// Class that encapsulates the K-Means clustering algorithm.
     /// </summary>
     /// <remarks>
-    /// 
+    /// K-Means clustering is a form of vector quantization that aims to partition
+    /// n instances into k clusters in which each instance belongs to the cluster with
+    /// the nearest mean.
     /// </remarks>
-    /// <seealso cref=""/>
+    /// <seealso cref="http://en.wikipedia.org/wiki/K-means_clustering"/>
     public sealed class KMeansClustering : IClusteringMethod
     {
         /// <summary>
@@ -42,9 +46,9 @@ namespace Insight.AI.Clustering
         /// </summary>
         /// <param name="matrix">Input matrix</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(DataStructures.InsightMatrix matrix)
+        public IClusterResults Cluster(InsightMatrix matrix)
         {
-            throw new NotImplementedException();
+            return PerformKMeansClustering(matrix, null, null, null);
         }
 
         /// <summary>
@@ -54,9 +58,9 @@ namespace Insight.AI.Clustering
         /// <param name="comparisonMethod">Similarity measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(DataStructures.InsightMatrix matrix, Metrics.Interfaces.ISimilarity comparisonMethod, int clusters)
+        public IClusterResults Cluster(InsightMatrix matrix, SimilarityMethod comparisonMethod, int clusters)
         {
-            throw new NotImplementedException();
+            return PerformKMeansClustering(matrix, comparisonMethod, null, clusters);
         }
 
         /// <summary>
@@ -66,7 +70,21 @@ namespace Insight.AI.Clustering
         /// <param name="comparisonMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(DataStructures.InsightMatrix matrix, Metrics.Interfaces.IDistance comparisonMethod, int clusters)
+        public IClusterResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters)
+        {
+            return PerformKMeansClustering(matrix, null, comparisonMethod, clusters);
+        }
+
+        /// <summary>
+        /// Performs the K-Means clustering algorithm on the data set using the provided parameters.
+        /// </summary>
+        /// <param name="matrix">Input matrix</param>
+        /// <param name="similarityMethod">Similarity measure used to compare instances</param>
+        /// <param name="distanceMethod">Distance measure used to compare instances</param>
+        /// <param name="clusters">Number of desired clusters</param>
+        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
+        private IClusterResults PerformKMeansClustering(InsightMatrix matrix, SimilarityMethod? similarityMethod,
+            DistanceMethod? distanceMethod, int? clusters)
         {
             throw new NotImplementedException();
         }
