@@ -45,7 +45,7 @@ namespace Insight.AI.Clustering
         /// </summary>
         /// <param name="matrix">Input matrix</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(InsightMatrix matrix)
+        public IClusteringResults Cluster(InsightMatrix matrix)
         {
             return PerformEMClustering(matrix, null, null, null);
         }
@@ -57,7 +57,7 @@ namespace Insight.AI.Clustering
         /// <param name="comparisonMethod">Similarity measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(InsightMatrix matrix, SimilarityMethod comparisonMethod, int clusters)
+        public IClusteringResults Cluster(InsightMatrix matrix, SimilarityMethod comparisonMethod, int clusters)
         {
             return PerformEMClustering(matrix, comparisonMethod, null, clusters);
         }
@@ -69,7 +69,7 @@ namespace Insight.AI.Clustering
         /// <param name="comparisonMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters)
+        public IClusteringResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters)
         {
             return PerformEMClustering(matrix, null, comparisonMethod, clusters);
         }
@@ -82,7 +82,7 @@ namespace Insight.AI.Clustering
         /// <param name="distanceMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        private IClusterResults PerformEMClustering(InsightMatrix matrix, SimilarityMethod? similarityMethod,
+        private IClusteringResults PerformEMClustering(InsightMatrix matrix, SimilarityMethod? similarityMethod,
             DistanceMethod? distanceMethod, int? clusters)
         {
             throw new NotImplementedException();

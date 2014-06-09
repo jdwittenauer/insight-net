@@ -61,10 +61,11 @@
     <Compile Include="Classification\NaiveBayesClassifier.cs" />
     <Compile Include="Classification\NeuralNetworkClassifier.cs" />
     <Compile Include="Classification\SupportVectorMachineClassifier.cs" />
+    <Compile Include="Clustering\ClusteringResults.cs" />
     <Compile Include="Clustering\Enumerations.cs" />
     <Compile Include="Clustering\ExpectationMaximizationClustering.cs" />
     <Compile Include="Clustering\Interfaces\IClusteringMethod.cs" />
-    <Compile Include="Clustering\Interfaces\IClusterResults.cs" />
+    <Compile Include="Clustering\Interfaces\IClusteringResults.cs" />
     <Compile Include="Clustering\KMeansClustering.cs" />
     <Compile Include="Preprocessing\Common\CSVClient.cs" />
     <Compile Include="Preprocessing\Common\ExcelClient.cs" />

@@ -15,10 +15,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with Insight.NET.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Insight.AI.DataStructures;
 
 namespace Insight.AI.Clustering.Interfaces
@@ -26,7 +22,7 @@ namespace Insight.AI.Clustering.Interfaces
     /// <summary>
     /// Interface for returning the results of a clustering operation.
     /// </summary>
-    public interface IClusterResults
+    public interface IClusteringResults
     {
         /// <summary>
         /// Gets a matrix of the centroids for each cluster.

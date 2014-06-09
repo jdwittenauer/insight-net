@@ -46,7 +46,7 @@ namespace Insight.AI.Clustering
         /// </summary>
         /// <param name="matrix">Input matrix</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(InsightMatrix matrix)
+        public IClusteringResults Cluster(InsightMatrix matrix)
         {
             return PerformKMeansClustering(matrix, null, null, null);
         }
@@ -58,7 +58,7 @@ namespace Insight.AI.Clustering
         /// <param name="comparisonMethod">Similarity measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(InsightMatrix matrix, SimilarityMethod comparisonMethod, int clusters)
+        public IClusteringResults Cluster(InsightMatrix matrix, SimilarityMethod comparisonMethod, int clusters)
         {
             return PerformKMeansClustering(matrix, comparisonMethod, null, clusters);
         }
@@ -70,7 +70,7 @@ namespace Insight.AI.Clustering
         /// <param name="comparisonMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusterResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters)
+        public IClusteringResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters)
         {
             return PerformKMeansClustering(matrix, null, comparisonMethod, clusters);
         }
@@ -83,10 +83,52 @@ namespace Insight.AI.Clustering
         /// <param name="distanceMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        private IClusterResults PerformKMeansClustering(InsightMatrix matrix, SimilarityMethod? similarityMethod,
+        private IClusteringResults PerformKMeansClustering(InsightMatrix matrix, SimilarityMethod? similarityMethod,
             DistanceMethod? distanceMethod, int? clusters)
         {
-            throw new NotImplementedException();
+            if (matrix == null || matrix.Data == null)
+                throw new Exception("Matrix must be instantiated.");
+
+            bool useSimilarity;
+            if (similarityMethod != null)
+            {
+                useSimilarity = true;
+            }
+            else if (distanceMethod != null)
+            {
+                useSimilarity = false;
+            }
+            else
+            {
+                similarityMethod = SimilarityMethod.PearsonCorrelation;
+                useSimilarity = true;
+            }
+
+            if (clusters == null)
+            {
+                // Need to add some type of intelligent way to figure out a good number
+                // of clusters to use based on an analysis of the data
+                clusters = 3;
+            }
+
+            var centroids = new InsightMatrix();
+
+            // Initialize means via random selection
+            for (int i = 0; i < clusters; i++)
+            {
+                // TODO
+            }
+
+            while (false) // Until convergence point is reached (i.e. means stop changing)
+            {
+                // Assign each point to the nearest mean
+                // TODO
+
+                // Move mean to the center of its cluster
+                // TODO
+            }
+
+            return new ClusteringResults(centroids, matrix);
         }
     }
 }
