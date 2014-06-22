@@ -121,14 +121,14 @@ namespace Insight.AI.Clustering
                 centroids.Data.SetRow(i, matrix.Data.Row(random.Next(0, matrix.Data.RowCount - 1)));
             }
 
-            // Until convergence point is reached (i.e. means stop changing by a significant amount)
-            while (false)
+            // Keep going until convergence point is reached
+            while (true)
             {
                 // Assign each point to the nearest mean
                 for (int i = 0; i < matrix.Data.RowCount; i++)
                 {
                     // Compute the proximity to each centroid to find the closest match
-                    double closestCentroid;
+                    double closestCentroid = -1;
                     for (int j = 0; j < clusters; j++)
                     {
                         double proximity;
@@ -151,7 +151,31 @@ namespace Insight.AI.Clustering
                 }
 
                 // Calculate the new means for each centroid
-                // TODO
+                var newCentroids = new InsightMatrix(clusters.Value, matrix.Data.ColumnCount);
+                bool converged = true;
+
+                for (int i = 0; i < clusters; i++)
+                {
+                    int instanceCount = assignments.Data.Where(x => x == i).Count();
+
+                    // Compute the means for each instance assigned to the current cluster
+                    for (int j = 0; j < newCentroids.Data.ColumnCount; j++)
+                    {
+                        double sum = 0;
+                        for (int k = 0; k < matrix.Data.RowCount; k++)
+                        {
+                            if (assignments.Data[k] == i) sum += matrix.Data[k, j];
+                        }
+
+                        newCentroids.Data[i, j] = sum / instanceCount;
+                    }
+
+                    if (centroids.Data.Row(i) != newCentroids.Data.Row(i))
+                        converged = false;
+                }
+
+                // If the new centroid means did not change then we've reached the final result
+                if (converged) break;
             }
 
             // Add the cluster assignments as a new column on the data set

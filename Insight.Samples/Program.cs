@@ -184,6 +184,13 @@ namespace Insight.Samples
             Console.WriteLine(iris.ToString());
 
             Console.ReadKey();
+
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Clustering Examples");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine(Environment.NewLine);
+
+            // TODO
         }
     }
 }

@@ -327,54 +327,11 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Decomposes a matrix into n sub-matrices, where n is the number of distinct
-        /// values in the column specified by column index.  Useful for breaking apart
-        /// a matrix with classification label into individual class matrices.
-        /// </summary>
-        /// <param name="columnIndex">Column to use for decomposition</param>
-        /// <returns>List of component matrices</returns>
-        public List<InsightMatrix> Decompose(int columnIndex)
-        {
-            if (this == null || this.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-            if (this.Data.ColumnCount < columnIndex)
-                throw new Exception("Matrix size does not match specified column index.");
-
-            // Sort the input matrix
-            InsightMatrix sortedMatrix = this.Sort(columnIndex);
-
-            // Get the distinct set of values
-            int rowCount = sortedMatrix.Data.RowCount;
-            double[] values = sortedMatrix.Data.SubMatrix(0, rowCount, columnIndex, 1)
-                .ToRowWiseArray()
-                .Distinct()
-                .ToArray();
-
-            List<InsightMatrix> components = new List<InsightMatrix>();
-            int rowIndex = 0;
-            for (int i = 0; i < values.Length; i++)
-            {
-                int startingIndex = rowIndex;
-                while (rowIndex < rowCount && sortedMatrix.Data[rowIndex, columnIndex] == values[i])
-                {
-                    rowIndex++;
-                }
-
-                int rows = rowIndex - startingIndex;
-                components.Add(new InsightMatrix(
-                    (MathNet.Numerics.LinearAlgebra.Double.DenseMatrix)sortedMatrix.Data.SubMatrix(
-                    startingIndex, rows, 0, sortedMatrix.Data.ColumnCount)));
-            }
-
-            return components;
-        }
-
-        /// <summary>
         /// Sorts the rows of a matrix using the values in the designated column for comparison.
         /// </summary>
         /// <param name="columnIndex">Column to use for sorting</param>
         /// <returns>Row-sorted matrix</returns>
-        private InsightMatrix Sort(int columnIndex)
+        public InsightMatrix Sort(int columnIndex)
         {
             if (this == null || this.Data == null)
                 throw new Exception("Matrix must be instantiated.");
@@ -418,6 +375,48 @@ namespace Insight.AI.DataStructures
             }
 
             return this;
+        }
+
+        /// <summary>
+        /// Decomposes a matrix into n sub-matrices, where n is the number of distinct
+        /// values in the column specified by column index.
+        /// </summary>
+        /// <param name="columnIndex">Column to use for decomposition</param>
+        /// <returns>List of component matrices</returns>
+        public List<InsightMatrix> Decompose(int columnIndex)
+        {
+            if (this == null || this.Data == null)
+                throw new Exception("Matrix must be instantiated.");
+            if (this.Data.ColumnCount < columnIndex)
+                throw new Exception("Matrix size does not match specified column index.");
+
+            // Sort the input matrix
+            InsightMatrix sortedMatrix = this.Sort(columnIndex);
+
+            // Get the distinct set of values
+            int rowCount = sortedMatrix.Data.RowCount;
+            double[] values = sortedMatrix.Data.SubMatrix(0, rowCount, columnIndex, 1)
+                .ToRowWiseArray()
+                .Distinct()
+                .ToArray();
+
+            List<InsightMatrix> components = new List<InsightMatrix>();
+            int rowIndex = 0;
+            for (int i = 0; i < values.Length; i++)
+            {
+                int startingIndex = rowIndex;
+                while (rowIndex < rowCount && sortedMatrix.Data[rowIndex, columnIndex] == values[i])
+                {
+                    rowIndex++;
+                }
+
+                int rows = rowIndex - startingIndex;
+                components.Add(new InsightMatrix(
+                    (MathNet.Numerics.LinearAlgebra.Double.DenseMatrix)sortedMatrix.Data.SubMatrix(
+                    startingIndex, rows, 0, sortedMatrix.Data.ColumnCount)));
+            }
+
+            return components;
         }
     }
 }
