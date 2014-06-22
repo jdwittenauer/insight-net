@@ -111,22 +111,51 @@ namespace Insight.AI.Clustering
                 clusters = 3;
             }
 
-            var centroids = new InsightMatrix();
+            var assignments = new InsightVector(matrix.Data.RowCount);
+            var centroids = new InsightMatrix(clusters.Value, matrix.Data.ColumnCount);
 
             // Initialize means via random selection
             for (int i = 0; i < clusters; i++)
             {
-                // TODO
+                var random = new Random();
+                centroids.Data.SetRow(i, matrix.Data.Row(random.Next(0, matrix.Data.RowCount - 1)));
             }
 
-            while (false) // Until convergence point is reached (i.e. means stop changing)
+            // Until convergence point is reached (i.e. means stop changing by a significant amount)
+            while (false)
             {
                 // Assign each point to the nearest mean
-                // TODO
+                for (int i = 0; i < matrix.Data.RowCount; i++)
+                {
+                    // Compute the proximity to each centroid to find the closest match
+                    double closestCentroid;
+                    for (int j = 0; j < clusters; j++)
+                    {
+                        double proximity;
+                        if (useSimilarity)
+                            proximity = matrix.Row(i).SimilarityTo(centroids.Row(j));
+                        else
+                            proximity = matrix.Row(i).DistanceFrom(centroids.Row(j));
 
-                // Move mean to the center of its cluster
+                        if (j == 0)
+                        {
+                            closestCentroid = proximity;
+                            assignments.Data[i] = j;
+                        }
+                        else if (proximity < closestCentroid)
+                        {
+                            closestCentroid = proximity;
+                            assignments.Data[i] = j;
+                        }
+                    }
+                }
+
+                // Calculate the new means for each centroid
                 // TODO
             }
+
+            // Add the cluster assignments as a new column on the data set
+            matrix.Data.Append(assignments.Data.ToColumnMatrix());
 
             return new ClusteringResults(centroids, matrix);
         }

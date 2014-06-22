@@ -112,6 +112,26 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
+        /// Returns a vector of the column at the specified index in the matrix.
+        /// </summary>
+        /// <param name="index">Column index</param>
+        /// <returns>Vector of the matrix column</returns>
+        public InsightVector Column(int index)
+        {
+            return new InsightVector(this.Data.Column(index));
+        }
+
+        /// <summary>
+        /// Returns a vector of the row at the specified index in the matrix.
+        /// </summary>
+        /// <param name="index">Row index</param>
+        /// <returns>Vector of the matrix row</returns>
+        public InsightVector Row(int index)
+        {
+            return new InsightVector(this.Data.Row(index));
+        }
+
+        /// <summary>
         /// Centers each column in the matrix by subtracting each value in the column by the mean.
         /// </summary>
         /// <returns>Column-centered matrix</returns>
