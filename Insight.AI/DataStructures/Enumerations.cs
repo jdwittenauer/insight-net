@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with Insight.NET.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace Insight.AI.Classification
+namespace Insight.AI.DataStructures
 {
     public enum ClassificationMethod
     {
@@ -24,5 +24,46 @@ namespace Insight.AI.Classification
         NaiveBayes,
         NeuralNetwork,
         SupportVectorMachine
+    }
+
+    public enum ClusteringMethod
+    {
+        ExpectationMaximization,
+        KMeans
+    }
+
+    public enum ExtractionMethod
+    {
+        LinearDiscriminantAnalysis,
+        PrincipalComponentAnalysis,
+        SingularValueDecomposition
+    }
+
+    public enum DistanceMethod
+    {
+        EuclideanDistance,
+        HammingDistance,
+        ManhattanDistance
+    }
+
+    public enum SimilarityMethod
+    {
+        CosineSimilarity,
+        JaccardCoefficient,
+        PearsonCorrelation
+    }
+
+    public enum RecommendationMethod
+    {
+        ContentBasedRecommendation,
+        HybridCollaborativeFiltering,
+        ModelCollaborativeFiltering,
+        NeighborhoodCollaborativeFiltering
+    }
+
+    public enum RegressionMethod
+    {
+        LinearRegression,
+        LogisticRegression
     }
 }

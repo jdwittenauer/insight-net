@@ -55,15 +55,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classification\DecisionTreeClassifier.cs" />
-    <Compile Include="Classification\Enumerations.cs" />
     <Compile Include="Classification\Interfaces\IClassifier.cs" />
     <Compile Include="Classification\KNearestNeighborClassifier.cs" />
     <Compile Include="Classification\NaiveBayesClassifier.cs" />
     <Compile Include="Classification\NeuralNetworkClassifier.cs" />
     <Compile Include="Classification\SupportVectorMachineClassifier.cs" />
     <Compile Include="Clustering\ClusteringResults.cs" />
-    <Compile Include="Clustering\Enumerations.cs" />
+    <Compile Include="DataStructures\Enumerations.cs" />
     <Compile Include="Clustering\ExpectationMaximizationClustering.cs" />
+    <Compile Include="Clustering\ExtensionMethods.cs" />
     <Compile Include="Clustering\Interfaces\IClusteringMethod.cs" />
     <Compile Include="Clustering\Interfaces\IClusteringResults.cs" />
     <Compile Include="Clustering\KMeansClustering.cs" />
@@ -74,7 +74,6 @@
     <Compile Include="DataStructures\DataFrame.cs" />
     <Compile Include="DataStructures\InsightMatrix.cs" />
     <Compile Include="DataStructures\InsightVector.cs" />
-    <Compile Include="Dimensionality\Enumerations.cs" />
     <Compile Include="Dimensionality\IndependentComponentAnalysis.cs" />
     <Compile Include="Dimensionality\MultiDimensionalScaling.cs" />
     <Compile Include="Dimensionality\SingularValueDecomposition.cs" />
@@ -82,7 +81,6 @@
     <Compile Include="Dimensionality\Interfaces\IFeatureExtraction.cs" />
     <Compile Include="Dimensionality\LinearDiscriminantAnalysis.cs" />
     <Compile Include="Dimensionality\PrincipalComponentsAnalysis.cs" />
-    <Compile Include="Metrics\Enumerations.cs" />
     <Compile Include="Metrics\HammingDistance.cs" />
     <Compile Include="Metrics\ExtensionMethods.cs" />
     <Compile Include="Metrics\Interfaces\IDistance.cs" />
@@ -104,12 +102,10 @@
     <Compile Include="Preprocessing\DataTransforms.cs" />
     <Compile Include="Preprocessing\DataLoader.cs" />
     <Compile Include="Recommendation\ContentBasedRecommender.cs" />
-    <Compile Include="Recommendation\Enumerations.cs" />
     <Compile Include="Recommendation\HybridCollaborativeFilter.cs" />
     <Compile Include="Recommendation\Interfaces\IRecommender.cs" />
     <Compile Include="Recommendation\ModelCollaborativeFilter.cs" />
     <Compile Include="Recommendation\NeighborhoodCollaborativeFilter.cs" />
-    <Compile Include="Regression\Enumerations.cs" />
     <Compile Include="Regression\Interfaces\IRegression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Metrics\CosineSimilarity.cs" />

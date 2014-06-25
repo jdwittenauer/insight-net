@@ -33,6 +33,6 @@ namespace Insight.AI.Clustering.Interfaces
         /// Gets the original input data set with a new column appended that indicates
         /// the cluster that each instance belongs in.
         /// </summary>
-        InsightMatrix Clusters { get; }
+        InsightMatrix ClusteredMatrix { get; }
     }
 }

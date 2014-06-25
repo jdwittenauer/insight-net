@@ -34,7 +34,7 @@ namespace Insight.AI.Clustering
         /// Gets the original input data set with a new column appended that indicates
         /// the cluster that each instance belongs in.
         /// </summary>
-        public InsightMatrix Clusters { get; private set; }
+        public InsightMatrix ClusteredMatrix { get; private set; }
 
         /// <summary>
         /// Default constructor.
@@ -44,7 +44,7 @@ namespace Insight.AI.Clustering
         public ClusteringResults(InsightMatrix centroids, InsightMatrix clusters) 
         {
             Centroids = centroids;
-            Clusters = clusters;
+            ClusteredMatrix = clusters;
         }
     }
 }
