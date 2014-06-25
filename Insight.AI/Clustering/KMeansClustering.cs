@@ -121,34 +121,43 @@ namespace Insight.AI.Clustering
             for (int i = 0; i < clusters; i++)
             {
                 var random = new Random();
-                centroids.Data.SetRow(i, matrix.Data.Row(random.Next(0, matrix.Data.RowCount - 1)));
+                var samples = new List<int>();
+                int sample = random.Next(0, matrix.Data.RowCount - 1);
+
+                // Make sure we don't use the same instance more than once
+                while (samples.Exists(x => x == sample))
+                {
+                    sample = random.Next(0, matrix.Data.RowCount - 1);
+                }
+
+                samples.Add(sample);
+                centroids.Data.SetRow(i, matrix.Data.Row(sample));
             }
 
             // Keep going until convergence point is reached
             while (true)
             {
                 // Assign each point to the nearest mean
-                // TODO - There's a bug in here somewhere that's causing a cluster to end up with 0 assignment
                 for (int i = 0; i < matrix.Data.RowCount; i++)
                 {
                     // Compute the proximity to each centroid to find the closest match
-                    double closestCentroid = -1;
+                    double closestProximity = -1;
                     for (int j = 0; j < clusters; j++)
                     {
                         double proximity;
                         if (useSimilarity)
-                            proximity = matrix.Row(i).SimilarityTo(centroids.Row(j));
+                            proximity = matrix.Row(i).SimilarityTo(centroids.Row(j), similarityMethod.Value);
                         else
-                            proximity = matrix.Row(i).DistanceFrom(centroids.Row(j));
+                            proximity = matrix.Row(i).DistanceFrom(centroids.Row(j), distanceMethod.Value);
 
                         if (j == 0)
                         {
-                            closestCentroid = proximity;
+                            closestProximity = proximity;
                             assignments.Data[i] = j;
                         }
-                        else if (proximity < closestCentroid)
+                        else if (proximity < closestProximity)
                         {
-                            closestCentroid = proximity;
+                            closestProximity = proximity;
                             assignments.Data[i] = j;
                         }
                     }
