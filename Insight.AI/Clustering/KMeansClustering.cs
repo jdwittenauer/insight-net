@@ -31,7 +31,10 @@ namespace Insight.AI.Clustering
     /// <remarks>
     /// K-Means clustering is a form of vector quantization that aims to partition
     /// n instances into k clusters in which each instance belongs to the cluster with
-    /// the nearest mean.
+    /// the nearest mean.  The algorithm initializes k centroids using randomly selected
+    /// instances of the data.  It then assigns each instance to the nearest centroid,
+    /// and computes the new centroid to the cluster.  This process is repeated until
+    /// convergence is reached.
     /// </remarks>
     /// <seealso cref="http://en.wikipedia.org/wiki/K-means_clustering"/>
     public sealed class KMeansClustering : IClusteringMethod
@@ -125,6 +128,7 @@ namespace Insight.AI.Clustering
             while (true)
             {
                 // Assign each point to the nearest mean
+                // TODO - There's a bug in here somewhere that's causing a cluster to end up with 0 assignment
                 for (int i = 0; i < matrix.Data.RowCount; i++)
                 {
                     // Compute the proximity to each centroid to find the closest match
@@ -167,7 +171,10 @@ namespace Insight.AI.Clustering
                             if (assignments.Data[k] == i) sum += matrix.Data[k, j];
                         }
 
-                        newCentroids.Data[i, j] = sum / instanceCount;
+                        if (instanceCount > 0)
+                            newCentroids.Data[i, j] = sum / instanceCount;
+                        else
+                            newCentroids.Data[i, j] = centroids.Data[i, j];
                     }
 
                     if (centroids.Data.Row(i) != newCentroids.Data.Row(i))

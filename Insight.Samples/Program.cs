@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using Insight.AI.Clustering;
 using Insight.AI.DataStructures;
 using Insight.AI.Dimensionality;
 using Insight.AI.Metrics;
@@ -190,7 +191,9 @@ namespace Insight.Samples
             Console.WriteLine("------------------------------");
             Console.WriteLine(Environment.NewLine);
 
-            
+            var clusterResults = iris.Cluster(ClusteringMethod.KMeans);
+            Console.WriteLine("Centroids:");
+            Console.WriteLine(clusterResults.Centroids.ToString());
         }
     }
 }
