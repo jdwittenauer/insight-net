@@ -194,6 +194,8 @@ namespace Insight.Samples
             var clusterResults = iris.Cluster(ClusteringMethod.KMeans);
             Console.WriteLine("Centroids:");
             Console.WriteLine(clusterResults.Centroids.ToString());
+
+            Console.ReadKey();
         }
     }
 }
