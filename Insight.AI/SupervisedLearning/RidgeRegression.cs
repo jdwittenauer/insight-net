@@ -19,11 +19,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Insight.AI.Regression.Interfaces;
 
-namespace Insight.AI.Regression
+namespace Insight.AI.SupervisedLearning
 {
-    public class LinearRegression : IRegression
+    public class RidgeRegression
     {
         // TODO
     }

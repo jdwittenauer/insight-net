@@ -21,6 +21,7 @@ namespace Insight.AI.DataStructures
     {
         DecisionTree,
         KNearestNeighbor,
+        LogisticRegression,
         NaiveBayes,
         NeuralNetwork,
         SupportVectorMachine
@@ -64,6 +65,8 @@ namespace Insight.AI.DataStructures
     public enum RegressionMethod
     {
         LinearRegression,
-        LogisticRegression
+        NeuralNetwork,
+        RidgeRegression,
+        SupportVectorMachine
     }
 }

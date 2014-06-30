@@ -19,11 +19,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Insight.AI.Classification.Interfaces;
 
-namespace Insight.AI.Classification
+namespace Insight.AI.SupervisedLearning
 {
-    public class NeuralNetworkClassifier : IClassifier
+    public class NeuralNetwork
     {
         // TODO
     }
