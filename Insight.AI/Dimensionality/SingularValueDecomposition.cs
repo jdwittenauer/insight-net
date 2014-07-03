@@ -17,7 +17,7 @@
 
 using System;
 using MathNet.Numerics.LinearAlgebra.Double;
-using MathNet.Numerics.LinearAlgebra.Double.Factorization;
+using MathNet.Numerics.LinearAlgebra.Factorization;
 using Insight.AI.DataStructures;
 using Insight.AI.Dimensionality.Interfaces;
 
@@ -111,12 +111,12 @@ namespace Insight.AI.Dimensionality
 
             // Perform singlular value decomposition on the matrix
             // and retrieve the rank (number of singular values)
-            Svd svd = matrix.Data.Svd(true);
+            Svd<double> svd = matrix.Data.Svd(true);
             int rows = matrix.Data.RowCount, columns = matrix.Data.ColumnCount;
             Rank = svd.Rank;
-            SingularValues = new InsightVector(svd.S());
-            LeftSingularVectors = new InsightMatrix((DenseMatrix)svd.W());
-            RightSingularVectors = new InsightMatrix((DenseMatrix)svd.VT());
+            SingularValues = new InsightVector(svd.S);
+            LeftSingularVectors = new InsightMatrix((DenseMatrix)svd.W);
+            RightSingularVectors = new InsightMatrix((DenseMatrix)svd.VT);
 
             // Determine the number of features to keep for the final data set
             // (default will use all available singular values)
@@ -142,7 +142,7 @@ namespace Insight.AI.Dimensionality
 
             // Re-compose the original matrix using a sub-set of the features
             InsightMatrix result = new InsightMatrix((DenseMatrix)
-                (svd.U().SubMatrix(0, rows, 0, rows) *
+                (svd.U.SubMatrix(0, rows, 0, rows) *
                 LeftSingularVectors.Data.SubMatrix(0, rows, 0, Rank) * 
                 RightSingularVectors.Data.SubMatrix(0, Rank, 0, Rank)));
 

@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MathNet.Numerics.LinearAlgebra.Double;
-using MathNet.Numerics.LinearAlgebra.Double.Factorization;
+using MathNet.Numerics.LinearAlgebra.Factorization;
 using MathNet.Numerics.Statistics;
 using Insight.AI.DataStructures;
 using Insight.AI.Dimensionality.Interfaces;
@@ -157,9 +157,9 @@ namespace Insight.AI.Dimensionality
             // Compute the LDA projection and perform eigenvalue decomposition on the projected matrix
             InsightMatrix projection = new InsightMatrix(
                 (DenseMatrix)(withinClassScatter.Data.Inverse() * betweenClassScatter.Data));
-            Evd evd = projection.Data.Evd();
-            EigenValues = new InsightVector(evd.D().Diagonal());
-            EigenVectors = new InsightMatrix((DenseMatrix)evd.EigenVectors());
+            Evd<double> evd = projection.Data.Evd();
+            EigenValues = new InsightVector(evd.D.Diagonal());
+            EigenVectors = new InsightMatrix((DenseMatrix)evd.EigenVectors);
             Rank = EigenValues.Data.Where(x => x > 0.001).Count();
 
             // Determine the number of features to keep for the final data set

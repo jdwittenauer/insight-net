@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MathNet.Numerics.LinearAlgebra.Double;
-using MathNet.Numerics.LinearAlgebra.Double.Factorization;
+using MathNet.Numerics.LinearAlgebra.Factorization;
 using Insight.AI.DataStructures;
 using Insight.AI.Dimensionality.Interfaces;
 
@@ -111,9 +111,9 @@ namespace Insight.AI.Dimensionality
             InsightMatrix covariance = matrix.Center().CovarianceMatrix(true);
 
             // Perform eigenvalue decomposition on the covariance matrix
-            Evd evd = covariance.Data.Evd();
-            EigenValues = new InsightVector(evd.D().Diagonal());
-            EigenVectors = new InsightMatrix((DenseMatrix)evd.EigenVectors());
+            Evd<double> evd = covariance.Data.Evd();
+            EigenValues = new InsightVector(evd.D.Diagonal());
+            EigenVectors = new InsightMatrix((DenseMatrix)evd.EigenVectors);
             Rank = EigenValues.Data.Where(x => x > 0.001).Count();
 
             // Determine the number of features to keep for the final data set
