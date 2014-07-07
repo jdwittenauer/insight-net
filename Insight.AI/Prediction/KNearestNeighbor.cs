@@ -20,9 +20,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Insight.AI.SupervisedLearning.Interfaces
+namespace Insight.AI.Prediction
 {
-    public interface IClassifier
+    public class KNearestNeighbor
     {
         // TODO
     }
