@@ -15,24 +15,15 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with Insight.NET.  If not, see <http://www.gnu.org/licenses/>.
 
-using Insight.AI.DataStructures;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Insight.AI.Prediction.Interfaces
+namespace Insight.AI.Prediction
 {
-    public interface IRegression
+    public class StochasticGradientDescent
     {
-        /// <summary>
-        /// Trains the model using the supplied data.  Uses the default training
-        /// parameters for the model.
-        /// </summary>
-        /// <param name="data">Training data</param>
-        void Train(InsightMatrix data);
-
-        /// <summary>
-        /// Predicts a new instance of the data using the regression algorithm's trained model.
-        /// </summary>
-        /// <param name="instance">New instance</param>
-        /// <returns>Prediction</returns>
-        double Predict(InsightVector instance);
+        // TODO
     }
 }

@@ -15,15 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with Insight.NET.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Insight.AI.DataStructures;
 
 namespace Insight.AI.Prediction.Interfaces
 {
     public interface IClassifier
     {
-        // TODO
+        /// <summary>
+        /// Trains the model using the supplied data.  Uses the default training
+        /// parameters for the model.
+        /// </summary>
+        /// <param name="data">Training data</param>
+        void Train(InsightMatrix data);
+
+        /// <summary>
+        /// Classifies a new instance of the data using the classifier's trained model.
+        /// </summary>
+        /// <param name="instance">New instance</param>
+        /// <returns>Classification</returns>
+        int Classify(InsightVector instance);
     }
 }

@@ -24,6 +24,7 @@ namespace Insight.AI.DataStructures
         LogisticRegression,
         NaiveBayes,
         NeuralNetwork,
+        StochasticGradientDescent,
         SupportVectorMachine
     }
 
@@ -68,6 +69,7 @@ namespace Insight.AI.DataStructures
         LinearRegression,
         NeuralNetwork,
         RidgeRegression,
+        StochasticGradientDescent,
         SupportVectorMachine
     }
 }
