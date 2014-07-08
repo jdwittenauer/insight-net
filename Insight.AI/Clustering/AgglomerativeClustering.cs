@@ -26,19 +26,20 @@ using Insight.AI.Metrics;
 namespace Insight.AI.Clustering
 {
     /// <summary>
-    /// Class that encapsulates the Expectation-Maximization clustering algorithm.
+    /// Class that encapsulates the agglomerative clustering algorithm.
     /// </summary>
     /// <remarks>
-    /// The Expectation-Maximization (EM) algorithm is an iterative method for finding
-    /// maximum likelihood estimates for paramters in statistical models.
+    /// The agglomerative clustering algorithm is a heirarchical "bottom up"
+    /// approach to clustering where each observation begins in its own cluster
+    /// and pairs of clusters are merged as one moves up the hierarchy.
     /// </remarks>
-    /// <seealso cref="http://en.wikipedia.org/wiki/Expectation–maximization_algorithm"/>
-    public sealed class ExpectationMaximizationClustering : IClusteringMethod
+    /// <seealso cref="http://en.wikipedia.org/wiki/Hierarchical_clustering"/>
+    public sealed class AgglomerativeClustering : IClusteringMethod
     {
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public ExpectationMaximizationClustering() { }
+        public AgglomerativeClustering() { }
 
         /// <summary>
         /// Cluster the data set into groups of similar instances.
@@ -47,7 +48,7 @@ namespace Insight.AI.Clustering
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
         public IClusteringResults Cluster(InsightMatrix matrix)
         {
-            return PerformEMClustering(matrix, null, null, null);
+            return PerformAgglomerativeClustering(matrix, null, null, null);
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Insight.AI.Clustering
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
         public IClusteringResults Cluster(InsightMatrix matrix, SimilarityMethod comparisonMethod, int clusters)
         {
-            return PerformEMClustering(matrix, comparisonMethod, null, clusters);
+            return PerformAgglomerativeClustering(matrix, comparisonMethod, null, clusters);
         }
 
         /// <summary>
@@ -71,18 +72,18 @@ namespace Insight.AI.Clustering
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
         public IClusteringResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters)
         {
-            return PerformEMClustering(matrix, null, comparisonMethod, clusters);
+            return PerformAgglomerativeClustering(matrix, null, comparisonMethod, clusters);
         }
 
         /// <summary>
-        /// Performs the EM clustering algorithm on the data set using the provided parameters.
+        /// Performs the agglomerative clustering algorithm on the data set using the provided parameters.
         /// </summary>
         /// <param name="matrix">Input matrix</param>
         /// <param name="similarityMethod">Similarity measure used to compare instances</param>
         /// <param name="distanceMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
         /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        private IClusteringResults PerformEMClustering(InsightMatrix matrix, SimilarityMethod? similarityMethod,
+        private IClusteringResults PerformAgglomerativeClustering(InsightMatrix matrix, SimilarityMethod? similarityMethod,
             DistanceMethod? distanceMethod, int? clusters)
         {
             // TODO

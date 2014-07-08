@@ -29,6 +29,7 @@ namespace Insight.AI.DataStructures
 
     public enum ClusteringMethod
     {
+        Agglomerative,
         ExpectationMaximization,
         KMeans
     }

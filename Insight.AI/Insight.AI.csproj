@@ -50,6 +50,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clustering\AgglomerativeClustering.cs" />
     <Compile Include="Prediction\DecisionTree.cs" />
     <Compile Include="Prediction\Interfaces\IClassifier.cs" />
     <Compile Include="Prediction\KNearestNeighbor.cs" />
