@@ -24,7 +24,7 @@ using MathNet.Numerics.Statistics;
 namespace Insight.AI.DataStructures
 {
     /// <summary>
-    /// Will eventually replace InsightMatrix and InsightVector after I get the design worked out.
+    /// Will eventually become the primary data structure once I get the design worked out.
     /// </summary>
     public class DataFrame
     {
@@ -50,9 +50,14 @@ namespace Insight.AI.DataStructures
         private List<List<bool>> MissingValues;
 
         /// <summary>
-        /// Math.NET matrix implementation.  Used for all matrix calculations.
+        /// Unlabeled data set.
         /// </summary>
-        public Matrix Data { get; private set; }
+        public InsightMatrix Data { get; private set; }
+
+        /// <summary>
+        /// Target prediction variable.
+        /// </summary>
+        public InsightVector Target { get; private set; }
 
         /// <summary>
         /// Default constructor.

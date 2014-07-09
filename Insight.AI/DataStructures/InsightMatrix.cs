@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics.Statistics;
 
@@ -28,6 +29,16 @@ namespace Insight.AI.DataStructures
     /// </summary>
     public class InsightMatrix
     {
+        /// <summary>
+        /// Returns the number of columns in the matrix.
+        /// </summary>
+        public int ColumnCount { get { return Data.ColumnCount; } }
+
+        /// <summary>
+        /// Returns the number of rows in the matrix.
+        /// </summary>
+        public int RowCount { get { return Data.RowCount; } }
+
         /// <summary>
         /// Indicates which column in the data set contains the class label or predicted
         /// value.  Used for supervised learning tasks.
@@ -85,21 +96,30 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Create a new matrix as a copy of the given matrix.
-        /// </summary>
-        /// <param name="matrix">Matrix to copy</param>
-        public InsightMatrix(InsightMatrix matrix)
-        {
-            Data = DenseMatrix.OfMatrix(matrix.Data);
-        }
-
-        /// <summary>
         /// Create a new matrix as a copy of the given Math.NET matrix.
         /// </summary>
         /// <param name="matrix">Matrix to copy</param>
         public InsightMatrix(Matrix matrix)
         {
             Data = matrix;
+        }
+
+        /// <summary>
+        /// Create a new matrix as a copy of the given Math.NET matrix.
+        /// </summary>
+        /// <param name="matrix">Matrix to copy</param>
+        public InsightMatrix(Matrix<double> matrix)
+        {
+            Data = (DenseMatrix)matrix;
+        }
+
+        /// <summary>
+        /// Create a new matrix as a copy of the given matrix.
+        /// </summary>
+        /// <param name="matrix">Matrix to copy</param>
+        public InsightMatrix(InsightMatrix matrix)
+        {
+            Data = DenseMatrix.OfMatrix(matrix.Data);
         }
 
         /// <summary>
@@ -129,6 +149,24 @@ namespace Insight.AI.DataStructures
         public InsightVector Row(int index)
         {
             return new InsightVector(this.Data.Row(index));
+        }
+
+        /// <summary>
+        /// Returns the transpose of the matrix.
+        /// </summary>
+        /// <returns>Transposed matrix</returns>
+        public InsightMatrix Transpose()
+        {
+            return new InsightMatrix(this.Data.Transpose());
+        }
+
+        /// <summary>
+        /// Returns the inverse of the matrix.
+        /// </summary>
+        /// <returns>Inversed matrix</returns>
+        public InsightMatrix Inverse()
+        {
+            return new InsightMatrix(this.Data.Inverse());
         }
 
         /// <summary>
@@ -412,11 +450,43 @@ namespace Insight.AI.DataStructures
 
                 int rows = rowIndex - startingIndex;
                 components.Add(new InsightMatrix(
-                    (MathNet.Numerics.LinearAlgebra.Double.DenseMatrix)sortedMatrix.Data.SubMatrix(
-                    startingIndex, rows, 0, sortedMatrix.Data.ColumnCount)));
+                    sortedMatrix.Data.SubMatrix(startingIndex, rows, 0, sortedMatrix.Data.ColumnCount)));
             }
 
             return components;
+        }
+
+        /// <summary>
+        /// Implement + operator for two matrices.
+        /// </summary>
+        /// <param name="M1">1st matrix</param>
+        /// <param name="M2">2nd matrix</param>
+        /// <returns>Result matrix</returns>
+        public static InsightMatrix operator +(InsightMatrix M1, InsightMatrix M2)
+        {
+            return new InsightMatrix(M1.Data + M2.Data);
+        }
+
+        /// <summary>
+        /// Implement - operator for two matrices.
+        /// </summary>
+        /// <param name="M1">1st matrix</param>
+        /// <param name="M2">2nd matrix</param>
+        /// <returns>Result matrix</returns>
+        public static InsightMatrix operator -(InsightMatrix M1, InsightMatrix M2)
+        {
+            return new InsightMatrix(M1.Data - M2.Data);
+        }
+
+        /// <summary>
+        /// Implement * operator for two matrices.
+        /// </summary>
+        /// <param name="M1">1st matrix</param>
+        /// <param name="M2">2nd matrix</param>
+        /// <returns>Result matrix</returns>
+        public static InsightMatrix operator *(InsightMatrix M1, InsightMatrix M2)
+        {
+            return new InsightMatrix(M1.Data * M2.Data);
         }
     }
 }

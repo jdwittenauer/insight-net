@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics.Statistics;
 
@@ -65,21 +66,30 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Create a new vector as a copy of the given vector.
-        /// </summary>
-        /// <param name="vector">Vector to copy</param>
-        public InsightVector(InsightVector vector)
-        {
-            Data = DenseVector.OfVector(vector.Data);
-        }
-
-        /// <summary>
         /// Create a new vector as a copy of the given Math.NET vector.
         /// </summary>
         /// <param name="vector">Vector to copy</param>
         public InsightVector(Vector vector)
         {
             Data = vector;
+        }
+
+        /// <summary>
+        /// Create a new vector as a copy of the given Math.NET vector.
+        /// </summary>
+        /// <param name="vector">Vector to copy</param>
+        public InsightVector(Vector<double> vector)
+        {
+            Data = (DenseVector)vector;
+        }
+
+        /// <summary>
+        /// Create a new vector as a copy of the given vector.
+        /// </summary>
+        /// <param name="vector">Vector to copy</param>
+        public InsightVector(InsightVector vector)
+        {
+            Data = DenseVector.OfVector(vector.Data);
         }
 
         /// <summary>
@@ -182,6 +192,39 @@ namespace Insight.AI.DataStructures
                 throw new Exception("Vector must be instantiated.");
 
             return this.Center(mean).Scale();
+        }
+
+        /// <summary>
+        /// Implement + operator for two vectors.
+        /// </summary>
+        /// <param name="v1">1st vector</param>
+        /// <param name="v2">2nd vector</param>
+        /// <returns>Result vector</returns>
+        public static InsightVector operator +(InsightVector v1, InsightVector v2)
+        {
+            return new InsightVector(v1.Data + v2.Data);
+        }
+
+        /// <summary>
+        /// Implement - operator for two vectors.
+        /// </summary>
+        /// <param name="v1">1st vector</param>
+        /// <param name="v2">2nd vector</param>
+        /// <returns>Result vector</returns>
+        public static InsightVector operator -(InsightVector v1, InsightVector v2)
+        {
+            return new InsightVector(v1.Data - v2.Data);
+        }
+
+        /// <summary>
+        /// Implement * operator for two vectors.
+        /// </summary>
+        /// <param name="v1">1st vector</param>
+        /// <param name="v2">2nd vector</param>
+        /// <returns>Result vector</returns>
+        public static double operator *(InsightVector v1, InsightVector v2)
+        {
+            return v1.Data * v2.Data;
         }
     }
 }
