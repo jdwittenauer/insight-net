@@ -50,18 +50,18 @@ namespace Insight.AI.Metrics
                 throw new Exception("Vector u must be instantiated.");
             if (v == null || u.Data == null)
                 throw new Exception("Vector v must be instantiated.");
-            if (u.Data.Count != v.Data.Count)
+            if (u.Count != v.Count)
                 throw new Exception("Vector lengths must be equal.");
 
-            int length = u.Data.Count;
+            int length = u.Count;
             double uSum = 0, vSum = 0, uSumSquared = 0, vSumSquared = 0, productSum = 0;
             for (int i = 0; i < length; i++)
             {
-                uSum += u.Data[i];
-                vSum += v.Data[i];
-                uSumSquared += u.Data[i] * u.Data[i];
-                vSumSquared += v.Data[i] * v.Data[i];
-                productSum += u.Data[i] * v.Data[i];
+                uSum += u[i];
+                vSum += v[i];
+                uSumSquared += u[i] * u[i];
+                vSumSquared += v[i] * v[i];
+                productSum += u[i] * v[i];
             }
 
             double numerator = productSum - ((uSum * vSum) / (double)length);

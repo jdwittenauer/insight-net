@@ -29,6 +29,11 @@ namespace Insight.AI.DataStructures
     public class InsightVector
     {
         /// <summary>
+        /// Returns the number of items in the vector.
+        /// </summary>
+        public int Count { get { return Data.Count; } }
+
+        /// <summary>
         /// Math.NET vector implementation.  Used for all vector calculations.
         /// </summary>
         public Vector Data { get; private set; }
@@ -225,6 +230,17 @@ namespace Insight.AI.DataStructures
         public static double operator *(InsightVector v1, InsightVector v2)
         {
             return v1.Data * v2.Data;
+        }
+
+        /// <summary>
+        /// Implement the index operator.
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Value</returns>
+        public double this[int index]
+        {
+            get { return this.Data[index]; }
+            set { this.Data[index] = value; }
         }
     }
 }

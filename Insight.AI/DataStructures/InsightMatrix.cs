@@ -488,5 +488,17 @@ namespace Insight.AI.DataStructures
         {
             return new InsightMatrix(M1.Data * M2.Data);
         }
+
+        /// <summary>
+        /// Implemenent the index operator.
+        /// </summary>
+        /// <param name="rowIndex">Row index</param>
+        /// <param name="columnIndex">Column index</param>
+        /// <returns>Value</returns>
+        public double this[int rowIndex, int columnIndex]
+        {
+            get { return this.Data[rowIndex, columnIndex]; }
+            set { this.Data[rowIndex, columnIndex] = value; }
+        }
     }
 }

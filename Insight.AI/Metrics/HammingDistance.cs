@@ -49,13 +49,13 @@ namespace Insight.AI.Metrics
                 throw new Exception("Vector u must be instantiated.");
             if (v == null || u.Data == null)
                 throw new Exception("Vector v must be instantiated.");
-            if (u.Data.Count != v.Data.Count)
+            if (u.Count != v.Count)
                 throw new Exception("Vector lengths must be equal.");
 
-            int length = u.Data.Count, distance = 0;
+            int length = u.Count, distance = 0;
             for (int i = 0; i < length; i++)
             {
-                if (u.Data[i] != v.Data[i])
+                if (u[i] != v[i])
                     distance++;
             }
 

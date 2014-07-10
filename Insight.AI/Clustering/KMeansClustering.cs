@@ -114,20 +114,20 @@ namespace Insight.AI.Clustering
                 clusters = 3;
             }
 
-            var assignments = new InsightVector(matrix.Data.RowCount);
-            var centroids = new InsightMatrix(clusters.Value, matrix.Data.ColumnCount);
+            var assignments = new InsightVector(matrix.RowCount);
+            var centroids = new InsightMatrix(clusters.Value, matrix.ColumnCount);
             var random = new Random();
 
             // Initialize means via random selection
             for (int i = 0; i < clusters; i++)
             {
                 var samples = new List<int>();
-                int sample = random.Next(0, matrix.Data.RowCount - 1);
+                int sample = random.Next(0, matrix.RowCount - 1);
 
                 // Make sure we don't use the same instance more than once
                 while (samples.Exists(x => x == sample))
                 {
-                    sample = random.Next(0, matrix.Data.RowCount - 1);
+                    sample = random.Next(0, matrix.RowCount - 1);
                 }
 
                 samples.Add(sample);
@@ -138,7 +138,7 @@ namespace Insight.AI.Clustering
             while (true)
             {
                 // Assign each point to the nearest mean
-                for (int i = 0; i < matrix.Data.RowCount; i++)
+                for (int i = 0; i < matrix.RowCount; i++)
                 {
                     // Compute the proximity to each centroid to find the closest match
                     double closestProximity = -1;
@@ -153,19 +153,19 @@ namespace Insight.AI.Clustering
                         if (j == 0)
                         {
                             closestProximity = proximity;
-                            assignments.Data[i] = j;
+                            assignments[i] = j;
                         }
                         else if ((useSimilarity && proximity > closestProximity) || 
                             (!useSimilarity && proximity < closestProximity))
                         {
                             closestProximity = proximity;
-                            assignments.Data[i] = j;
+                            assignments[i] = j;
                         }
                     }
                 }
 
                 // Calculate the new means for each centroid
-                var newCentroids = new InsightMatrix(clusters.Value, matrix.Data.ColumnCount);
+                var newCentroids = new InsightMatrix(clusters.Value, matrix.ColumnCount);
                 bool converged = true;
 
                 for (int i = 0; i < clusters; i++)
@@ -176,17 +176,17 @@ namespace Insight.AI.Clustering
                     for (int j = 0; j < newCentroids.Data.ColumnCount; j++)
                     {
                         double sum = 0;
-                        for (int k = 0; k < matrix.Data.RowCount; k++)
+                        for (int k = 0; k < matrix.RowCount; k++)
                         {
-                            if (assignments.Data[k] == i) sum += matrix.Data[k, j];
+                            if (assignments[k] == i) sum += matrix[k, j];
                         }
 
                         if (instanceCount > 0)
-                            newCentroids.Data[i, j] = Math.Round(sum / instanceCount, 2);
+                            newCentroids[i, j] = Math.Round(sum / instanceCount, 2);
                         else
-                            newCentroids.Data[i, j] = centroids.Data[i, j];
+                            newCentroids[i, j] = centroids[i, j];
 
-                        if (newCentroids.Data[i, j] != centroids.Data[i, j])
+                        if (newCentroids[i, j] != centroids[i, j])
                             converged = false;
                     }
 
