@@ -127,32 +127,32 @@ namespace Insight.AI.Dimensionality
             {
                 // Limit to a percent of the variance in the data set
                 // (represented by the sum of the eigenvalues)
-                double totalVariance = EigenValues.Data.Sum() * percentThreshold.Value;
+                double totalVariance = EigenValues.Sum() * percentThreshold.Value;
                 double accumulatedVariance = 0;
                 Rank = 0;
                 while (accumulatedVariance < totalVariance)
                 {
-                    accumulatedVariance += EigenValues.Data[Rank];
+                    accumulatedVariance += EigenValues[Rank];
                     Rank++;
                 }
             }
 
             // Extract the principal components (in order by eigenvalue size)
-            InsightMatrix featureVectors = new InsightMatrix(EigenValues.Data.Count, Rank);
+            InsightMatrix featureVectors = new InsightMatrix(EigenValues.Count, Rank);
             for (int i = 0; i < Rank; i++)
             {
                 // Find the largest remaining eigenvalue
-                int index = EigenValues.Data.MaximumIndex();
+                int index = EigenValues.MaxIndex();
                 featureVectors.Data.SetColumn(i, EigenVectors.Data.Column(index));
 
                 // Set this position to zero so the next iteration captures the
                 // next-largest eigenvalue
-                EigenValues.Data[index] = 0;
+                EigenValues[index] = 0;
             }
 
             // Calculate and return the reduced data set
             InsightMatrix result = new InsightMatrix(
-                (DenseMatrix)(featureVectors.Data.Transpose() * matrix.Data.Transpose()).Transpose());
+                (featureVectors.Transpose() * matrix.Transpose()).Transpose());
 
             return result;
         }

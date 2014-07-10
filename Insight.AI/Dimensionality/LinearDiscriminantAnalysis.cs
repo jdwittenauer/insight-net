@@ -115,7 +115,7 @@ namespace Insight.AI.Dimensionality
             InsightVector totalMean = new InsightVector(meanColumnCount);
             for (int i = 0; i < meanColumnCount; i++)
             {
-                totalMean.Data[i] = matrix.Data.Column(i + 1).Mean();
+                totalMean[i] = matrix.Column(i + 1).Mean();
             }
 
             // Derive a sub-matrix for each class in the data set
@@ -130,33 +130,32 @@ namespace Insight.AI.Dimensionality
                 InsightVector means = new InsightVector(meanColumnCount);
                 for (int i = 0; i < meanColumnCount; i++)
                 {
-                    means.Data[i] = classMatrix.Data.Column(i + 1).Mean();
+                    means[i] = classMatrix.Column(i + 1).Mean();
                 }
 
                 // Using a dictionary to keep the number of samples in the class in 
                 // addition to the mean vector - we'll need both later on
-                meanVectors.Add(new KeyValuePair<int, InsightVector>(classMatrix.Data.RowCount, means));
+                meanVectors.Add(new KeyValuePair<int, InsightVector>(classMatrix.RowCount, means));
 
                 // Drop the class column then compute the covariance matrix for this class
-                InsightMatrix covariance = new InsightMatrix((DenseMatrix)classMatrix.Data.SubMatrix(
+                InsightMatrix covariance = new InsightMatrix(classMatrix.Data.SubMatrix(
                     0, classMatrix.Data.RowCount, 1, classMatrix.Data.ColumnCount - 1));
                 covariance = covariance.Center().CovarianceMatrix(true);
                 covariances.Add(covariance);
             }
 
             // Calculate the within-class scatter matrix
-            InsightMatrix withinClassScatter = covariances.Aggregate((x, y) => 
-                new InsightMatrix((DenseMatrix)(x.Data + y.Data)));
+            InsightMatrix withinClassScatter = covariances.Aggregate((x, y) => new InsightMatrix((x + y)));
 
             // Calculate the between-class scatter matrix
             InsightMatrix betweenClassScatter = new InsightMatrix(meanVectors.Aggregate(
-                new DenseMatrix(totalMean.Data.Count), (x, y) => 
+                new DenseMatrix(totalMean.Count), (x, y) => 
                     x + (DenseMatrix)(y.Key * (y.Value.Data - totalMean.Data).ToColumnMatrix() * 
                     (y.Value.Data - totalMean.Data).ToColumnMatrix().Transpose())));
 
             // Compute the LDA projection and perform eigenvalue decomposition on the projected matrix
             InsightMatrix projection = new InsightMatrix(
-                (DenseMatrix)(withinClassScatter.Data.Inverse() * betweenClassScatter.Data));
+                (withinClassScatter.Inverse() * betweenClassScatter));
             Evd<double> evd = projection.Data.Evd();
             EigenValues = new InsightVector(evd.D.Diagonal());
             EigenVectors = new InsightMatrix((DenseMatrix)evd.EigenVectors);
@@ -172,45 +171,45 @@ namespace Insight.AI.Dimensionality
             else if (percentThreshold != null)
             {
                 // Limit to a percent of the variance in the data set (represented by the sum of the eigenvalues)
-                double totalVariance = EigenValues.Data.Sum() * percentThreshold.Value;
+                double totalVariance = EigenValues.Sum() * percentThreshold.Value;
                 double accumulatedVariance = 0;
                 Rank = 0;
                 while (accumulatedVariance < totalVariance)
                 {
-                    accumulatedVariance += EigenValues.Data[Rank];
+                    accumulatedVariance += EigenValues[Rank];
                     Rank++;
                 }
             }
 
             // Extract the most important vectors (in order by eigenvalue size)
-            InsightMatrix projectionVectors = new InsightMatrix(EigenValues.Data.Count, Rank);
+            InsightMatrix projectionVectors = new InsightMatrix(EigenValues.Count, Rank);
             for (int i = 0; i < Rank; i++)
             {
                 // Find the largest remaining eigenvalue
-                int index = EigenValues.Data.MaximumIndex();
+                int index = EigenValues.MaxIndex();
                 projectionVectors.Data.SetColumn(i, EigenVectors.Data.Column(index));
 
                 // Set this position to zero so the next iteration captures the next-largest eigenvalue
-                EigenValues.Data[index] = 0;
+                EigenValues[index] = 0;
             }
 
             // Multiply each class matrix by the projection vectors
             for (int i = 0; i < classes.Count; i++)
             {
                 // Save the class vector
-                InsightVector classVector = new InsightVector(classes[i].Data.Column(0));
+                InsightVector classVector = new InsightVector(classes[i].Column(0));
 
                 // Create a new class matrix using the projection vectors
-                classes[i] = new InsightMatrix((DenseMatrix)(projectionVectors.Data.Transpose() *
-                    classes[i].Data.SubMatrix(0, classes[i].Data.RowCount, 1, classes[i].Data.ColumnCount - 1)
+                classes[i] = new InsightMatrix((projectionVectors.Data.Transpose() *
+                    classes[i].Data.SubMatrix(0, classes[i].RowCount, 1, classes[i].ColumnCount - 1)
                     .Transpose()).Transpose());
                 
                 // Insert the class vector back into the matrix
-                classes[i] = new InsightMatrix((DenseMatrix)classes[i].Data.InsertColumn(0, classVector.Data));
+                classes[i] = new InsightMatrix(classes[i].Data.InsertColumn(0, classVector.Data));
             }
 
             // Concatenate back into a single matrix
-            InsightMatrix result = classes.Aggregate((x, y) => new InsightMatrix((DenseMatrix)x.Data.Stack(y.Data)));
+            InsightMatrix result = classes.Aggregate((x, y) => new InsightMatrix(x.Data.Stack(y.Data)));
 
             return result;
         }

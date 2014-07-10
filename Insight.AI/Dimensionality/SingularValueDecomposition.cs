@@ -112,11 +112,11 @@ namespace Insight.AI.Dimensionality
             // Perform singlular value decomposition on the matrix
             // and retrieve the rank (number of singular values)
             Svd<double> svd = matrix.Data.Svd(true);
-            int rows = matrix.Data.RowCount, columns = matrix.Data.ColumnCount;
+            int rows = matrix.RowCount, columns = matrix.ColumnCount;
             Rank = svd.Rank;
             SingularValues = new InsightVector(svd.S);
-            LeftSingularVectors = new InsightMatrix((DenseMatrix)svd.W);
-            RightSingularVectors = new InsightMatrix((DenseMatrix)svd.VT);
+            LeftSingularVectors = new InsightMatrix(svd.W);
+            RightSingularVectors = new InsightMatrix(svd.VT);
 
             // Determine the number of features to keep for the final data set
             // (default will use all available singular values)
@@ -130,18 +130,18 @@ namespace Insight.AI.Dimensionality
             {
                 // Limit to a percent of the variance in the data set
                 // (represented by the sum of the singular values)
-                double totalVariance = SingularValues.Data.Sum() * percentThreshold.Value;
+                double totalVariance = SingularValues.Sum() * percentThreshold.Value;
                 double accumulatedVariance = 0;
                 Rank = 0;
                 while (accumulatedVariance < totalVariance)
                 {
-                    accumulatedVariance += SingularValues.Data[Rank];
+                    accumulatedVariance += SingularValues[Rank];
                     Rank++;
                 }
             }
 
             // Re-compose the original matrix using a sub-set of the features
-            InsightMatrix result = new InsightMatrix((DenseMatrix)
+            InsightMatrix result = new InsightMatrix(
                 (svd.U.SubMatrix(0, rows, 0, rows) *
                 LeftSingularVectors.Data.SubMatrix(0, rows, 0, Rank) * 
                 RightSingularVectors.Data.SubMatrix(0, Rank, 0, Rank)));

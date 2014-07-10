@@ -107,6 +107,69 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
+        /// Returns the sum of the vector's values.
+        /// </summary>
+        /// <returns>Sum</returns>
+        public double Sum()
+        {
+            return this.Data.Sum();
+        }
+
+        /// <summary>
+        /// Returns the mean of the vector's values.
+        /// </summary>
+        /// <returns>Mean</returns>
+        public double Mean()
+        {
+            return this.Data.Mean();
+        }
+
+        /// <summary>
+        /// Returns the standard deviation of the vector's values.
+        /// </summary>
+        /// <returns>Standard deviation</returns>
+        public double Std()
+        {
+            return this.Data.StandardDeviation();
+        }
+
+        /// <summary>
+        /// Return the minimum value in the vector.
+        /// </summary>
+        /// <returns>Minimum value</returns>
+        public double Min()
+        {
+            return this.Data.Minimum();
+        }
+
+        /// <summary>
+        /// Return the maximum value in the vector.
+        /// </summary>
+        /// <returns>Maximum value</returns>
+        public double Max()
+        {
+            return this.Data.Maximum();
+        }
+
+        /// <summary>
+        /// Returns the index of the minimum value in the vector.
+        /// </summary>
+        /// <returns>Index of minimum value</returns>
+        public int MinIndex()
+        {
+            return this.Data.MinimumIndex();
+        }
+
+        /// <summary>
+        /// Returns the index of the maximum value in the vector.
+        /// </summary>
+        /// <returns>index of maximum value</returns>
+        public int MaxIndex()
+        {
+            return this.Data.MaximumIndex();
+        }
+
+        /// <summary>
         /// Centers the vector by subtracting each value by the mean.
         /// </summary>
         /// <returns>Centered vector</returns>
@@ -115,12 +178,12 @@ namespace Insight.AI.DataStructures
             if (this == null || this.Data == null)
                 throw new Exception("Vector must be instantiated.");
 
-            int length = this.Data.Count;
-            double mean = this.Data.Mean();
+            int length = this.Count;
+            double mean = this.Mean();
 
             for (int i = 0; i < length; i++)
             {
-                this.Data[i] = this.Data[i] - mean;
+                this[i] = this[i] - mean;
             }
 
             return this;
@@ -136,11 +199,11 @@ namespace Insight.AI.DataStructures
             if (this == null || this.Data == null)
                 throw new Exception("Vector must be instantiated.");
 
-            int length = this.Data.Count;
+            int length = this.Count;
 
             for (int i = 0; i < length; i++)
             {
-                this.Data[i] = this.Data[i] - mean;
+                this[i] = this[i] - mean;
             }
 
             return this;
@@ -161,14 +224,14 @@ namespace Insight.AI.DataStructures
 
             for (int i = 0; i < length; i++)
             {
-                ss += this.Data[i] * this.Data[i];
+                ss += this[i] * this[i];
             }
 
             double ss2 = Math.Sqrt(ss);
 
             for (int i = 0; i < length; i++)
             {
-                this.Data[i] = this.Data[i] / ss2;
+                this[i] = this[i] / ss2;
             }
 
             return this;
