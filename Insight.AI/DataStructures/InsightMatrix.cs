@@ -123,12 +123,23 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Returns a formatted string representation of the matrix.
+        /// Copies the values of the given vector to the specified column.
         /// </summary>
-        /// <returns>String representation of the matrix</returns>
-        public override string ToString()
+        /// <param name="columnIndex"><Column index/param>
+        /// <param name="vector">Column vector</param>
+        public void SetColumn(int columnIndex, InsightVector vector)
         {
-            return this.Data.ToString("F4", null);
+            this.Data.SetColumn(columnIndex, vector.Data);
+        }
+
+        /// <summary>
+        /// Copies the values of the given vector to the specified row.
+        /// </summary>
+        /// <param name="rowIndex">Row index</param>
+        /// <param name="vector">Row vector</param>
+        public void SetRow(int rowIndex, InsightVector vector)
+        {
+            this.Data.SetRow(rowIndex, vector.Data);
         }
 
         /// <summary>
@@ -167,6 +178,29 @@ namespace Insight.AI.DataStructures
         public InsightMatrix Inverse()
         {
             return new InsightMatrix(this.Data.Inverse());
+        }
+
+        /// <summary>
+        /// Concatenates the current matrix with the given matrix.
+        /// </summary>
+        /// <param name="matrix">Right matrix</param>
+        /// <returns>Concatenated matrix</returns>
+        public InsightMatrix Append(InsightMatrix matrix)
+        {
+            return new InsightMatrix(this.Data.Append(matrix.Data));
+        }
+
+        /// <summary>
+        /// Returns a sub-matrix of the original using the provided indexes and ranges.
+        /// </summary>
+        /// <param name="rowIndex">Row index</param>
+        /// <param name="rowCount">Row count</param>
+        /// <param name="columnIndex">Column index</param>
+        /// <param name="columnCount">Column count</param>
+        /// <returns></returns>
+        public InsightMatrix SubMatrix(int rowIndex, int rowCount, int columnIndex, int columnCount)
+        {
+            return new InsightMatrix(this.SubMatrix(rowIndex, rowCount, columnIndex, columnCount));
         }
 
         /// <summary>
@@ -499,6 +533,15 @@ namespace Insight.AI.DataStructures
         {
             get { return this.Data[rowIndex, columnIndex]; }
             set { this.Data[rowIndex, columnIndex] = value; }
+        }
+
+        /// <summary>
+        /// Returns a formatted string representation of the matrix.
+        /// </summary>
+        /// <returns>String representation of the matrix</returns>
+        public override string ToString()
+        {
+            return this.Data.ToString("F4", null);
         }
     }
 }

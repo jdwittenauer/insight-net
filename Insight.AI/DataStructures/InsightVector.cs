@@ -98,15 +98,6 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Returns a formatted string representation of the vector.
-        /// </summary>
-        /// <returns>String representation of the vector</returns>
-        public override string ToString()
-        {
-            return this.Data.ToString("F4", null);
-        }
-
-        /// <summary>
         /// Returns the sum of the vector's values.
         /// </summary>
         /// <returns>Sum</returns>
@@ -167,6 +158,24 @@ namespace Insight.AI.DataStructures
         public int MaxIndex()
         {
             return this.Data.MaximumIndex();
+        }
+
+        /// <summary>
+        /// Converts the vector to a column matrix.
+        /// </summary>
+        /// <returns>Column matrix</returns>
+        public InsightMatrix ToColumnMatrix()
+        {
+            return new InsightMatrix(this.Data.ToColumnMatrix());
+        }
+
+        /// <summary>
+        /// Converts the vector to a row matrix.
+        /// </summary>
+        /// <returns>Row matrix</returns>
+        public InsightMatrix ToRowMatrix()
+        {
+            return new InsightMatrix(this.Data.ToRowMatrix());
         }
 
         /// <summary>
@@ -304,6 +313,15 @@ namespace Insight.AI.DataStructures
         {
             get { return this.Data[index]; }
             set { this.Data[index] = value; }
+        }
+
+        /// <summary>
+        /// Returns a formatted string representation of the vector.
+        /// </summary>
+        /// <returns>String representation of the vector</returns>
+        public override string ToString()
+        {
+            return this.Data.ToString("F4", null);
         }
     }
 }

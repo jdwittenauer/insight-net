@@ -131,7 +131,7 @@ namespace Insight.AI.Clustering
                 }
 
                 samples.Add(sample);
-                centroids.Data.SetRow(i, matrix.Data.Row(sample));
+                centroids.SetRow(i, matrix.Row(sample));
             }
 
             // Keep going until convergence point is reached
@@ -173,7 +173,7 @@ namespace Insight.AI.Clustering
                     int instanceCount = assignments.Data.Where(x => x == i).Count();
 
                     // Compute the means for each instance assigned to the current cluster
-                    for (int j = 0; j < newCentroids.Data.ColumnCount; j++)
+                    for (int j = 0; j < newCentroids.ColumnCount; j++)
                     {
                         double sum = 0;
                         for (int k = 0; k < matrix.RowCount; k++)
@@ -190,7 +190,7 @@ namespace Insight.AI.Clustering
                             converged = false;
                     }
 
-                    centroids.Data.SetRow(i, newCentroids.Data.Row(i));
+                    centroids.SetRow(i, newCentroids.Row(i));
                 }
 
                 // If the new centroid means did not change then we've reached the final result
@@ -198,7 +198,7 @@ namespace Insight.AI.Clustering
             }
 
             // Add the cluster assignments as a new column on the data set
-            matrix.Data.Append(assignments.Data.ToColumnMatrix());
+            matrix.Append(assignments.ToColumnMatrix());
 
             return new ClusteringResults(centroids, matrix);
         }

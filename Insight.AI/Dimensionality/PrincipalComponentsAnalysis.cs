@@ -143,7 +143,7 @@ namespace Insight.AI.Dimensionality
             {
                 // Find the largest remaining eigenvalue
                 int index = EigenValues.MaxIndex();
-                featureVectors.Data.SetColumn(i, EigenVectors.Data.Column(index));
+                featureVectors.SetColumn(i, EigenVectors.Column(index));
 
                 // Set this position to zero so the next iteration captures the
                 // next-largest eigenvalue
@@ -151,8 +151,7 @@ namespace Insight.AI.Dimensionality
             }
 
             // Calculate and return the reduced data set
-            InsightMatrix result = new InsightMatrix(
-                (featureVectors.Transpose() * matrix.Transpose()).Transpose());
+            InsightMatrix result = (featureVectors.Transpose() * matrix.Transpose()).Transpose();
 
             return result;
         }

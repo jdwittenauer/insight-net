@@ -111,7 +111,7 @@ namespace Insight.AI.Dimensionality
 
             // Calculate the mean vector for the entire data set (skipping the first
             // column which has the class designation)
-            int meanColumnCount = matrix.Data.ColumnCount - 1;
+            int meanColumnCount = matrix.ColumnCount - 1;
             InsightVector totalMean = new InsightVector(meanColumnCount);
             for (int i = 0; i < meanColumnCount; i++)
             {
@@ -138,8 +138,7 @@ namespace Insight.AI.Dimensionality
                 meanVectors.Add(new KeyValuePair<int, InsightVector>(classMatrix.RowCount, means));
 
                 // Drop the class column then compute the covariance matrix for this class
-                InsightMatrix covariance = new InsightMatrix(classMatrix.Data.SubMatrix(
-                    0, classMatrix.Data.RowCount, 1, classMatrix.Data.ColumnCount - 1));
+                InsightMatrix covariance = classMatrix.SubMatrix(0, classMatrix.RowCount, 1, classMatrix.ColumnCount - 1);
                 covariance = covariance.Center().CovarianceMatrix(true);
                 covariances.Add(covariance);
             }
@@ -187,7 +186,7 @@ namespace Insight.AI.Dimensionality
             {
                 // Find the largest remaining eigenvalue
                 int index = EigenValues.MaxIndex();
-                projectionVectors.Data.SetColumn(i, EigenVectors.Data.Column(index));
+                projectionVectors.SetColumn(i, EigenVectors.Column(index));
 
                 // Set this position to zero so the next iteration captures the next-largest eigenvalue
                 EigenValues[index] = 0;
@@ -200,9 +199,9 @@ namespace Insight.AI.Dimensionality
                 InsightVector classVector = new InsightVector(classes[i].Column(0));
 
                 // Create a new class matrix using the projection vectors
-                classes[i] = new InsightMatrix((projectionVectors.Data.Transpose() *
-                    classes[i].Data.SubMatrix(0, classes[i].RowCount, 1, classes[i].ColumnCount - 1)
-                    .Transpose()).Transpose());
+                classes[i] = (projectionVectors.Transpose() *
+                    classes[i].SubMatrix(0, classes[i].RowCount, 1, classes[i].ColumnCount - 1)
+                    .Transpose()).Transpose();
                 
                 // Insert the class vector back into the matrix
                 classes[i] = new InsightMatrix(classes[i].Data.InsertColumn(0, classVector.Data));
