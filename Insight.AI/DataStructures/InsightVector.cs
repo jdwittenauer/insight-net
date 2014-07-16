@@ -16,6 +16,7 @@
 // along with Insight.NET.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
@@ -26,7 +27,7 @@ namespace Insight.AI.DataStructures
     /// <summary>
     /// This class encapsulates the vector data structure used by Insight.NET.
     /// </summary>
-    public class InsightVector
+    public class InsightVector : IEnumerable<double>
     {
         /// <summary>
         /// Returns the number of items in the vector.
@@ -272,7 +273,95 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Implement + operator for two vectors.
+        /// Add a scalar value and a vector.
+        /// </summary>
+        /// <param name="v">Vector</param>
+        /// <param name="scalar">Scalar number</param>
+        /// <returns>Result vector</returns>
+        public static InsightVector operator +(InsightVector v, double scalar)
+        {
+            return new InsightVector(v.Data + scalar);
+        }
+
+        /// <summary>
+        /// Subtract a scalar value from a vector.
+        /// </summary>
+        /// <param name="v">Vector</param>
+        /// <param name="scalar">Scalar number</param>
+        /// <returns>Result vector</returns>
+        public static InsightVector operator -(InsightVector v, double scalar)
+        {
+            return new InsightVector(v.Data - scalar);
+        }
+
+        /// <summary>
+        /// Multiply a vector by a scalar value.
+        /// </summary>
+        /// <param name="v">Vector</param>
+        /// <param name="scalar">Scalar number</param>
+        /// <returns>Result vector</returns>
+        public static InsightVector operator *(InsightVector v, double scalar)
+        {
+            return new InsightVector(v.Data * scalar);
+        }
+
+        /// <summary>
+        /// Divide a vector by a scalar value.
+        /// </summary>
+        /// <param name="v">Vector</param>
+        /// <param name="scalar">Scalar number</param>
+        /// <returns>Result vector</returns>
+        public static InsightVector operator /(InsightVector v, double scalar)
+        {
+            return new InsightVector(v.Data / scalar);
+        }
+
+        /// <summary>
+        /// Add a vector to a scalar value.
+        /// </summary>
+        /// <param name="scalar">Scalar number</param>
+        /// <param name="v">Vector</param>
+        /// <returns>Result vector</returns>
+        public static InsightVector operator +(double scalar, InsightVector v)
+        {
+            return new InsightVector(scalar + v.Data);
+        }
+
+        /// <summary>
+        /// Subtract a vector from a scalar value.
+        /// </summary>
+        /// <param name="scalar">Scalar number</param>
+        /// <param name="v">Vector</param>
+        /// <returns>Result vector</returns>
+        public static InsightVector operator -(double scalar, InsightVector v)
+        {
+            return new InsightVector(scalar - v.Data);
+        }
+
+        /// <summary>
+        /// Multiply a scalar value by a vector.
+        /// </summary>
+        /// <param name="scalar">Scalar number</param>
+        /// <param name="v">Vector</param>
+        /// <returns>Result vector</returns>
+        public static InsightVector operator *(double scalar, InsightVector v)
+        {
+            return new InsightVector(scalar * v.Data);
+        }
+
+        /// <summary>
+        /// Divide a scalar value by a vector.
+        /// </summary>
+        /// <param name="scalar">Scalar number</param>
+        /// <param name="v">Vector</param>
+        /// <returns>Result vector</returns>
+        public static InsightVector operator /(double scalar, InsightVector v)
+        {
+            return new InsightVector(scalar / v.Data);
+        }
+
+        /// <summary>
+        /// Add two vectors together.
         /// </summary>
         /// <param name="v1">1st vector</param>
         /// <param name="v2">2nd vector</param>
@@ -283,7 +372,7 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Implement - operator for two vectors.
+        /// Subtract a vector from another vector.
         /// </summary>
         /// <param name="v1">1st vector</param>
         /// <param name="v2">2nd vector</param>
@@ -294,18 +383,18 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Implement * operator for two vectors.
+        /// Compute the dot product of two vectors.
         /// </summary>
         /// <param name="v1">1st vector</param>
         /// <param name="v2">2nd vector</param>
-        /// <returns>Result vector</returns>
+        /// <returns>Result</returns>
         public static double operator *(InsightVector v1, InsightVector v2)
         {
             return v1.Data * v2.Data;
         }
 
         /// <summary>
-        /// Implement the index operator.
+        /// Returns the value at the given index.
         /// </summary>
         /// <param name="index">Index</param>
         /// <returns>Value</returns>
@@ -322,6 +411,24 @@ namespace Insight.AI.DataStructures
         public override string ToString()
         {
             return this.Data.ToString("F4", null);
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>Collection enumerator</returns>
+        public IEnumerator<double> GetEnumerator()
+        {
+            return this.Data.Enumerate().GetEnumerator();
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>Collection enumerator</returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
 }

@@ -170,7 +170,7 @@ namespace Insight.AI.Clustering
 
                 for (int i = 0; i < clusters; i++)
                 {
-                    int instanceCount = assignments.Data.Where(x => x == i).Count();
+                    int instanceCount = assignments.Where(x => x == i).Count();
 
                     // Compute the means for each instance assigned to the current cluster
                     for (int j = 0; j < newCentroids.ColumnCount; j++)

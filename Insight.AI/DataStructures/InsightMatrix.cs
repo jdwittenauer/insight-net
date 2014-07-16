@@ -127,19 +127,19 @@ namespace Insight.AI.DataStructures
         /// </summary>
         /// <param name="columnIndex"><Column index/param>
         /// <param name="vector">Column vector</param>
-        public void SetColumn(int columnIndex, InsightVector vector)
+        public void SetColumn(int index, InsightVector vector)
         {
-            this.Data.SetColumn(columnIndex, vector.Data);
+            this.Data.SetColumn(index, vector.Data);
         }
 
         /// <summary>
         /// Copies the values of the given vector to the specified row.
         /// </summary>
-        /// <param name="rowIndex">Row index</param>
+        /// <param name="index">Row index</param>
         /// <param name="vector">Row vector</param>
-        public void SetRow(int rowIndex, InsightVector vector)
+        public void SetRow(int index, InsightVector vector)
         {
-            this.Data.SetRow(rowIndex, vector.Data);
+            this.Data.SetRow(index, vector.Data);
         }
 
         /// <summary>
@@ -160,6 +160,28 @@ namespace Insight.AI.DataStructures
         public InsightVector Row(int index)
         {
             return new InsightVector(this.Data.Row(index));
+        }
+
+        /// <summary>
+        /// Creates a new matrix with the provided column inserted at the given index.
+        /// </summary>
+        /// <param name="index">Column index</param>
+        /// <param name="vector">Column vector</param>
+        /// <returns>Result matrix</returns>
+        public InsightMatrix InsertColumn(int index, InsightVector vector)
+        {
+            return new InsightMatrix(this.Data.InsertColumn(index, vector.Data));
+        }
+
+        /// <summary>
+        /// Creates a new matrix with the provided row inserted at the given index.
+        /// </summary>
+        /// <param name="index">Row index</param>
+        /// <param name="vector">Row vector</param>
+        /// <returns>Result matrix</returns>
+        public InsightMatrix InsertRow(int index, InsightVector vector)
+        {
+            return new InsightMatrix(this.Data.InsertRow(index, vector.Data));
         }
 
         /// <summary>
@@ -188,6 +210,16 @@ namespace Insight.AI.DataStructures
         public InsightMatrix Append(InsightMatrix matrix)
         {
             return new InsightMatrix(this.Data.Append(matrix.Data));
+        }
+
+        /// <summary>
+        /// Stacks the current matrix on top of the provided matrix.
+        /// </summary>
+        /// <param name="matrix">Lower matrix</param>
+        /// <returns>Stacked matrix</returns>
+        public InsightMatrix Stack(InsightMatrix matrix)
+        {
+            return new InsightMatrix(this.Data.Stack(matrix.Data));
         }
 
         /// <summary>
@@ -491,7 +523,95 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Implement + operator for two matrices.
+        /// Add a scalar value and a matrix.
+        /// </summary>
+        /// <param name="M">Matrix</param>
+        /// <param name="scalar">Scalar number</param>
+        /// <returns>Result matrix</returns>
+        public static InsightMatrix operator +(InsightMatrix M, double scalar)
+        {
+            return new InsightMatrix(M.Data + scalar);
+        }
+
+        /// <summary>
+        /// Subtract a scalar value from a matrix.
+        /// </summary>
+        /// <param name="M">Matrix</param>
+        /// <param name="scalar">Scalar number</param>
+        /// <returns>Result matrix</returns>
+        public static InsightMatrix operator -(InsightMatrix M, double scalar)
+        {
+            return new InsightMatrix(M.Data - scalar);
+        }
+
+        /// <summary>
+        /// Multiply a matrix by a scalar value.
+        /// </summary>
+        /// <param name="M">Matrix</param>
+        /// <param name="scalar">Scalar number</param>
+        /// <returns>Result matrix</returns>
+        public static InsightMatrix operator *(InsightMatrix M, double scalar)
+        {
+            return new InsightMatrix(M.Data * scalar);
+        }
+
+        /// <summary>
+        /// Divide a matrix by a scalar value.
+        /// </summary>
+        /// <param name="M">Matrix</param>
+        /// <param name="scalar">Scalar number</param>
+        /// <returns>Result matrix</returns>
+        public static InsightMatrix operator /(InsightMatrix M, double scalar)
+        {
+            return new InsightMatrix(M.Data / scalar);
+        }
+
+        /// <summary>
+        /// Add a matrix to a scalar value.
+        /// </summary>
+        /// <param name="scalar">Scalar number</param>
+        /// <param name="M">Matrix</param>
+        /// <returns>Result matrix</returns>
+        public static InsightMatrix operator +(double scalar, InsightMatrix M)
+        {
+            return new InsightMatrix(scalar + M.Data);
+        }
+
+        /// <summary>
+        /// Subtract a matrix from a scalar value.
+        /// </summary>
+        /// <param name="scalar">Scalar number</param>
+        /// <param name="M">Matrix</param>
+        /// <returns>Result matrix</returns>
+        public static InsightMatrix operator -(double scalar, InsightMatrix M)
+        {
+            return new InsightMatrix(scalar - M.Data);
+        }
+
+        /// <summary>
+        /// Multiply a scalar value by a matrix.
+        /// </summary>
+        /// <param name="scalar">Scalar number</param>
+        /// <param name="M">Matrix</param>
+        /// <returns>Result matrix</returns>
+        public static InsightMatrix operator *(double scalar, InsightMatrix M)
+        {
+            return new InsightMatrix(scalar * M.Data);
+        }
+
+        /// <summary>
+        /// Divide a scalar value by a matrix.
+        /// </summary>
+        /// <param name="scalar">Scalar number</param>
+        /// <param name="M">Matrix</param>
+        /// <returns>Result matrix</returns>
+        public static InsightMatrix operator /(double scalar, InsightMatrix M)
+        {
+            return new InsightMatrix(scalar / M.Data);
+        }
+
+        /// <summary>
+        /// Add two matrices together.
         /// </summary>
         /// <param name="M1">1st matrix</param>
         /// <param name="M2">2nd matrix</param>
@@ -502,7 +622,7 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Implement - operator for two matrices.
+        /// Subtract a matrix from another matrix.
         /// </summary>
         /// <param name="M1">1st matrix</param>
         /// <param name="M2">2nd matrix</param>
@@ -513,7 +633,7 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Implement * operator for two matrices.
+        /// Multiply two matrices together.
         /// </summary>
         /// <param name="M1">1st matrix</param>
         /// <param name="M2">2nd matrix</param>
@@ -524,7 +644,7 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
-        /// Implemenent the index operator.
+        /// Returns the value at the given index.
         /// </summary>
         /// <param name="rowIndex">Row index</param>
         /// <param name="columnIndex">Column index</param>

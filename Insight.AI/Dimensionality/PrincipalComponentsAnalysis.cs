@@ -114,7 +114,7 @@ namespace Insight.AI.Dimensionality
             Evd<double> evd = covariance.Data.Evd();
             EigenValues = new InsightVector(evd.D.Diagonal());
             EigenVectors = new InsightMatrix((DenseMatrix)evd.EigenVectors);
-            Rank = EigenValues.Data.Where(x => x > 0.001).Count();
+            Rank = EigenValues.Where(x => x > 0.001).Count();
 
             // Determine the number of features to keep for the final data set
             if (featureLimit != null)

@@ -147,10 +147,10 @@ namespace Insight.AI.Dimensionality
             InsightMatrix withinClassScatter = covariances.Aggregate((x, y) => new InsightMatrix((x + y)));
 
             // Calculate the between-class scatter matrix
-            InsightMatrix betweenClassScatter = new InsightMatrix(meanVectors.Aggregate(
-                new DenseMatrix(totalMean.Count), (x, y) => 
-                    x + (DenseMatrix)(y.Key * (y.Value.Data - totalMean.Data).ToColumnMatrix() * 
-                    (y.Value.Data - totalMean.Data).ToColumnMatrix().Transpose())));
+            InsightMatrix betweenClassScatter = meanVectors.Aggregate(
+                new InsightMatrix(totalMean.Count), (x, y) => 
+                    x + (y.Key * (y.Value - totalMean).ToColumnMatrix() * 
+                    (y.Value - totalMean).ToColumnMatrix().Transpose()));
 
             // Compute the LDA projection and perform eigenvalue decomposition on the projected matrix
             InsightMatrix projection = new InsightMatrix(
@@ -158,7 +158,7 @@ namespace Insight.AI.Dimensionality
             Evd<double> evd = projection.Data.Evd();
             EigenValues = new InsightVector(evd.D.Diagonal());
             EigenVectors = new InsightMatrix((DenseMatrix)evd.EigenVectors);
-            Rank = EigenValues.Data.Where(x => x > 0.001).Count();
+            Rank = EigenValues.Where(x => x > 0.001).Count();
 
             // Determine the number of features to keep for the final data set
             if (featureLimit != null)
@@ -196,7 +196,7 @@ namespace Insight.AI.Dimensionality
             for (int i = 0; i < classes.Count; i++)
             {
                 // Save the class vector
-                InsightVector classVector = new InsightVector(classes[i].Column(0));
+                InsightVector classVector = classes[i].Column(0);
 
                 // Create a new class matrix using the projection vectors
                 classes[i] = (projectionVectors.Transpose() *
@@ -204,11 +204,11 @@ namespace Insight.AI.Dimensionality
                     .Transpose()).Transpose();
                 
                 // Insert the class vector back into the matrix
-                classes[i] = new InsightMatrix(classes[i].Data.InsertColumn(0, classVector.Data));
+                classes[i] = classes[i].InsertColumn(0, classVector);
             }
 
             // Concatenate back into a single matrix
-            InsightMatrix result = classes.Aggregate((x, y) => new InsightMatrix(x.Data.Stack(y.Data)));
+            InsightMatrix result = classes.Aggregate((x, y) => x.Stack(y));
 
             return result;
         }
