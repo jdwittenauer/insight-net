@@ -46,10 +46,6 @@ namespace Insight.AI.Metrics
         /// <returns>Distance between the two vectors</returns>
         public double CalculateDistance(InsightVector u, InsightVector v)
         {
-            if (u == null || u.Data == null)
-                throw new Exception("Vector u must be instantiated.");
-            if (v == null || u.Data == null)
-                throw new Exception("Vector v must be instantiated.");
             if (u.Count != v.Count)
                 throw new Exception("Vector lengths must be equal.");
 

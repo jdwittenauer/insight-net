@@ -18,8 +18,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MathNet.Numerics.LinearAlgebra.Double;
-using MathNet.Numerics.LinearAlgebra.Factorization;
 using Insight.AI.DataStructures;
 using Insight.AI.Dimensionality.Interfaces;
 
@@ -39,21 +37,6 @@ namespace Insight.AI.Dimensionality
     /// <seealso cref="http://en.wikipedia.org/wiki/Principal_component_analysis"/>
     public sealed class PrincipalComponentsAnalysis : IFeatureExtraction
     {
-        /// <summary>
-        /// Gets the number of features kept after performing PCA.
-        /// </summary>
-        public int Rank { get; private set; }
-
-        /// <summary>
-        /// Gets the eigenvalues of the covariance matrix for the input data set.
-        /// </summary>
-        public InsightVector EigenValues { get; private set; }
-
-        /// <summary>
-        /// Gets the eigenvectors of the covariance matrix for the input data set.
-        /// </summary>
-        public InsightMatrix EigenVectors { get; private set; }
-
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -104,50 +87,45 @@ namespace Insight.AI.Dimensionality
         /// <returns>Transformed matrix with reduced number of dimensions</returns>
         private InsightMatrix PerformPCA(InsightMatrix matrix, int? featureLimit, double? percentThreshold)
         {
-            if (matrix == null || matrix.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-
             // Center each feature and calculate the covariance matrix
             InsightMatrix covariance = matrix.Center().CovarianceMatrix(true);
 
             // Perform eigenvalue decomposition on the covariance matrix
-            Evd<double> evd = covariance.Data.Evd();
-            EigenValues = new InsightVector(evd.D.Diagonal());
-            EigenVectors = new InsightMatrix((DenseMatrix)evd.EigenVectors);
-            Rank = EigenValues.Where(x => x > 0.001).Count();
+            MatrixFactorization evd = covariance.EigenvalueDecomposition();
+            int rank = evd.Eigenvalues.Where(x => x > 0.001).Count();
 
             // Determine the number of features to keep for the final data set
             if (featureLimit != null)
             {
                 // Enforce a raw numeric feature limit
-                if (Rank > featureLimit)
-                    Rank = featureLimit.Value;
+                if (rank > featureLimit)
+                    rank = featureLimit.Value;
             }
             else if (percentThreshold != null)
             {
                 // Limit to a percent of the variance in the data set
                 // (represented by the sum of the eigenvalues)
-                double totalVariance = EigenValues.Sum() * percentThreshold.Value;
+                double totalVariance = evd.Eigenvalues.Sum() * percentThreshold.Value;
                 double accumulatedVariance = 0;
-                Rank = 0;
+                rank = 0;
                 while (accumulatedVariance < totalVariance)
                 {
-                    accumulatedVariance += EigenValues[Rank];
-                    Rank++;
+                    accumulatedVariance += evd.Eigenvalues[rank];
+                    rank++;
                 }
             }
 
             // Extract the principal components (in order by eigenvalue size)
-            InsightMatrix featureVectors = new InsightMatrix(EigenValues.Count, Rank);
-            for (int i = 0; i < Rank; i++)
+            InsightMatrix featureVectors = new InsightMatrix(evd.Eigenvalues.Count, rank);
+            for (int i = 0; i < rank; i++)
             {
                 // Find the largest remaining eigenvalue
-                int index = EigenValues.MaxIndex();
-                featureVectors.SetColumn(i, EigenVectors.Column(index));
+                int index = evd.Eigenvalues.MaxIndex();
+                featureVectors.SetColumn(i, evd.Eigenvectors.Column(index));
 
                 // Set this position to zero so the next iteration captures the
                 // next-largest eigenvalue
-                EigenValues[index] = 0;
+                evd.Eigenvalues[index] = 0;
             }
 
             // Calculate and return the reduced data set

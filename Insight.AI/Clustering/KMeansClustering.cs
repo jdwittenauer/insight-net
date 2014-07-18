@@ -89,9 +89,6 @@ namespace Insight.AI.Clustering
         private IClusteringResults PerformKMeansClustering(InsightMatrix matrix, SimilarityMethod? similarityMethod,
             DistanceMethod? distanceMethod, int? clusters)
         {
-            if (matrix == null || matrix.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-
             bool useSimilarity;
             if (similarityMethod != null)
             {

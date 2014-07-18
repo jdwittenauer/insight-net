@@ -51,11 +51,6 @@ namespace Insight.AI.DataStructures
         public Matrix Data { get; private set; }
 
         /// <summary>
-        /// Default constructor.
-        /// </summary>
-        public InsightMatrix () { }
-
-        /// <summary>
         /// Create a new matrix with the given order.  Cells will be initalized to zero.
         /// </summary>
         /// <param name="order">Matrix order</param>
@@ -232,7 +227,7 @@ namespace Insight.AI.DataStructures
         /// <returns></returns>
         public InsightMatrix SubMatrix(int rowIndex, int rowCount, int columnIndex, int columnCount)
         {
-            return new InsightMatrix(this.SubMatrix(rowIndex, rowCount, columnIndex, columnCount));
+            return new InsightMatrix(this.Data.SubMatrix(rowIndex, rowCount, columnIndex, columnCount));
         }
 
         /// <summary>
@@ -241,9 +236,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Column-centered matrix</returns>
         public InsightMatrix Center()
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-
             int colLength = this.Data.ColumnCount;
 
             for (int i = 0; i < colLength; i++)
@@ -267,9 +259,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Column-centered matrix</returns>
         public InsightMatrix Center(InsightVector meanVector)
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-
             int colLength = this.Data.ColumnCount;
 
             for (int i = 0; i < colLength; i++)
@@ -293,9 +282,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Column-scaled matrix</returns>
         public InsightMatrix Scale()
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-
             int colLength = this.Data.ColumnCount;
 
             for (int i = 0; i < colLength; i++)
@@ -326,9 +312,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Column-normalized matrix</returns>
         public InsightMatrix Normalize()
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-
             return this.Center().Scale();
         }
 
@@ -340,9 +323,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Column-normalized matrix</returns>
         public InsightMatrix Normalize(InsightVector meanVector)
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-
             return this.Center(meanVector).Scale();
         }
 
@@ -353,9 +333,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Covariance matrix</returns>
         public InsightMatrix CovarianceMatrix(bool isCentered = false)
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-
             int columns = this.Data.ColumnCount, rows = this.Data.RowCount;
             InsightMatrix cov = new InsightMatrix(columns);
 
@@ -393,9 +370,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Correlation matrix</returns>
         public InsightMatrix CorrelationMatrix(bool isCentered = false)
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-
             var cov = this.CovarianceMatrix();
             int columns = this.Data.ColumnCount, rows = this.Data.RowCount;
             var cor = new InsightMatrix(columns);
@@ -437,9 +411,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Row-sorted matrix</returns>
         public InsightMatrix Sort(int columnIndex)
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-
             var sortKeys = Enumerable.Range(0, this.Data.RowCount)
                 .Select(x => new
                 {
@@ -489,8 +460,6 @@ namespace Insight.AI.DataStructures
         /// <returns>List of component matrices</returns>
         public List<InsightMatrix> Decompose(int columnIndex)
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Matrix must be instantiated.");
             if (this.Data.ColumnCount < columnIndex)
                 throw new Exception("Matrix size does not match specified column index.");
 
@@ -520,6 +489,39 @@ namespace Insight.AI.DataStructures
             }
 
             return components;
+        }
+
+        /// <summary>
+        /// Computes the eigenvalue decomposition of the matrix.
+        /// </summary>
+        /// <returns>Matrix factorization results</returns>
+        public MatrixFactorization EigenvalueDecomposition()
+        {
+            var evd = this.Data.Evd();
+            return new MatrixFactorization(
+                "Eigenvalue Decomposition",
+                evd.Rank,
+                evd.Determinant,
+                new InsightVector(evd.D.Diagonal()),
+                new InsightMatrix(evd.EigenVectors),
+                new InsightMatrix(evd.D));
+        }
+
+        /// <summary>
+        /// Computes the singular value decomposition of the matrix.
+        /// </summary>
+        /// <returns>Matrix factorization results</returns>
+        public MatrixFactorization SingularValueDecomposition()
+        {
+            var svd = this.Data.Svd();
+            return new MatrixFactorization(
+                "Singular Value Decomposition",
+                svd.Rank,
+                svd.L2Norm,
+                new InsightVector(svd.S),
+                new InsightMatrix(svd.U),
+                new InsightMatrix(svd.VT),
+                new InsightMatrix(svd.W));
         }
 
         /// <summary>

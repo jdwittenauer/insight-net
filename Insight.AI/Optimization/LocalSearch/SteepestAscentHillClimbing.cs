@@ -56,12 +56,6 @@ namespace Insight.AI.Optimization.LocalSearch
         protected override HillClimbingResults<T> PerformHillClimbing(
             T initialValue, List<Func<T, T>> transforms, Func<T, double> evaluate, int? iterations)
         {
-            if (initialValue == null)
-                throw new ArgumentNullException("initialValue");
-            if (transforms == null)
-                throw new ArgumentNullException("transforms");
-            if (evaluate == null)
-                throw new ArgumentNullException("evaluate");
             if (transforms.Count == 0 || transforms[0] == null)
                 throw new Exception("Must provide at least 1 valid transform.");
 

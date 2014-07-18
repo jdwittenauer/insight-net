@@ -40,11 +40,6 @@ namespace Insight.AI.DataStructures
         public Vector Data { get; private set; }
 
         /// <summary>
-        /// Default constructor.
-        /// </summary>
-        public InsightVector() { }
-
-        /// <summary>
         /// Create a new vector with the given length.  Cells will be initalized to zero.
         /// </summary>
         /// <param name="length">Vector length</param>
@@ -185,9 +180,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Centered vector</returns>
         public InsightVector Center()
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Vector must be instantiated.");
-
             int length = this.Count;
             double mean = this.Mean();
 
@@ -206,9 +198,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Centered vector</returns>
         public InsightVector Center(double mean)
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Vector must be instantiated.");
-
             int length = this.Count;
 
             for (int i = 0; i < length; i++)
@@ -226,9 +215,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Scaled vector</returns>
         public InsightVector Scale()
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Vector must be instantiated.");
-
             int length = this.Data.Count;
             double ss = 0;
 
@@ -253,9 +239,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Normalized vector</returns>
         public InsightVector Normalize()
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Vector must be instantiated.");
-
             return this.Center().Scale();
         }
 
@@ -266,9 +249,6 @@ namespace Insight.AI.DataStructures
         /// <returns>Normalized vector</returns>
         public InsightVector Normalize(double mean)
         {
-            if (this == null || this.Data == null)
-                throw new Exception("Vector must be instantiated.");
-
             return this.Center(mean).Scale();
         }
 

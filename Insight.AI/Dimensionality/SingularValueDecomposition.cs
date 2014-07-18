@@ -16,8 +16,6 @@
 // along with Insight.NET.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using MathNet.Numerics.LinearAlgebra.Double;
-using MathNet.Numerics.LinearAlgebra.Factorization;
 using Insight.AI.DataStructures;
 using Insight.AI.Dimensionality.Interfaces;
 
@@ -36,26 +34,6 @@ namespace Insight.AI.Dimensionality
     /// <seealso cref="http://en.wikipedia.org/wiki/Singular_value_decomposition"/>
     public sealed class SingularValueDecomposition : IFeatureExtraction
     {
-        /// <summary>
-        /// Gets the number of features kept after performing SVD.
-        /// </summary>
-        public int Rank { get; private set; }
-
-        /// <summary>
-        /// Gets the singular values of the input data set.
-        /// </summary>
-        public InsightVector SingularValues { get; private set; }
-
-        /// <summary>
-        /// Gets the left singular vectors of the input data set.
-        /// </summary>
-        public InsightMatrix LeftSingularVectors { get; private set; }
-
-        /// <summary>
-        /// Gets the right singular vectors of the input data set.
-        /// </summary>
-        public InsightMatrix RightSingularVectors { get; private set; }
-
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -106,45 +84,38 @@ namespace Insight.AI.Dimensionality
         /// <returns>Transformed matrix with reduced number of dimensions</returns>
         private InsightMatrix PerformSVD(InsightMatrix matrix, int? featureLimit, double? percentThreshold)
         {
-            if (matrix == null || matrix.Data == null)
-                throw new Exception("Matrix must be instantiated.");
-
             // Perform singlular value decomposition on the matrix
             // and retrieve the rank (number of singular values)
-            Svd<double> svd = matrix.Data.Svd(true);
+            MatrixFactorization svd = matrix.SingularValueDecomposition();
             int rows = matrix.RowCount, columns = matrix.ColumnCount;
-            Rank = svd.Rank;
-            SingularValues = new InsightVector(svd.S);
-            LeftSingularVectors = new InsightMatrix(svd.W);
-            RightSingularVectors = new InsightMatrix(svd.VT);
+            int rank = svd.Rank;
 
             // Determine the number of features to keep for the final data set
             // (default will use all available singular values)
             if (featureLimit != null)
             {
                 // Enforce a raw numeric feature limit
-                if (Rank > featureLimit)
-                    Rank = featureLimit.Value;
+                if (rank > featureLimit)
+                    rank = featureLimit.Value;
             }
             else if (percentThreshold != null)
             {
                 // Limit to a percent of the variance in the data set
                 // (represented by the sum of the singular values)
-                double totalVariance = SingularValues.Sum() * percentThreshold.Value;
+                double totalVariance = svd.SingularValues.Sum() * percentThreshold.Value;
                 double accumulatedVariance = 0;
-                Rank = 0;
+                rank = 0;
                 while (accumulatedVariance < totalVariance)
                 {
-                    accumulatedVariance += SingularValues[Rank];
-                    Rank++;
+                    accumulatedVariance += svd.SingularValues[rank];
+                    rank++;
                 }
             }
 
             // Re-compose the original matrix using a sub-set of the features
-            InsightMatrix result = new InsightMatrix(
-                (svd.U.SubMatrix(0, rows, 0, rows) *
-                LeftSingularVectors.Data.SubMatrix(0, rows, 0, Rank) * 
-                RightSingularVectors.Data.SubMatrix(0, Rank, 0, Rank)));
+            InsightMatrix result = svd.LeftSingularVectors.SubMatrix(0, rows, 0, rows) * 
+                svd.SingularValuesDiagonal.SubMatrix(0, rows, 0, rank) * 
+                svd.RightSingularVectors.SubMatrix(0, rank, 0, rank);
 
             return result;
         }
