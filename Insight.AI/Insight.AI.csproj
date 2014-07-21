@@ -62,7 +62,6 @@
     <Compile Include="Prediction\SupportVectorMachine.cs" />
     <Compile Include="Clustering\ClusteringResults.cs" />
     <Compile Include="DataStructures\Enumerations.cs" />
-    <Compile Include="Clustering\ExpectationMaximizationClustering.cs" />
     <Compile Include="Clustering\ExtensionMethods.cs" />
     <Compile Include="Clustering\Interfaces\IClusteringMethod.cs" />
     <Compile Include="Clustering\Interfaces\IClusteringResults.cs" />

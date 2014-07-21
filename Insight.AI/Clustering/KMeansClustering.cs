@@ -194,10 +194,7 @@ namespace Insight.AI.Clustering
                 if (converged) break;
             }
 
-            // Add the cluster assignments as a new column on the data set
-            matrix.Append(assignments.ToColumnMatrix());
-
-            return new ClusteringResults(centroids, matrix);
+            return new ClusteringResults(centroids, assignments);
         }
     }
 }

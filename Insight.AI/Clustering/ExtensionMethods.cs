@@ -38,8 +38,8 @@ namespace Insight.AI.Clustering
         {
             switch(clusteringMethod)
             {
-                case ClusteringMethod.ExpectationMaximization:
-                    return new ExpectationMaximizationClustering().Cluster(matrix);
+                case ClusteringMethod.Agglomerative:
+                    return new AgglomerativeClustering().Cluster(matrix);
                 default:
                     return new KMeansClustering().Cluster(matrix);
             }
@@ -58,8 +58,8 @@ namespace Insight.AI.Clustering
         {
             switch (clusteringMethod)
             {
-                case ClusteringMethod.ExpectationMaximization:
-                    return new ExpectationMaximizationClustering().Cluster(matrix, comparisonMethod, clusters);
+                case ClusteringMethod.Agglomerative:
+                    return new AgglomerativeClustering().Cluster(matrix, comparisonMethod, clusters);
                 default:
                     return new KMeansClustering().Cluster(matrix, comparisonMethod, clusters);
             }
@@ -78,8 +78,8 @@ namespace Insight.AI.Clustering
         {
             switch (clusteringMethod)
             {
-                case ClusteringMethod.ExpectationMaximization:
-                    return new ExpectationMaximizationClustering().Cluster(matrix, comparisonMethod, clusters);
+                case ClusteringMethod.Agglomerative:
+                    return new AgglomerativeClustering().Cluster(matrix, comparisonMethod, clusters);
                 default:
                     return new KMeansClustering().Cluster(matrix, comparisonMethod, clusters);
             }

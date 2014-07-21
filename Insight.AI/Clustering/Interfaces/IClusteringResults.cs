@@ -30,9 +30,8 @@ namespace Insight.AI.Clustering.Interfaces
         InsightMatrix Centroids { get; }
 
         /// <summary>
-        /// Gets the original input data set with a new column appended that indicates
-        /// the cluster that each instance belongs in.
+        /// Gets a vector with the cluster assignments.
         /// </summary>
-        InsightMatrix ClusteredMatrix { get; }
+        InsightVector ClusterAssignments { get; }
     }
 }

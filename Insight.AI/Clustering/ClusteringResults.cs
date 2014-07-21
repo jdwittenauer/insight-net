@@ -31,20 +31,19 @@ namespace Insight.AI.Clustering
         public InsightMatrix Centroids { get; private set; }
 
         /// <summary>
-        /// Gets the original input data set with a new column appended that indicates
-        /// the cluster that each instance belongs in.
+        /// Gets a vector with the cluster assignments.
         /// </summary>
-        public InsightMatrix ClusteredMatrix { get; private set; }
+        public InsightVector ClusterAssignments { get; private set; }
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="centroids">Matrix of the centroids for each cluster</param>
-        /// <param name="clusters">Appended original data set</param>
-        public ClusteringResults(InsightMatrix centroids, InsightMatrix clusters) 
+        /// <param name="assignments">Cluster assignments</param>
+        public ClusteringResults(InsightMatrix centroids, InsightVector assignments) 
         {
             Centroids = centroids;
-            ClusteredMatrix = clusters;
+            ClusterAssignments = assignments;
         }
     }
 }

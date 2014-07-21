@@ -31,13 +31,14 @@ namespace Insight.AI.DataStructures
     public enum ClusteringMethod
     {
         Agglomerative,
-        ExpectationMaximization,
         KMeans
     }
 
     public enum ExtractionMethod
     {
+        IndependentComponentAnalysis,
         LinearDiscriminantAnalysis,
+        MultiDimensionalScaling,
         PrincipalComponentAnalysis,
         SingularValueDecomposition
     }
