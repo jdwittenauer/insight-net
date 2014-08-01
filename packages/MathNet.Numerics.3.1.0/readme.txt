@@ -8,7 +8,20 @@
  Math.NET Numerics - http://numerics.mathdotnet.com
  Copyright (c) Math.NET - Open Source MIT/X11 License
 
- Math.NET Numerics v3.0.2
+ Math.NET Numerics v3.1.0
+
+### 3.1.0 - 2014-07-20
+* Random: generate a sequence of integers within a range in one go
+* Distributions: all distributions must have static routines to sample an array in one go
+* Linear Algebra: fix Matrix.StrictlyLowerTriangle
+* Linear Algebra: fix vector DoOuterProduct *~mjmckp*
+* Linear Algebra: enumerators accept Zeros-parameter (like map/fold already does)
+* Linear Algebra: Vector.MapConvert (consistency)
+* Linear Algebra: proper term for "conjugate symmetric" is "Hermitian""
+* Interpolation: new Step, LogLinear and transformed interpolators *~Candy Chiu*
+* Interpolation: check for min required number of data points, throw ArgumentException if not.
+* Root Finding: F# FindRoots.broyden module function *~teramonagi*
+* Misc docs fixes
 
 ### 3.0.2 - 2014-06-26
 * Patch release, fixing a bug in Matrix.RemoveRow range checks.

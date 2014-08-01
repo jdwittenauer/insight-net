@@ -2725,6 +2725,11 @@
             </summary>
             <returns>A sample from the Bernoulli distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Bernoulli.Samples(System.Int32[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Bernoulli.Samples">
             <summary>
             Samples an array of Bernoulli distributed random variables.
@@ -2747,6 +2752,15 @@
             <param name="p">The probability (p) of generating one. Range: 0 ≤ p ≤ 1.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Bernoulli.Samples(System.Random,System.Int32[],System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="p">The probability (p) of generating one. Range: 0 ≤ p ≤ 1.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Bernoulli.Sample(System.Double)">
             <summary>
             Samples a Bernoulli distributed random variable.
@@ -2758,6 +2772,14 @@
             <summary>
             Samples a sequence of Bernoulli distributed random variables.
             </summary>
+            <param name="p">The probability (p) of generating one. Range: 0 ≤ p ≤ 1.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Bernoulli.Samples(System.Int32[],System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="p">The probability (p) of generating one. Range: 0 ≤ p ≤ 1.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
@@ -2951,6 +2973,11 @@
             </summary>
             <returns>a sample from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Beta.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Beta.Samples">
             <summary>
             Generates a sequence of samples from the Beta distribution.
@@ -3026,6 +3053,16 @@
             <param name="b">The β shape parameter of the Beta distribution. Range: β ≥ 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Beta.Samples(System.Random,System.Double[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="a">The α shape parameter of the Beta distribution. Range: α ≥ 0.</param>
+            <param name="b">The β shape parameter of the Beta distribution. Range: β ≥ 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Beta.Sample(System.Double,System.Double)">
             <summary>
             Generates a sample from the distribution.
@@ -3038,6 +3075,15 @@
             <summary>
             Generates a sequence of samples from the distribution.
             </summary>
+            <param name="a">The α shape parameter of the Beta distribution. Range: α ≥ 0.</param>
+            <param name="b">The β shape parameter of the Beta distribution. Range: β ≥ 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Beta.Samples(System.Double[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="a">The α shape parameter of the Beta distribution. Range: α ≥ 0.</param>
             <param name="b">The β shape parameter of the Beta distribution. Range: β ≥ 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
@@ -3208,6 +3254,11 @@
             </summary>
             <returns>The number of successes in N trials.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Binomial.Samples(System.Int32[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Binomial.Samples">
             <summary>
             Samples an array of Binomially distributed random variables.
@@ -3232,6 +3283,16 @@
             <param name="n">The number of trials (n). Range: n ≥ 0.</param>
             <returns>a sequence of successes in <paramref name="n"/> trials.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Binomial.Samples(System.Random,System.Int32[],System.Double,System.Int32)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="p">The success probability (p) in each trial. Range: 0 ≤ p ≤ 1.</param>
+            <param name="n">The number of trials (n). Range: n ≥ 0.</param>
+            <returns>a sequence of successes in <paramref name="n"/> trials.</returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Binomial.Sample(System.Double,System.Int32)">
             <summary>
             Samples a binomially distributed random variable.
@@ -3244,6 +3305,15 @@
             <summary>
             Samples a sequence of binomially distributed random variable.
             </summary>
+            <param name="p">The success probability (p) in each trial. Range: 0 ≤ p ≤ 1.</param>
+            <param name="n">The number of trials (n). Range: n ≥ 0.</param>
+            <returns>a sequence of successes in <paramref name="n"/> trials.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Binomial.Samples(System.Int32[],System.Double,System.Int32)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="p">The success probability (p) in each trial. Range: 0 ≤ p ≤ 1.</param>
             <param name="n">The number of trials (n). Range: n ≥ 0.</param>
             <returns>a sequence of successes in <paramref name="n"/> trials.</returns>
@@ -3473,6 +3543,11 @@
             </summary>
             <returns>The number of successful trials.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Categorical.Samples(System.Int32[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Categorical.Samples">
             <summary>
             Samples an array of Bernoulli distributed random variables.
@@ -3495,6 +3570,37 @@
             <param name="probabilityMass">An array of nonnegative ratios. Not assumed to be normalized.</param>
             <returns>random integers between 0 and the size of the categorical (exclusive).</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Categorical.Samples(System.Random,System.Int32[],System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="probabilityMass">An array of nonnegative ratios. Not assumed to be normalized.</param>
+            <returns>random integers between 0 and the size of the categorical (exclusive).</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Categorical.Sample(System.Double[])">
+            <summary>
+            Samples one categorical distributed random variable; also known as the Discrete distribution.
+            </summary>
+            <param name="probabilityMass">An array of nonnegative ratios. Not assumed to be normalized.</param>
+            <returns>One random integer between 0 and the size of the categorical (exclusive).</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Categorical.Samples(System.Double[])">
+            <summary>
+            Samples a categorically distributed random variable.
+            </summary>
+            <param name="probabilityMass">An array of nonnegative ratios. Not assumed to be normalized.</param>
+            <returns>random integers between 0 and the size of the categorical (exclusive).</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Categorical.Samples(System.Int32[],System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="probabilityMass">An array of nonnegative ratios. Not assumed to be normalized.</param>
+            <returns>random integers between 0 and the size of the categorical (exclusive).</returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Categorical.SampleWithCumulativeDistribution(System.Random,System.Double[])">
             <summary>
             Samples one categorical distributed random variable; also known as the Discrete distribution.
@@ -3508,6 +3614,37 @@
             Samples a categorically distributed random variable.
             </summary>
             <param name="rnd">The random number generator to use.</param>
+            <param name="cdfUnnormalized">An array of the cumulative distribution. Not assumed to be normalized.</param>
+            <returns>random integers between 0 and the size of the categorical (exclusive).</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Categorical.SamplesWithCumulativeDistribution(System.Random,System.Int32[],System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="cdfUnnormalized">An array of the cumulative distribution. Not assumed to be normalized.</param>
+            <returns>random integers between 0 and the size of the categorical (exclusive).</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Categorical.SampleWithCumulativeDistribution(System.Double[])">
+            <summary>
+            Samples one categorical distributed random variable; also known as the Discrete distribution.
+            </summary>
+            <param name="cdfUnnormalized">An array of the cumulative distribution. Not assumed to be normalized.</param>
+            <returns>One random integer between 0 and the size of the categorical (exclusive).</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Categorical.SamplesWithCumulativeDistribution(System.Double[])">
+            <summary>
+            Samples a categorically distributed random variable.
+            </summary>
+            <param name="cdfUnnormalized">An array of the cumulative distribution. Not assumed to be normalized.</param>
+            <returns>random integers between 0 and the size of the categorical (exclusive).</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Categorical.SamplesWithCumulativeDistribution(System.Int32[],System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="cdfUnnormalized">An array of the cumulative distribution. Not assumed to be normalized.</param>
             <returns>random integers between 0 and the size of the categorical (exclusive).</returns>
         </member>
@@ -3647,6 +3784,11 @@
             Draws a random sample from the distribution.
             </summary>
             <returns>A random number from this distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Cauchy.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Distributions.Cauchy.Samples">
             <summary>
@@ -3872,6 +4014,11 @@
             </summary>
             <returns>a sample from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Chi.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Chi.Samples">
             <summary>
             Generates a sequence of samples from the Chi distribution.
@@ -3929,6 +4076,15 @@
             <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Chi.Samples(System.Random,System.Double[],System.Int32)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Chi.Sample(System.Int32)">
             <summary>
             Generates a sample from the distribution.
@@ -3940,6 +4096,14 @@
             <summary>
             Generates a sequence of samples from the distribution.
             </summary>
+            <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Chi.Samples(System.Double[],System.Int32)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
@@ -4060,6 +4224,11 @@
             </summary>
             <returns>a sample from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.ChiSquared.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.ChiSquared.Samples">
             <summary>
             Generates a sequence of samples from the <c>ChiSquare</c> distribution.
@@ -4117,6 +4286,15 @@
             <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
             <returns>a sample from the distribution. </returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.ChiSquared.Samples(System.Random,System.Double[],System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
+            <returns>a sample from the distribution. </returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.ChiSquared.Sample(System.Double)">
             <summary>
             Generates a sample from the <c>ChiSquare</c> distribution.
@@ -4128,6 +4306,14 @@
             <summary>
             Generates a sequence of samples from the distribution.
             </summary>
+            <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
+            <returns>a sample from the distribution. </returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.ChiSquared.Samples(System.Double[],System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="freedom">The degrees of freedom (k) of the distribution. Range: k > 0.</param>
             <returns>a sample from the distribution. </returns>
         </member>
@@ -4266,6 +4452,11 @@
             Generates a sample from the <c>ContinuousUniform</c> distribution.
             </summary>
             <returns>a sample from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.ContinuousUniform.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Distributions.ContinuousUniform.Samples">
             <summary>
@@ -4570,6 +4761,11 @@
             </summary>
             <returns>a sample from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.ConwayMaxwellPoisson.Samples(System.Int32[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.ConwayMaxwellPoisson.Samples">
             <summary>
             Samples a sequence of a Conway-Maxwell-Poisson distributed random variables.
@@ -4594,6 +4790,15 @@
             <param name="lambda">The lambda (λ) parameter. Range: λ > 0.</param>
             <param name="nu">The rate of decay (ν) parameter. Range: ν ≥ 0.</param>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.ConwayMaxwellPoisson.Samples(System.Random,System.Int32[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="lambda">The lambda (λ) parameter. Range: λ > 0.</param>
+            <param name="nu">The rate of decay (ν) parameter. Range: ν ≥ 0.</param>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.ConwayMaxwellPoisson.Sample(System.Double,System.Double)">
             <summary>
             Samples a random variable.
@@ -4605,6 +4810,14 @@
             <summary>
             Samples a sequence of this random variable.
             </summary>
+            <param name="lambda">The lambda (λ) parameter. Range: λ > 0.</param>
+            <param name="nu">The rate of decay (ν) parameter. Range: ν ≥ 0.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.ConwayMaxwellPoisson.Samples(System.Int32[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="lambda">The lambda (λ) parameter. Range: λ > 0.</param>
             <param name="nu">The rate of decay (ν) parameter. Range: ν ≥ 0.</param>
         </member>
@@ -4801,15 +5014,15 @@
             <summary>
             Initializes a new instance of the DiscreteUniform class.
             </summary>
-            <param name="lower">Lower bound. Range: lower ≤ upper.</param>
-            <param name="upper">Upper bound. Range: lower ≤ upper.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
         </member>
         <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.#ctor(System.Int32,System.Int32,System.Random)">
             <summary>
             Initializes a new instance of the DiscreteUniform class.
             </summary>
-            <param name="lower">Lower bound. Range: lower ≤ upper.</param>
-            <param name="upper">Upper bound. Range: lower ≤ upper.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
             <param name="randomSource">The random number generator which is used to draw random samples.</param>
         </member>
         <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.ToString">
@@ -4824,8 +5037,8 @@
             <summary>
             Tests whether the provided values are valid parameters for this distribution.
             </summary>
-            <param name="lower">Lower bound. Range: lower ≤ upper.</param>
-            <param name="upper">Upper bound. Range: lower ≤ upper.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
         </member>
         <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.Probability(System.Int32)">
             <summary>
@@ -4853,8 +5066,8 @@
             Computes the probability mass (PMF) at k, i.e. P(X = k).
             </summary>
             <param name="k">The location in the domain where we want to evaluate the probability mass function.</param>
-            <param name="lower">Lower bound. Range: lower ≤ upper.</param>
-            <param name="upper">Upper bound. Range: lower ≤ upper.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
             <returns>the probability mass at location <paramref name="k"/>.</returns>
         </member>
         <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.PMFLn(System.Int32,System.Int32,System.Int32)">
@@ -4862,8 +5075,8 @@
             Computes the log probability mass (lnPMF) at k, i.e. ln(P(X = k)).
             </summary>
             <param name="k">The location in the domain where we want to evaluate the log probability mass function.</param>
-            <param name="lower">Lower bound. Range: lower ≤ upper.</param>
-            <param name="upper">Upper bound. Range: lower ≤ upper.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
             <returns>the log probability mass at location <paramref name="k"/>.</returns>
         </member>
         <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.CDF(System.Int32,System.Int32,System.Double)">
@@ -4871,8 +5084,8 @@
             Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
             </summary>
             <param name="x">The location at which to compute the cumulative distribution function.</param>
-            <param name="lower">Lower bound. Range: lower ≤ upper.</param>
-            <param name="upper">Upper bound. Range: lower ≤ upper.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
             <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
             <seealso cref="M:MathNet.Numerics.Distributions.DiscreteUniform.CumulativeDistribution(System.Double)"/>
         </member>
@@ -4881,8 +5094,8 @@
             Generates one sample from the discrete uniform distribution. This method does not do any parameter checking.
             </summary>
             <param name="rnd">The random source to use.</param>
-            <param name="lower">Lower bound. Range: lower ≤ upper.</param>
-            <param name="upper">Upper bound. Range: lower ≤ upper.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
             <returns>A random sample from the discrete uniform distribution.</returns>
         </member>
         <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.Sample">
@@ -4890,6 +5103,11 @@
             Draws a random sample from the distribution.
             </summary>
             <returns>a sample from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.Samples(System.Int32[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.Samples">
             <summary>
@@ -4902,8 +5120,8 @@
             Samples a uniformly distributed random variable.
             </summary>
             <param name="rnd">The random number generator to use.</param>
-            <param name="lower">Lower bound. Range: lower ≤ upper.</param>
-            <param name="upper">Upper bound. Range: lower ≤ upper.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
             <returns>A sample from the discrete uniform distribution.</returns>
         </member>
         <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.Samples(System.Random,System.Int32,System.Int32)">
@@ -4911,34 +5129,53 @@
             Samples a sequence of uniformly distributed random variables.
             </summary>
             <param name="rnd">The random number generator to use.</param>
-            <param name="lower">Lower bound. Range: lower ≤ upper.</param>
-            <param name="upper">Upper bound. Range: lower ≤ upper.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
+            <returns>a sequence of samples from the discrete uniform distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.Samples(System.Random,System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
             <returns>a sequence of samples from the discrete uniform distribution.</returns>
         </member>
         <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.Sample(System.Int32,System.Int32)">
             <summary>
             Samples a uniformly distributed random variable.
             </summary>
-            <param name="lower">Lower bound. Range: lower ≤ upper.</param>
-            <param name="upper">Upper bound. Range: lower ≤ upper.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
             <returns>A sample from the discrete uniform distribution.</returns>
         </member>
         <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.Samples(System.Int32,System.Int32)">
             <summary>
             Samples a sequence of uniformly distributed random variables.
             </summary>
-            <param name="lower">Lower bound. Range: lower ≤ upper.</param>
-            <param name="upper">Upper bound. Range: lower ≤ upper.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
+            <returns>a sequence of samples from the discrete uniform distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.DiscreteUniform.Samples(System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="lower">Lower bound, inclusive. Range: lower ≤ upper.</param>
+            <param name="upper">Upper bound, inclusive. Range: lower ≤ upper.</param>
             <returns>a sequence of samples from the discrete uniform distribution.</returns>
         </member>
         <member name="P:MathNet.Numerics.Distributions.DiscreteUniform.LowerBound">
             <summary>
-            Gets or sets the lower bound of the probability distribution.
+            Gets the inclusive lower bound of the probability distribution.
             </summary>
         </member>
         <member name="P:MathNet.Numerics.Distributions.DiscreteUniform.UpperBound">
             <summary>
-            Gets or sets the upper bound of the probability distribution.
+            Gets the inclusive upper bound of the probability distribution.
             </summary>
         </member>
         <member name="P:MathNet.Numerics.Distributions.DiscreteUniform.RandomSource">
@@ -5038,7 +5275,7 @@
             </summary>
             <returns>a string representation of the distribution.</returns>
         </member>
-        <member name="M:MathNet.Numerics.Distributions.Erlang.IsValidParameterSet(System.Double,System.Double)">
+        <member name="M:MathNet.Numerics.Distributions.Erlang.IsValidParameterSet(System.Int32,System.Double)">
             <summary>
             Tests whether the provided values are valid parameters for this distribution.
             </summary>
@@ -5051,7 +5288,7 @@
             </summary>
             <param name="x">The location at which to compute the density.</param>
             <returns>the density at <paramref name="x"/>.</returns>
-            <seealso cref="M:MathNet.Numerics.Distributions.Erlang.PDF(System.Double,System.Double,System.Double)"/>
+            <seealso cref="M:MathNet.Numerics.Distributions.Erlang.PDF(System.Int32,System.Double,System.Double)"/>
         </member>
         <member name="M:MathNet.Numerics.Distributions.Erlang.DensityLn(System.Double)">
             <summary>
@@ -5059,7 +5296,7 @@
             </summary>
             <param name="x">The location at which to compute the log density.</param>
             <returns>the log density at <paramref name="x"/>.</returns>
-            <seealso cref="M:MathNet.Numerics.Distributions.Erlang.PDFLn(System.Double,System.Double,System.Double)"/>
+            <seealso cref="M:MathNet.Numerics.Distributions.Erlang.PDFLn(System.Int32,System.Double,System.Double)"/>
         </member>
         <member name="M:MathNet.Numerics.Distributions.Erlang.CumulativeDistribution(System.Double)">
             <summary>
@@ -5067,7 +5304,7 @@
             </summary>
             <param name="x">The location at which to compute the cumulative distribution function.</param>
             <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
-            <seealso cref="M:MathNet.Numerics.Distributions.Erlang.CDF(System.Double,System.Double,System.Double)"/>
+            <seealso cref="M:MathNet.Numerics.Distributions.Erlang.CDF(System.Int32,System.Double,System.Double)"/>
         </member>
         <member name="M:MathNet.Numerics.Distributions.Erlang.Sample">
             <summary>
@@ -5075,25 +5312,18 @@
             </summary>
             <returns>a sample from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Erlang.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Erlang.Samples">
             <summary>
             Generates a sequence of samples from the Erlang distribution.
             </summary>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
-        <member name="M:MathNet.Numerics.Distributions.Erlang.SampleUnchecked(System.Random,System.Double,System.Double)">
-            <summary>
-            <para>Sampling implementation based on:
-            "A Simple Method for Generating Erlang Variables" - Marsaglia &amp; Tsang
-            ACM Transactions on Mathematical Software, Vol. 26, No. 3, September 2000, Pages 363–372.</para>
-            <para>This method performs no parameter checks.</para>
-            </summary>
-            <param name="rnd">The random number generator to use.</param>
-            <param name="shape">The shape (k) of the Erlang distribution. Range: k ≥ 0.</param>
-            <param name="rate">The rate or inverse scale (λ) of the Erlang distribution. Range: λ ≥ 0.</param>
-            <returns>A sample from a Erlang distributed random variable.</returns>
-        </member>
-        <member name="M:MathNet.Numerics.Distributions.Erlang.PDF(System.Double,System.Double,System.Double)">
+        <member name="M:MathNet.Numerics.Distributions.Erlang.PDF(System.Int32,System.Double,System.Double)">
             <summary>
             Computes the probability density of the distribution (PDF) at x, i.e. ∂P(X ≤ x)/∂x.
             </summary>
@@ -5103,7 +5333,7 @@
             <returns>the density at <paramref name="x"/>.</returns>
             <seealso cref="M:MathNet.Numerics.Distributions.Erlang.Density(System.Double)"/>
         </member>
-        <member name="M:MathNet.Numerics.Distributions.Erlang.PDFLn(System.Double,System.Double,System.Double)">
+        <member name="M:MathNet.Numerics.Distributions.Erlang.PDFLn(System.Int32,System.Double,System.Double)">
             <summary>
             Computes the log probability density of the distribution (lnPDF) at x, i.e. ln(∂P(X ≤ x)/∂x).
             </summary>
@@ -5113,7 +5343,7 @@
             <returns>the log density at <paramref name="x"/>.</returns>
             <seealso cref="M:MathNet.Numerics.Distributions.Erlang.DensityLn(System.Double)"/>
         </member>
-        <member name="M:MathNet.Numerics.Distributions.Erlang.CDF(System.Double,System.Double,System.Double)">
+        <member name="M:MathNet.Numerics.Distributions.Erlang.CDF(System.Int32,System.Double,System.Double)">
             <summary>
             Computes the cumulative distribution (CDF) of the distribution at x, i.e. P(X ≤ x).
             </summary>
@@ -5123,7 +5353,7 @@
             <returns>the cumulative distribution at location <paramref name="x"/>.</returns>
             <seealso cref="M:MathNet.Numerics.Distributions.Erlang.CumulativeDistribution(System.Double)"/>
         </member>
-        <member name="M:MathNet.Numerics.Distributions.Erlang.Sample(System.Random,System.Double,System.Double)">
+        <member name="M:MathNet.Numerics.Distributions.Erlang.Sample(System.Random,System.Int32,System.Double)">
             <summary>
             Generates a sample from the distribution.
             </summary>
@@ -5132,7 +5362,7 @@
             <param name="rate">The rate or inverse scale (λ) of the Erlang distribution. Range: λ ≥ 0.</param>
             <returns>a sample from the distribution.</returns>
         </member>
-        <member name="M:MathNet.Numerics.Distributions.Erlang.Samples(System.Random,System.Double,System.Double)">
+        <member name="M:MathNet.Numerics.Distributions.Erlang.Samples(System.Random,System.Int32,System.Double)">
             <summary>
             Generates a sequence of samples from the distribution.
             </summary>
@@ -5141,7 +5371,17 @@
             <param name="rate">The rate or inverse scale (λ) of the Erlang distribution. Range: λ ≥ 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
-        <member name="M:MathNet.Numerics.Distributions.Erlang.Sample(System.Double,System.Double)">
+        <member name="M:MathNet.Numerics.Distributions.Erlang.Samples(System.Random,System.Double[],System.Int32,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="shape">The shape (k) of the Erlang distribution. Range: k ≥ 0.</param>
+            <param name="rate">The rate or inverse scale (λ) of the Erlang distribution. Range: λ ≥ 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Erlang.Sample(System.Int32,System.Double)">
             <summary>
             Generates a sample from the distribution.
             </summary>
@@ -5149,10 +5389,19 @@
             <param name="rate">The rate or inverse scale (λ) of the Erlang distribution. Range: λ ≥ 0.</param>
             <returns>a sample from the distribution.</returns>
         </member>
-        <member name="M:MathNet.Numerics.Distributions.Erlang.Samples(System.Double,System.Double)">
+        <member name="M:MathNet.Numerics.Distributions.Erlang.Samples(System.Int32,System.Double)">
             <summary>
             Generates a sequence of samples from the distribution.
             </summary>
+            <param name="shape">The shape (k) of the Erlang distribution. Range: k ≥ 0.</param>
+            <param name="rate">The rate or inverse scale (λ) of the Erlang distribution. Range: λ ≥ 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Erlang.Samples(System.Double[],System.Int32,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="shape">The shape (k) of the Erlang distribution. Range: k ≥ 0.</param>
             <param name="rate">The rate or inverse scale (λ) of the Erlang distribution. Range: λ ≥ 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
@@ -5293,19 +5542,16 @@
             </summary>
             <returns>A random number from this distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Exponential.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Exponential.Samples">
             <summary>
             Generates a sequence of samples from the Exponential distribution.
             </summary>
             <returns>a sequence of samples from the distribution.</returns>
-        </member>
-        <member name="M:MathNet.Numerics.Distributions.Exponential.SampleUnchecked(System.Random,System.Double)">
-            <summary>
-            Samples the distribution.
-            </summary>
-            <param name="rnd">The random number generator to use.</param>
-            <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
-            <returns>a random number from the distribution.</returns>
         </member>
         <member name="M:MathNet.Numerics.Distributions.Exponential.PDF(System.Double,System.Double)">
             <summary>
@@ -5352,20 +5598,20 @@
             <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
             <returns>A random number from this distribution.</returns>
         </member>
-        <member name="M:MathNet.Numerics.Distributions.Exponential.Samples(System.Random,System.Double)">
-            <summary>
-            Generates a sequence of samples from the Exponential distribution.
-            </summary>
-            <param name="rnd">The random number generator to use.</param>
-            <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
-            <returns>a sequence of samples from the distribution.</returns>
-        </member>
         <member name="M:MathNet.Numerics.Distributions.Exponential.Samples(System.Random,System.Double[],System.Double)">
             <summary>
             Fills an array with samples generated from the distribution.
             </summary>
             <param name="rnd">The random number generator to use.</param>
             <param name="values">The array to fill with the samples.</param>
+            <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Exponential.Samples(System.Random,System.Double)">
+            <summary>
+            Generates a sequence of samples from the Exponential distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
             <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
@@ -5376,18 +5622,18 @@
             <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
             <returns>A random number from this distribution.</returns>
         </member>
-        <member name="M:MathNet.Numerics.Distributions.Exponential.Samples(System.Double)">
-            <summary>
-            Generates a sequence of samples from the Exponential distribution.
-            </summary>
-            <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
-            <returns>a sequence of samples from the distribution.</returns>
-        </member>
         <member name="M:MathNet.Numerics.Distributions.Exponential.Samples(System.Double[],System.Double)">
             <summary>
             Fills an array with samples generated from the distribution.
             </summary>
             <param name="values">The array to fill with the samples.</param>
+            <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Exponential.Samples(System.Double)">
+            <summary>
+            Generates a sequence of samples from the Exponential distribution.
+            </summary>
             <param name="rate">The rate (λ) parameter of the distribution. Range: λ ≥ 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
@@ -5521,6 +5767,11 @@
             </summary>
             <returns>a sample from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.FisherSnedecor.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.FisherSnedecor.Samples">
             <summary>
             Generates a sequence of samples from the <c>FisherSnedecor</c> distribution.
@@ -5596,6 +5847,16 @@
             <param name="d2">The second degree of freedom (d2) of the distribution. Range: d2 > 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.FisherSnedecor.Samples(System.Random,System.Double[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="d1">The first degree of freedom (d1) of the distribution. Range: d1 > 0.</param>
+            <param name="d2">The second degree of freedom (d2) of the distribution. Range: d2 > 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.FisherSnedecor.Sample(System.Double,System.Double)">
             <summary>
             Generates a sample from the distribution.
@@ -5608,6 +5869,15 @@
             <summary>
             Generates a sequence of samples from the distribution.
             </summary>
+            <param name="d1">The first degree of freedom (d1) of the distribution. Range: d1 > 0.</param>
+            <param name="d2">The second degree of freedom (d2) of the distribution. Range: d2 > 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.FisherSnedecor.Samples(System.Double[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="d1">The first degree of freedom (d1) of the distribution. Range: d1 > 0.</param>
             <param name="d2">The second degree of freedom (d2) of the distribution. Range: d2 > 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
@@ -5774,6 +6044,11 @@
             </summary>
             <returns>a sample from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Gamma.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Gamma.Samples">
             <summary>
             Generates a sequence of samples from the Gamma distribution.
@@ -5851,6 +6126,16 @@
             <param name="rate">The rate or inverse scale (β) of the Gamma distribution. Range: β ≥ 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Gamma.Samples(System.Random,System.Double[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="shape">The shape (k, α) of the Gamma distribution. Range: α ≥ 0.</param>
+            <param name="rate">The rate or inverse scale (β) of the Gamma distribution. Range: β ≥ 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Gamma.Sample(System.Double,System.Double)">
             <summary>
             Generates a sample from the Gamma distribution.
@@ -5863,6 +6148,15 @@
             <summary>
             Generates a sequence of samples from the Gamma distribution.
             </summary>
+            <param name="shape">The shape (k, α) of the Gamma distribution. Range: α ≥ 0.</param>
+            <param name="rate">The rate or inverse scale (β) of the Gamma distribution. Range: β ≥ 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Gamma.Samples(System.Double[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="shape">The shape (k, α) of the Gamma distribution. Range: α ≥ 0.</param>
             <param name="rate">The rate or inverse scale (β) of the Gamma distribution. Range: β ≥ 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
@@ -6025,6 +6319,11 @@
             </summary>
             <returns>A sample from the Geometric distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Geometric.Samples(System.Int32[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Geometric.Samples">
             <summary>
             Samples an array of Geometric distributed random variables.
@@ -6045,6 +6344,14 @@
             <param name="rnd">The random number generator to use.</param>
             <param name="p">The probability (p) of generating one. Range: 0 ≤ p ≤ 1.</param>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Geometric.Samples(System.Random,System.Int32[],System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="p">The probability (p) of generating one. Range: 0 ≤ p ≤ 1.</param>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Geometric.Sample(System.Double)">
             <summary>
             Samples a random variable.
@@ -6055,6 +6362,13 @@
             <summary>
             Samples a sequence of this random variable.
             </summary>
+            <param name="p">The probability (p) of generating one. Range: 0 ≤ p ≤ 1.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Geometric.Samples(System.Int32[],System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="p">The probability (p) of generating one. Range: 0 ≤ p ≤ 1.</param>
         </member>
         <member name="P:MathNet.Numerics.Distributions.Geometric.P">
@@ -6223,6 +6537,11 @@
             </summary>
             <returns>The number of successes in n trials.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Hypergeometric.Samples(System.Int32[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Hypergeometric.Samples">
             <summary>
             Samples an array of Hypergeometric distributed random variables.
@@ -6247,6 +6566,16 @@
             <param name="success">The number successes within the population (K, M).</param>
             <param name="draws">The number of draws without replacement (n).</param>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Hypergeometric.Samples(System.Random,System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="population">The size of the population (N).</param>
+            <param name="success">The number successes within the population (K, M).</param>
+            <param name="draws">The number of draws without replacement (n).</param>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Hypergeometric.Sample(System.Int32,System.Int32,System.Int32)">
             <summary>
             Samples a random variable.
@@ -6259,6 +6588,15 @@
             <summary>
             Samples a sequence of this random variable.
             </summary>
+            <param name="population">The size of the population (N).</param>
+            <param name="success">The number successes within the population (K, M).</param>
+            <param name="draws">The number of draws without replacement (n).</param>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Hypergeometric.Samples(System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="population">The size of the population (N).</param>
             <param name="success">The number successes within the population (K, M).</param>
             <param name="draws">The number of draws without replacement (n).</param>
@@ -6394,6 +6732,11 @@
             </summary>
             <returns>A random number from this distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.InverseGamma.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.InverseGamma.Samples">
             <summary>
             Generates a sequence of samples from the Cauchy distribution.
@@ -6448,6 +6791,16 @@
             <param name="scale">The scale (β) of the distribution. Range: β > 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.InverseGamma.Samples(System.Random,System.Double[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="shape">The shape (α) of the distribution. Range: α > 0.</param>
+            <param name="scale">The scale (β) of the distribution. Range: β > 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.InverseGamma.Sample(System.Double,System.Double)">
             <summary>
             Generates a sample from the distribution.
@@ -6460,6 +6813,15 @@
             <summary>
             Generates a sequence of samples from the distribution.
             </summary>
+            <param name="shape">The shape (α) of the distribution. Range: α > 0.</param>
+            <param name="scale">The scale (β) of the distribution. Range: β > 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.InverseGamma.Samples(System.Double[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="shape">The shape (α) of the distribution. Range: α > 0.</param>
             <param name="scale">The scale (β) of the distribution. Range: β > 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
@@ -6700,20 +7062,16 @@
             </summary>
             <returns>a sample from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Laplace.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Laplace.Samples">
             <summary>
             Generates a sample from the Laplace distribution.
             </summary>
             <returns>a sample from the distribution.</returns>
-        </member>
-        <member name="M:MathNet.Numerics.Distributions.Laplace.SampleUnchecked(System.Random,System.Double,System.Double)">
-            <summary>
-            Samples the distribution.
-            </summary>
-            <param name="rnd">The random number generator to use.</param>
-            <param name="location">The location (μ) of the distribution.</param>
-            <param name="scale">The scale (b) of the distribution. Range: b > 0.</param>
-            <returns>a random number from the distribution.</returns>
         </member>
         <member name="M:MathNet.Numerics.Distributions.Laplace.PDF(System.Double,System.Double,System.Double)">
             <summary>
@@ -6962,6 +7320,11 @@
             Generates a sample from the log-normal distribution using the <i>Box-Muller</i> algorithm.
             </summary>
             <returns>a sample from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.LogNormal.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Distributions.LogNormal.Samples">
             <summary>
@@ -7492,6 +7855,11 @@
             </summary>
             <returns>a sample from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.NegativeBinomial.Samples(System.Int32[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.NegativeBinomial.Samples">
             <summary>
             Samples an array of <c>NegativeBinomial</c> distributed random variables.
@@ -7514,6 +7882,15 @@
             <param name="r">The number of failures (r) until the experiment stopped. Range: r ≥ 0.</param>
             <param name="p">The probability (p) of a trial resulting in success. Range: 0 ≤ p ≤ 1.</param>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.NegativeBinomial.Samples(System.Random,System.Int32[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="r">The number of failures (r) until the experiment stopped. Range: r ≥ 0.</param>
+            <param name="p">The probability (p) of a trial resulting in success. Range: 0 ≤ p ≤ 1.</param>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.NegativeBinomial.Sample(System.Double,System.Double)">
             <summary>
             Samples a random variable.
@@ -7525,6 +7902,14 @@
             <summary>
             Samples a sequence of this random variable.
             </summary>
+            <param name="r">The number of failures (r) until the experiment stopped. Range: r ≥ 0.</param>
+            <param name="p">The probability (p) of a trial resulting in success. Range: 0 ≤ p ≤ 1.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.NegativeBinomial.Samples(System.Int32[],System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="r">The number of failures (r) until the experiment stopped. Range: r ≥ 0.</param>
             <param name="p">The probability (p) of a trial resulting in success. Range: 0 ≤ p ≤ 1.</param>
         </member>
@@ -7714,6 +8099,11 @@
             Generates a sample from the normal distribution using the <i>Box-Muller</i> algorithm.
             </summary>
             <returns>a sample from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Normal.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Distributions.Normal.Samples">
             <summary>
@@ -8146,6 +8536,11 @@
             </summary>
             <returns>A random number from this distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Pareto.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Pareto.Samples">
             <summary>
             Generates a sequence of samples from the Pareto distribution.
@@ -8424,6 +8819,11 @@
             </summary>
             <returns>A sample from the Poisson distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Poisson.Samples(System.Int32[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Poisson.Samples">
             <summary>
             Samples an array of Poisson distributed random variables.
@@ -8446,6 +8846,15 @@
             <param name="lambda">The lambda (λ) parameter of the Poisson distribution. Range: λ > 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Poisson.Samples(System.Random,System.Int32[],System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="lambda">The lambda (λ) parameter of the Poisson distribution. Range: λ > 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Poisson.Sample(System.Double)">
             <summary>
             Samples a Poisson distributed random variable.
@@ -8457,6 +8866,14 @@
             <summary>
             Samples a sequence of Poisson distributed random variables.
             </summary>
+            <param name="lambda">The lambda (λ) parameter of the Poisson distribution. Range: λ > 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Poisson.Samples(System.Int32[],System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="lambda">The lambda (λ) parameter of the Poisson distribution. Range: λ > 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
@@ -8592,6 +9009,11 @@
             Draws a random sample from the distribution.
             </summary>
             <returns>A random number from this distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Rayleigh.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Distributions.Rayleigh.Samples">
             <summary>
@@ -8821,6 +9243,11 @@
             </summary>
             <returns>A random number from this distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Stable.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Stable.Samples">
             <summary>
             Generates a sequence of samples from the Stable distribution.
@@ -8885,6 +9312,18 @@
             <param name="location">The location (μ) of the distribution.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Stable.Samples(System.Random,System.Double[],System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="alpha">The stability (α) of the distribution. Range: 2 ≥ α > 0.</param>
+            <param name="beta">The skewness (β) of the distribution. Range: 1 ≥ β ≥ -1.</param>
+            <param name="scale">The scale (c) of the distribution. Range: c > 0.</param>
+            <param name="location">The location (μ) of the distribution.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Stable.Sample(System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Generates a sample from the distribution.
@@ -8899,6 +9338,17 @@
             <summary>
             Generates a sequence of samples from the distribution.
             </summary>
+            <param name="alpha">The stability (α) of the distribution. Range: 2 ≥ α > 0.</param>
+            <param name="beta">The skewness (β) of the distribution. Range: 1 ≥ β ≥ -1.</param>
+            <param name="scale">The scale (c) of the distribution. Range: c > 0.</param>
+            <param name="location">The location (μ) of the distribution.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Stable.Samples(System.Double[],System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="alpha">The stability (α) of the distribution. Range: 2 ≥ α > 0.</param>
             <param name="beta">The skewness (β) of the distribution. Range: 1 ≥ β ≥ -1.</param>
             <param name="scale">The scale (c) of the distribution. Range: c > 0.</param>
@@ -9090,6 +9540,11 @@
             </summary>
             <returns>a sample from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.StudentT.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.StudentT.Samples">
             <summary>
             Generates a sequence of samples from the Student t-distribution.
@@ -9162,6 +9617,17 @@
             <param name="freedom">The degrees of freedom (ν) for the distribution. Range: ν > 0.</param>
             <returns>a sequence of samples from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.StudentT.Samples(System.Random,System.Double[],System.Double,System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="location">The location (μ) of the distribution.</param>
+            <param name="scale">The scale (σ) of the distribution. Range: σ > 0.</param>
+            <param name="freedom">The degrees of freedom (ν) for the distribution. Range: ν > 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.StudentT.Sample(System.Double,System.Double,System.Double)">
             <summary>
             Generates a sample from the Student t-distribution.
@@ -9175,6 +9641,16 @@
             <summary>
             Generates a sequence of samples from the Student t-distribution using the <i>Box-Muller</i> algorithm.
             </summary>
+            <param name="location">The location (μ) of the distribution.</param>
+            <param name="scale">The scale (σ) of the distribution. Range: σ > 0.</param>
+            <param name="freedom">The degrees of freedom (ν) for the distribution. Range: ν > 0.</param>
+            <returns>a sequence of samples from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.StudentT.Samples(System.Double[],System.Double,System.Double,System.Double)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="location">The location (μ) of the distribution.</param>
             <param name="scale">The scale (σ) of the distribution. Range: σ > 0.</param>
             <param name="freedom">The degrees of freedom (ν) for the distribution. Range: ν > 0.</param>
@@ -9326,6 +9802,11 @@
             Generates a sample from the <c>Triangular</c> distribution.
             </summary>
             <returns>a sample from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Triangular.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Distributions.Triangular.Samples">
             <summary>
@@ -9572,6 +10053,11 @@
             Generates a sample from the Weibull distribution.
             </summary>
             <returns>a sample from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Weibull.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Distributions.Weibull.Samples">
             <summary>
@@ -9958,6 +10444,11 @@
             </summary>
             <returns>a sample from the distribution.</returns>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Zipf.Samples(System.Int32[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Zipf.Samples">
             <summary>
             Samples an array of zipf distributed random variables.
@@ -9980,6 +10471,15 @@
             <param name="s">The s parameter of the distribution.</param>
             <param name="n">The n parameter of the distribution.</param>
         </member>
+        <member name="M:MathNet.Numerics.Distributions.Zipf.Samples(System.Random,System.Int32[],System.Double,System.Int32)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="rnd">The random number generator to use.</param>
+            <param name="values">The array to fill with the samples.</param>
+            <param name="s">The s parameter of the distribution.</param>
+            <param name="n">The n parameter of the distribution.</param>
+        </member>
         <member name="M:MathNet.Numerics.Distributions.Zipf.Sample(System.Double,System.Int32)">
             <summary>
             Samples a random variable.
@@ -9991,6 +10491,14 @@
             <summary>
             Samples a sequence of this random variable.
             </summary>
+            <param name="s">The s parameter of the distribution.</param>
+            <param name="n">The n parameter of the distribution.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.Zipf.Samples(System.Int32[],System.Double,System.Int32)">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
+            <param name="values">The array to fill with the samples.</param>
             <param name="s">The s parameter of the distribution.</param>
             <param name="n">The n parameter of the distribution.</param>
         </member>
@@ -10636,6 +11144,19 @@
             <param name="phase">Optional phase offset.</param>
             <param name="delay">Optional delay, relative to the phase.</param>
         </member>
+        <member name="M:MathNet.Numerics.Generate.Repeat``1(System.Int32,``0)">
+            <summary>
+            Create an array with each field set to the same value.
+            </summary>
+            <param name="length">The number of samples to generate.</param>
+            <param name="value">The value that each field should be set to.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Generate.RepeatSequence``1(``0)">
+            <summary>
+            Create an infinite sequence where each element has the same value.
+            </summary>
+            <param name="value">The value that each element should be set to.</param>
+        </member>
         <member name="M:MathNet.Numerics.Generate.Step(System.Int32,System.Double,System.Int32)">
             <summary>
             Create a Heaviside Step sample vector.
@@ -10833,20 +11354,22 @@
             <param name="keywords">List of keywords to tokenize by.</param>
             <param name="skip">keywords to skip looking for (because they've already been handled).</param>
         </member>
-        <member name="M:MathNet.Numerics.GlobalizationHelper.ParseDouble(System.Collections.Generic.LinkedListNode{System.String}@)">
+        <member name="M:MathNet.Numerics.GlobalizationHelper.ParseDouble(System.Collections.Generic.LinkedListNode{System.String}@,System.Globalization.CultureInfo)">
             <summary>
             Globalized Parsing: Parse a double number
             </summary>
             <param name="token">First token of the number.</param>
-            <returns>The parsed double number using the current culture information.</returns>
+            <param name="culture">Culture Info.</param>
+            <returns>The parsed double number using the given culture information.</returns>
             <exception cref="T:System.FormatException"/>
         </member>
-        <member name="M:MathNet.Numerics.GlobalizationHelper.ParseSingle(System.Collections.Generic.LinkedListNode{System.String}@)">
+        <member name="M:MathNet.Numerics.GlobalizationHelper.ParseSingle(System.Collections.Generic.LinkedListNode{System.String}@,System.Globalization.CultureInfo)">
             <summary>
             Globalized Parsing: Parse a float number
             </summary>
             <param name="token">First token of the number.</param>
-            <returns>The parsed float number using the current culture information.</returns>
+            <param name="culture">Culture Info.</param>
+            <returns>The parsed float number using the given culture information.</returns>
             <exception cref="T:System.FormatException"/>
         </member>
         <member name="M:MathNet.Numerics.GoodnessOfFit.RSquared(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
@@ -11377,9 +11900,9 @@
             instead, which is more efficient.
             </remarks>
         </member>
-        <member name="M:MathNet.Numerics.Interpolate.LinearSpline(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+        <member name="M:MathNet.Numerics.Interpolate.Linear(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
             <summary>
-            Create a piecewise linear spline interpolation based on arbitrary points.
+            Create a piecewise linear interpolation based on arbitrary points.
             </summary>
             <param name="points">The sample points t.</param>
             <param name="values">The sample point values x(t).</param>
@@ -11391,6 +11914,23 @@
             <remarks>
             if your data is already sorted in arrays, consider to use
             MathNet.Numerics.Interpolation.LinearSpline.InterpolateSorted
+            instead, which is more efficient.
+            </remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolate.LogLinear(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Create piecewise log-linear interpolation based on arbitrary points.
+            </summary>
+            <param name="points">The sample points t.</param>
+            <param name="values">The sample point values x(t).</param>
+            <returns>
+            An interpolation scheme optimized for the given sample points and values,
+            which can then be used to compute interpolations and extrapolations
+            on arbitrary points.
+            </returns>
+            <remarks>
+            if your data is already sorted in arrays, consider to use
+            MathNet.Numerics.Interpolation.LogLinear.InterpolateSorted
             instead, which is more efficient.
             </remarks>
         </member>
@@ -11446,6 +11986,23 @@
             <remarks>
             if your data is already sorted in arrays, consider to use
             MathNet.Numerics.Interpolation.CubicSpline.InterpolateHermiteSorted
+            instead, which is more efficient.
+            </remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolate.Step(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Create a step-interpolation based on arbitrary points.
+            </summary>
+            <param name="points">The sample points t.</param>
+            <param name="values">The sample point values x(t).</param>
+            <returns>
+            An interpolation scheme optimized for the given sample points and values,
+            which can then be used to compute interpolations and extrapolations
+            on arbitrary points.
+            </returns>
+            <remarks>
+            if your data is already sorted in arrays, consider to use
+            MathNet.Numerics.Interpolation.StepInterpolation.InterpolateSorted
             instead, which is more efficient.
             </remarks>
         </member>
@@ -11587,6 +12144,13 @@
             </summary>
             <param name="x">Sample points (N), no sorting assumed.</param>
             <param name="y">Sample values (N).</param>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.Barycentric.Interpolate(System.Double)">
+            <summary>
+            Interpolate at point t.
+            </summary>
+            <param name="t">Point t to interpolate at.</param>
+            <returns>Interpolated value x(t).</returns>
         </member>
         <member name="M:MathNet.Numerics.Interpolation.Barycentric.MathNet#Numerics#Interpolation#IInterpolation#Differentiate(System.Double)">
             <summary>
@@ -11839,9 +12403,10 @@
             <param name="a">Left bound of the integration interval [a,b].</param>
             <param name="b">Right bound of the integration interval [a,b].</param>
         </member>
-        <member name="M:MathNet.Numerics.Interpolation.CubicSpline.LeftBracketIndex(System.Double)">
+        <member name="M:MathNet.Numerics.Interpolation.CubicSpline.LeftSegmentIndex(System.Double)">
             <summary>
-            Find the index of the greatest sample point smaller than t.
+            Find the index of the greatest sample point smaller than t,
+            or the left index of the closest segment for extrapolation.
             </summary>
         </member>
         <member name="P:MathNet.Numerics.Interpolation.CubicSpline.MathNet#Numerics#Interpolation#IInterpolation#SupportsDifferentiation">
@@ -11856,7 +12421,7 @@
         </member>
         <member name="T:MathNet.Numerics.Interpolation.LinearSpline">
             <summary>
-            Linear Spline Interpolation.
+            Piece-wise Linear Interpolation.
             </summary>
             <remarks>Supports both differentiation and integration.</remarks>
         </member>
@@ -11915,9 +12480,10 @@
             <param name="a">Left bound of the integration interval [a,b].</param>
             <param name="b">Right bound of the integration interval [a,b].</param>
         </member>
-        <member name="M:MathNet.Numerics.Interpolation.LinearSpline.LeftBracketIndex(System.Double)">
+        <member name="M:MathNet.Numerics.Interpolation.LinearSpline.LeftSegmentIndex(System.Double)">
             <summary>
-            Find the index of the greatest sample point smaller than t.
+            Find the index of the greatest sample point smaller than t,
+            or the left index of the closest segment for extrapolation.
             </summary>
         </member>
         <member name="P:MathNet.Numerics.Interpolation.LinearSpline.MathNet#Numerics#Interpolation#IInterpolation#SupportsDifferentiation">
@@ -11926,6 +12492,81 @@
             </summary>
         </member>
         <member name="P:MathNet.Numerics.Interpolation.LinearSpline.MathNet#Numerics#Interpolation#IInterpolation#SupportsIntegration">
+            <summary>
+            Gets a value indicating whether the algorithm supports integration (interpolated quadrature).
+            </summary>
+        </member>
+        <member name="T:MathNet.Numerics.Interpolation.LogLinear">
+            <summary>
+            Piece-wise Log-Linear Interpolation
+            </summary>
+            <remarks>This algorithm supports differentiation, not integration.</remarks>
+        </member>
+        <member name="F:MathNet.Numerics.Interpolation.LogLinear._spline">
+            <summary>
+            Internal Spline Interpolation
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.LogLinear.#ctor(System.Double[],System.Double[])">
+            <param name="x">Sample points (N), sorted ascending</param>
+            <param name="logy">Natural logarithm of the sample values (N) at the corresponding points</param>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.LogLinear.InterpolateSorted(System.Double[],System.Double[])">
+            <summary>
+            Create a piecewise log-linear interpolation from a set of (x,y) value pairs, sorted ascendingly by x.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.LogLinear.InterpolateInplace(System.Double[],System.Double[])">
+            <summary>
+            Create a piecewise log-linear interpolation from an unsorted set of (x,y) value pairs.
+            WARNING: Works in-place and can thus causes the data array to be reordered and modified.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.LogLinear.Interpolate(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Create a piecewise log-linear interpolation from an unsorted set of (x,y) value pairs.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.LogLinear.Interpolate(System.Double)">
+            <summary>
+            Interpolate at point t.
+            </summary>
+            <param name="t">Point t to interpolate at.</param>
+            <returns>Interpolated value x(t).</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.LogLinear.Differentiate(System.Double)">
+            <summary>
+            Differentiate at point t.
+            </summary>
+            <param name="t">Point t to interpolate at.</param>
+            <returns>Interpolated first derivative at point t.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.LogLinear.Differentiate2(System.Double)">
+            <summary>
+            Differentiate twice at point t.
+            </summary>
+            <param name="t">Point t to interpolate at.</param>
+            <returns>Interpolated second derivative at point t.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.LogLinear.MathNet#Numerics#Interpolation#IInterpolation#Integrate(System.Double)">
+            <summary>
+            Indefinite integral at point t.
+            </summary>
+            <param name="t">Point t to integrate at.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.LogLinear.MathNet#Numerics#Interpolation#IInterpolation#Integrate(System.Double,System.Double)">
+            <summary>
+            Definite integral between points a and b.
+            </summary>
+            <param name="a">Left bound of the integration interval [a,b].</param>
+            <param name="b">Right bound of the integration interval [a,b].</param>
+        </member>
+        <member name="P:MathNet.Numerics.Interpolation.LogLinear.MathNet#Numerics#Interpolation#IInterpolation#SupportsDifferentiation">
+            <summary>
+            Gets a value indicating whether the algorithm supports differentiation (interpolated derivative).
+            </summary>
+        </member>
+        <member name="P:MathNet.Numerics.Interpolation.LogLinear.MathNet#Numerics#Interpolation#IInterpolation#SupportsIntegration">
             <summary>
             Gets a value indicating whether the algorithm supports integration (interpolated quadrature).
             </summary>
@@ -12055,9 +12696,10 @@
             <param name="a">Left bound of the integration interval [a,b].</param>
             <param name="b">Right bound of the integration interval [a,b].</param>
         </member>
-        <member name="M:MathNet.Numerics.Interpolation.QuadraticSpline.LeftBracketIndex(System.Double)">
+        <member name="M:MathNet.Numerics.Interpolation.QuadraticSpline.LeftSegmentIndex(System.Double)">
             <summary>
-            Find the index of the greatest sample point smaller than t.
+            Find the index of the greatest sample point smaller than t,
+            or the left index of the closest segment for extrapolation.
             </summary>
         </member>
         <member name="P:MathNet.Numerics.Interpolation.QuadraticSpline.MathNet#Numerics#Interpolation#IInterpolation#SupportsDifferentiation">
@@ -12093,6 +12735,139 @@
         <member name="F:MathNet.Numerics.Interpolation.SplineBoundaryCondition.SecondDerivative">
             <summary>
             Fixed second derivative at the boundary.
+            </summary>
+        </member>
+        <member name="T:MathNet.Numerics.Interpolation.StepInterpolation">
+            <summary>
+            A step function where the start of each segment is included, and the last segment is open-ended.
+            Segment i is [x_i, x_i+1) for i &lt; N, or [x_i, infinity] for i = N.
+            The domain of the function is all real numbers, such that y = 0 where x &lt;.
+            </summary>
+            <remarks>Supports both differentiation and integration.</remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.StepInterpolation.#ctor(System.Double[],System.Double[])">
+            <param name="x">Sample points (N), sorted ascending</param>
+            <param name="sy">Samples values (N) of each segment starting at the corresponding sample point.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.StepInterpolation.InterpolateSorted(System.Double[],System.Double[])">
+            <summary>
+            Create a linear spline interpolation from a set of (x,y) value pairs, sorted ascendingly by x.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.StepInterpolation.InterpolateInplace(System.Double[],System.Double[])">
+            <summary>
+            Create a linear spline interpolation from an unsorted set of (x,y) value pairs.
+            WARNING: Works in-place and can thus causes the data array to be reordered.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.StepInterpolation.Interpolate(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Create a linear spline interpolation from an unsorted set of (x,y) value pairs.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.StepInterpolation.Interpolate(System.Double)">
+            <summary>
+            Interpolate at point t.
+            </summary>
+            <param name="t">Point t to interpolate at.</param>
+            <returns>Interpolated value x(t).</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.StepInterpolation.Differentiate(System.Double)">
+            <summary>
+            Differentiate at point t.
+            </summary>
+            <param name="t">Point t to interpolate at.</param>
+            <returns>Interpolated first derivative at point t.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.StepInterpolation.Differentiate2(System.Double)">
+            <summary>
+            Differentiate twice at point t.
+            </summary>
+            <param name="t">Point t to interpolate at.</param>
+            <returns>Interpolated second derivative at point t.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.StepInterpolation.Integrate(System.Double)">
+            <summary>
+            Indefinite integral at point t.
+            </summary>
+            <param name="t">Point t to integrate at.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.StepInterpolation.Integrate(System.Double,System.Double)">
+            <summary>
+            Definite integral between points a and b.
+            </summary>
+            <param name="a">Left bound of the integration interval [a,b].</param>
+            <param name="b">Right bound of the integration interval [a,b].</param>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.StepInterpolation.LeftBracketIndex(System.Double)">
+            <summary>
+            Find the index of the greatest sample point smaller than t.
+            </summary>
+        </member>
+        <member name="T:MathNet.Numerics.Interpolation.TransformedInterpolation">
+            <summary>
+            Wraps an interpolation with a transformation of the interpolated values.
+            </summary>
+            <remarks>Neither differentiation nor integration is supported.</remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.TransformedInterpolation.InterpolateSorted(System.Func{System.Double,System.Double},System.Func{System.Double,System.Double},System.Double[],System.Double[])">
+            <summary>
+            Create a linear spline interpolation from a set of (x,y) value pairs, sorted ascendingly by x.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.TransformedInterpolation.InterpolateInplace(System.Func{System.Double,System.Double},System.Func{System.Double,System.Double},System.Double[],System.Double[])">
+            <summary>
+            Create a linear spline interpolation from an unsorted set of (x,y) value pairs.
+            WARNING: Works in-place and can thus causes the data array to be reordered and modified.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.TransformedInterpolation.Interpolate(System.Func{System.Double,System.Double},System.Func{System.Double,System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Create a linear spline interpolation from an unsorted set of (x,y) value pairs.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.TransformedInterpolation.Interpolate(System.Double)">
+            <summary>
+            Interpolate at point t.
+            </summary>
+            <param name="t">Point t to interpolate at.</param>
+            <returns>Interpolated value x(t).</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.TransformedInterpolation.MathNet#Numerics#Interpolation#IInterpolation#Differentiate(System.Double)">
+            <summary>
+            Differentiate at point t. NOT SUPPORTED.
+            </summary>
+            <param name="t">Point t to interpolate at.</param>
+            <returns>Interpolated first derivative at point t.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.TransformedInterpolation.MathNet#Numerics#Interpolation#IInterpolation#Differentiate2(System.Double)">
+            <summary>
+            Differentiate twice at point t. NOT SUPPORTED.
+            </summary>
+            <param name="t">Point t to interpolate at.</param>
+            <returns>Interpolated second derivative at point t.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.TransformedInterpolation.MathNet#Numerics#Interpolation#IInterpolation#Integrate(System.Double)">
+            <summary>
+            Indefinite integral at point t. NOT SUPPORTED.
+            </summary>
+            <param name="t">Point t to integrate at.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Interpolation.TransformedInterpolation.MathNet#Numerics#Interpolation#IInterpolation#Integrate(System.Double,System.Double)">
+            <summary>
+            Definite integral between points a and b. NOT SUPPORTED.
+            </summary>
+            <param name="a">Left bound of the integration interval [a,b].</param>
+            <param name="b">Right bound of the integration interval [a,b].</param>
+        </member>
+        <member name="P:MathNet.Numerics.Interpolation.TransformedInterpolation.MathNet#Numerics#Interpolation#IInterpolation#SupportsDifferentiation">
+            <summary>
+            Gets a value indicating whether the algorithm supports differentiation (interpolated derivative).
+            </summary>
+        </member>
+        <member name="P:MathNet.Numerics.Interpolation.TransformedInterpolation.MathNet#Numerics#Interpolation#IInterpolation#SupportsIntegration">
+            <summary>
+            Gets a value indicating whether the algorithm supports integration (interpolated quadrature).
             </summary>
         </member>
         <member name="T:MathNet.Numerics.LinearAlgebra.MatrixBuilder`1">
@@ -12238,7 +13013,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.MatrixBuilder`1.DenseOfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,`0}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.MatrixBuilder`1.DenseOfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,`0}})">
             <summary>
             Create a new dense matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -12442,7 +13217,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.MatrixBuilder`1.SparseOfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,`0}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.MatrixBuilder`1.SparseOfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,`0}})">
             <summary>
             Create a new sparse matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -12789,7 +13564,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.VectorBuilder`1.DenseOfIndexed(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,`0}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.VectorBuilder`1.DenseOfIndexed(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,`0}})">
             <summary>
             Create a new dense vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -12842,7 +13617,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.VectorBuilder`1.SparseOfIndexed(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,`0}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.VectorBuilder`1.SparseOfIndexed(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,`0}})">
             <summary>
             Create a new sparse vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -13748,6 +14523,14 @@
             A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
             </returns>
         </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.System#ICloneable#Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+            A new object that is a copy of this instance.
+            </returns>
+        </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.ToTypeString">
             <summary>
             Returns a string that describes the type, dimensions and shape of this matrix.
@@ -14366,6 +15149,11 @@
             Evaluates whether this matrix is symmetric.
             </summary>
         </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.IsHermitian">
+            <summary>
+            Evaluates whether this matrix is hermitian (conjugate symmetric).
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.IsConjugateSymmetric">
             <summary>
             Evaluates whether this matrix is conjugate symmetric.
@@ -14388,7 +15176,7 @@
             </pre></example>
             <returns>An array containing the matrix's elements.</returns>
             <seealso cref="M:MathNet.Numerics.LinearAlgebra.Matrix`1.ToRowWiseArray"/>
-            <seealso cref="M:MathNet.Numerics.LinearAlgebra.Matrix`1.Enumerate"/>
+            <seealso cref="M:MathNet.Numerics.LinearAlgebra.Matrix`1.Enumerate(MathNet.Numerics.LinearAlgebra.Zeros)"/>
         </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.ToRowWiseArray">
             <summary>
@@ -14401,7 +15189,7 @@
             </pre></example>
             <returns>An array containing the matrix's elements.</returns>
             <seealso cref="M:MathNet.Numerics.LinearAlgebra.Matrix`1.ToColumnWiseArray"/>
-            <seealso cref="M:MathNet.Numerics.LinearAlgebra.Matrix`1.Enumerate"/>
+            <seealso cref="M:MathNet.Numerics.LinearAlgebra.Matrix`1.Enumerate(MathNet.Numerics.LinearAlgebra.Zeros)"/>
         </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.Enumerate">
             <summary>
@@ -14414,7 +15202,28 @@
             <seealso cref="M:MathNet.Numerics.LinearAlgebra.Matrix`1.ToColumnWiseArray"/>
             <seealso cref="M:MathNet.Numerics.LinearAlgebra.Matrix`1.ToRowWiseArray"/>
         </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.Enumerate(MathNet.Numerics.LinearAlgebra.Zeros)">
+            <summary>
+            Returns an IEnumerable that can be used to iterate through all values of the matrix.
+            </summary>
+            <remarks>
+            The enumerator will include all values, even if they are zero.
+            The ordering of the values is unspecified (not necessarily column-wise or row-wise).
+            </remarks>
+            <seealso cref="M:MathNet.Numerics.LinearAlgebra.Matrix`1.ToColumnWiseArray"/>
+            <seealso cref="M:MathNet.Numerics.LinearAlgebra.Matrix`1.ToRowWiseArray"/>
+        </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.EnumerateIndexed">
+            <summary>
+            Returns an IEnumerable that can be used to iterate through all values of the matrix and their index.
+            </summary>
+            <remarks>
+            The enumerator returns a Tuple with the first two values being the row and column index
+            and the third value being the value of the element at that index.
+            The enumerator will include all values, even if they are zero.
+            </remarks>
+        </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.EnumerateIndexed(MathNet.Numerics.LinearAlgebra.Zeros)">
             <summary>
             Returns an IEnumerable that can be used to iterate through all values of the matrix and their index.
             </summary>
@@ -15279,9 +16088,9 @@
             <returns>The trace of this matrix</returns>
             <exception cref="T:System.ArgumentException">If the matrix is not square</exception>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.Matrix.IsConjugateSymmetric">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.Matrix.IsHermitian">
             <summary>
-            Evaluates whether this matrix is conjugate symmetric.
+            Evaluates whether this matrix is hermitian (conjugate symmetric).
             </summary>
         </member>
         <member name="F:MathNet.Numerics.LinearAlgebra.Complex32.DenseMatrix._rowCount">
@@ -15350,7 +16159,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex32}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex32}})">
             <summary>
             Create a new dense matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -15762,9 +16571,9 @@
             Evaluates whether this matrix is symmetric.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DenseMatrix.IsConjugateSymmetric">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DenseMatrix.IsHermitian">
             <summary>
-            Evaluates whether this matrix is conjugate symmetric.
+            Evaluates whether this matrix is hermitian (conjugate symmetric).
             </summary>
         </member>
         <member name="P:MathNet.Numerics.LinearAlgebra.Complex32.DenseMatrix.Values">
@@ -16440,6 +17249,14 @@
             A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
             </returns>
         </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.System#ICloneable#Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+            A new object that is a copy of this instance.
+            </returns>
+        </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
             <summary>
             Returns an enumerator that iterates through the collection.
@@ -16614,7 +17431,25 @@
             The enumerator will include all values, even if they are zero.
             </remarks>
         </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.Enumerate(MathNet.Numerics.LinearAlgebra.Zeros)">
+            <summary>
+            Returns an IEnumerable that can be used to iterate through all values of the vector.
+            </summary>
+            <remarks>
+            The enumerator will include all values, even if they are zero.
+            </remarks>
+        </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.EnumerateIndexed">
+            <summary>
+            Returns an IEnumerable that can be used to iterate through all values of the vector and their index.
+            </summary>
+            <remarks>
+            The enumerator returns a Tuple with the first value being the element index
+            and the second value being the value of the element at that index.
+            The enumerator will include all values, even if they are zero.
+            </remarks>
+        </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.EnumerateIndexed(MathNet.Numerics.LinearAlgebra.Zeros)">
             <summary>
             Returns an IEnumerable that can be used to iterate through all values of the vector and their index.
             </summary>
@@ -16665,6 +17500,21 @@
             </summary>
         </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.MapIndexed``1(System.Func{System.Int32,`0,``0},MathNet.Numerics.LinearAlgebra.Vector{``0},MathNet.Numerics.LinearAlgebra.Zeros)">
+            <summary>
+            Applies a function to each value of this vector and replaces the value in the result vector.
+            The index of each value (zero-based) is passed as first argument to the function.
+            If forceMapZero is not set to true, zero values may or may not be skipped depending
+            on the actual data storage implementation (relevant mostly for sparse vectors).
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.MapConvert``1(System.Func{`0,``0},MathNet.Numerics.LinearAlgebra.Vector{``0},MathNet.Numerics.LinearAlgebra.Zeros)">
+            <summary>
+            Applies a function to each value of this vector and replaces the value in the result vector.
+            If forceMapZero is not set to true, zero values may or may not be skipped depending
+            on the actual data storage implementation (relevant mostly for sparse vectors).
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.MapIndexedConvert``1(System.Func{System.Int32,`0,``0},MathNet.Numerics.LinearAlgebra.Vector{``0},MathNet.Numerics.LinearAlgebra.Zeros)">
             <summary>
             Applies a function to each value of this vector and replaces the value in the result vector.
             The index of each value (zero-based) is passed as first argument to the function.
@@ -17187,7 +18037,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
             <summary>
             Create a new dense vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -17554,7 +18404,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
             <summary>
             Create a new diagonal matrix and initialize each diagonal value from the provided indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -17844,9 +18694,9 @@
             Evaluates whether this matrix is symmetric.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DiagonalMatrix.IsConjugateSymmetric">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DiagonalMatrix.IsHermitian">
             <summary>
-            Evaluates whether this matrix is conjugate symmetric.
+            Evaluates whether this matrix is hermitian (conjugate symmetric).
             </summary>
         </member>
         <member name="T:MathNet.Numerics.LinearAlgebra.Complex32.Factorization.Cholesky">
@@ -18250,14 +19100,14 @@
             <summary>
             <para>A class which encapsulates the functionality of the QR decomposition.</para>
             <para>Any real square matrix A (m x n) may be decomposed as A = QR where Q is an orthogonal matrix
-            (its columns are orthogonal unit vectors meaning QTQ = I) and R is an upper triangular matrix 
+            (its columns are orthogonal unit vectors meaning QTQ = I) and R is an upper triangular matrix
             (also called right triangular matrix).</para>
             </summary>
             <remarks>
             The computation of the QR decomposition is done at construction time by Householder transformation.
-            If a <seealso cref="F:MathNet.Numerics.LinearAlgebra.Factorization.QRMethod.Full"/> factorization is performed, the resulting Q matrix is an m x m matrix 
-            and the R matrix is an m x n matrix. If a <seealso cref="F:MathNet.Numerics.LinearAlgebra.Factorization.QRMethod.Thin"/> factorization is performed, the 
-            resulting Q matrix is an m x n matrix and the R matrix is an n x n matrix.     
+            If a <seealso cref="F:MathNet.Numerics.LinearAlgebra.Factorization.QRMethod.Full"/> factorization is performed, the resulting Q matrix is an m x m matrix
+            and the R matrix is an m x n matrix. If a <seealso cref="F:MathNet.Numerics.LinearAlgebra.Factorization.QRMethod.Thin"/> factorization is performed, the
+            resulting Q matrix is an m x n matrix and the R matrix is an n x n matrix.
             </remarks>
             <typeparam name="T">Supported data types are double, single, <see cref="N:MathNet.Numerics.LinearAlgebra.Complex"/>, and <see cref="N:MathNet.Numerics.LinearAlgebra.Complex32"/>.</typeparam>
         </member>
@@ -19975,7 +20825,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex32}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex32}})">
             <summary>
             Create a new sparse matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -20303,9 +21153,9 @@
             Evaluates whether this matrix is symmetric.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.SparseMatrix.IsConjugateSymmetric">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.SparseMatrix.IsHermitian">
             <summary>
-            Evaluates whether this matrix is conjugate symmetric.
+            Evaluates whether this matrix is hermitian (conjugate symmetric).
             </summary>
         </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.SparseMatrix.op_Addition(MathNet.Numerics.LinearAlgebra.Complex32.SparseMatrix,MathNet.Numerics.LinearAlgebra.Complex32.SparseMatrix)">
@@ -20450,7 +21300,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
             <summary>
             Create a new sparse vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -21017,9 +21867,9 @@
             <returns>The trace of this matrix</returns>
             <exception cref="T:System.ArgumentException">If the matrix is not square</exception>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.Matrix.IsConjugateSymmetric">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.Matrix.IsHermitian">
             <summary>
-            Evaluates whether this matrix is conjugate symmetric.
+            Evaluates whether this matrix is hermitian (conjugate symmetric).
             </summary>
         </member>
         <member name="F:MathNet.Numerics.LinearAlgebra.Complex.DenseMatrix._rowCount">
@@ -21088,7 +21938,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex}})">
             <summary>
             Create a new dense matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -21500,9 +22350,9 @@
             Evaluates whether this matrix is symmetric.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DenseMatrix.IsConjugateSymmetric">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DenseMatrix.IsHermitian">
             <summary>
-            Evaluates whether this matrix is conjugate symmetric.
+            Evaluates whether this matrix is hermitian (conjugate symmetric).
             </summary>
         </member>
         <member name="P:MathNet.Numerics.LinearAlgebra.Complex.DenseMatrix.Values">
@@ -21847,7 +22697,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex}})">
             <summary>
             Create a new dense vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -22214,7 +23064,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex}})">
             <summary>
             Create a new diagonal matrix and initialize each diagonal value from the provided indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -22505,9 +23355,9 @@
             Evaluates whether this matrix is symmetric.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DiagonalMatrix.IsConjugateSymmetric">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DiagonalMatrix.IsHermitian">
             <summary>
-            Evaluates whether this matrix is conjugate symmetric.
+            Evaluates whether this matrix is hermitian (conjugate symmetric).
             </summary>
         </member>
         <member name="T:MathNet.Numerics.LinearAlgebra.Complex.Factorization.Cholesky">
@@ -24181,7 +25031,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex}})">
             <summary>
             Create a new sparse matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -24509,9 +25359,9 @@
             Evaluates whether this matrix is symmetric.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.SparseMatrix.IsConjugateSymmetric">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.SparseMatrix.IsHermitian">
             <summary>
-            Evaluates whether this matrix is conjugate symmetric.
+            Evaluates whether this matrix is hermitian (conjugate symmetric).
             </summary>
         </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Complex.SparseMatrix.op_Addition(MathNet.Numerics.LinearAlgebra.Complex.SparseMatrix,MathNet.Numerics.LinearAlgebra.Complex.SparseMatrix)">
@@ -24656,7 +25506,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex}})">
             <summary>
             Create a new sparse vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -25223,9 +26073,9 @@
             <returns>The trace of this matrix</returns>
             <exception cref="T:System.ArgumentException">If the matrix is not square</exception>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.Matrix.IsConjugateSymmetric">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.Matrix.IsHermitian">
             <summary>
-            Evaluates whether this matrix is conjugate symmetric.
+            Evaluates whether this matrix is hermitian (conjugate symmetric).
             </summary>
         </member>
         <member name="F:MathNet.Numerics.LinearAlgebra.Double.DenseMatrix._rowCount">
@@ -25294,7 +26144,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,System.Double}})">
             <summary>
             Create a new dense matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -26053,7 +26903,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Double}})">
             <summary>
             Create a new dense vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -26444,7 +27294,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Double}})">
             <summary>
             Create a new diagonal matrix and initialize each diagonal value from the provided indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -26828,6 +27678,10 @@
             i.e. A.Multiply(V) equals V.Multiply(D).  The matrix V may be badly
             conditioned, or even singular, so the validity of the equation
             A = V*D*Inverse(V) depends upon V.Condition().
+            Matrix V is encoded in the property EigenVectors in the way that:
+             - column corresponding to real eigenvalue represents real eigenvector,
+             - columns corresponding to the pair of complex conjugate eigenvalues
+               lambda[i] and lambda[i+1] encode real and imaginary parts of eigenvectors.
             </remarks>
         </member>
         <member name="P:MathNet.Numerics.LinearAlgebra.Double.Factorization.Evd.Determinant">
@@ -28406,7 +29260,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,System.Double}})">
             <summary>
             Create a new sparse matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -28892,7 +29746,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Double}})">
             <summary>
             Create a new sparse vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -29196,7 +30050,7 @@
         </member>
         <member name="F:MathNet.Numerics.LinearAlgebra.Factorization.QRMethod.Thin">
             <summary>
-            Compute the thin QR factorixation of a matrix.
+            Compute the thin QR factorization of a matrix.
             </summary>
         </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.IBuilder`1.CreateMatrix(System.Int32,System.Int32,System.Boolean)">
@@ -29259,9 +30113,9 @@
             A matrix is symmetric
             </summary>
         </member>
-        <member name="F:MathNet.Numerics.LinearAlgebra.Symmetricity.ConjugateSymmetric">
+        <member name="F:MathNet.Numerics.LinearAlgebra.Symmetricity.Hermitian">
             <summary>
-            A matrix is complex conjugate symmetric.
+            A matrix is hermitian (conjugate symmetric).
             </summary>
         </member>
         <member name="F:MathNet.Numerics.LinearAlgebra.Symmetricity.Asymmetric">
@@ -29560,9 +30414,9 @@
             <returns>The trace of this matrix</returns>
             <exception cref="T:System.ArgumentException">If the matrix is not square</exception>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.Matrix.IsConjugateSymmetric">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.Matrix.IsHermitian">
             <summary>
-            Evaluates whether this matrix is conjugate symmetric.
+            Evaluates whether this matrix is hermitian (conjugate symmetric).
             </summary>
         </member>
         <member name="F:MathNet.Numerics.LinearAlgebra.Single.DenseMatrix._rowCount">
@@ -29631,7 +30485,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,System.Single}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,System.Single}})">
             <summary>
             Create a new dense matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -30390,7 +31244,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Single}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Single}})">
             <summary>
             Create a new dense vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -30782,7 +31636,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Single}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Single}})">
             <summary>
             Create a new diagonal matrix and initialize each diagonal value from the provided indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -32744,7 +33598,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,System.Single}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,System.Single}})">
             <summary>
             Create a new sparse matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -33230,7 +34084,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Single}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Single}})">
             <summary>
             Create a new sparse vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -34571,7 +35425,7 @@
             <param name="method">The direct method to be used to compute the regression.</param>
             <returns>Best fitting list of model parameters β for each element in the predictor-arrays.</returns>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.DirectMethod``1(System.Collections.Generic.IEnumerable{System.Tuple{``0[],``0}},System.Boolean,MathNet.Numerics.LinearRegression.DirectRegressionMethod)">
+        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.DirectMethod``1(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{``0[],``0}},System.Boolean,MathNet.Numerics.LinearRegression.DirectRegressionMethod)">
             <summary>
             Find the model parameters β such that their linear combination with all predictor-arrays in X become as close to their response in Y as possible, with least squares residuals.
             Uses the cholesky decomposition of the normal equations.
@@ -34609,7 +35463,7 @@
             <param name="intercept">True if an intercept should be added as first artificial predictor value. Default = false.</param>
             <returns>Best fitting list of model parameters β for each element in the predictor-arrays.</returns>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.NormalEquations``1(System.Collections.Generic.IEnumerable{System.Tuple{``0[],``0}},System.Boolean)">
+        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.NormalEquations``1(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{``0[],``0}},System.Boolean)">
             <summary>
             Find the model parameters β such that their linear combination with all predictor-arrays in X become as close to their response in Y as possible, with least squares residuals.
             Uses the cholesky decomposition of the normal equations.
@@ -34646,7 +35500,7 @@
             <param name="intercept">True if an intercept should be added as first artificial predictor value. Default = false.</param>
             <returns>Best fitting list of model parameters β for each element in the predictor-arrays.</returns>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.QR``1(System.Collections.Generic.IEnumerable{System.Tuple{``0[],``0}},System.Boolean)">
+        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.QR``1(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{``0[],``0}},System.Boolean)">
             <summary>
             Find the model parameters β such that their linear combination with all predictor-arrays in X become as close to their response in Y as possible, with least squares residuals.
             Uses an orthogonal decomposition and is therefore more numerically stable than the normal equations but also slower.
@@ -34683,7 +35537,7 @@
             <param name="intercept">True if an intercept should be added as first artificial predictor value. Default = false.</param>
             <returns>Best fitting list of model parameters β for each element in the predictor-arrays.</returns>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.Svd``1(System.Collections.Generic.IEnumerable{System.Tuple{``0[],``0}},System.Boolean)">
+        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.Svd``1(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{``0[],``0}},System.Boolean)">
             <summary>
             Find the model parameters β such that their linear combination with all predictor-arrays in X become as close to their response in Y as possible, with least squares residuals.
             Uses a singular value decomposition and is therefore more numerically stable (especially if ill-conditioned) than the normal equations or QR but also slower.
@@ -34701,7 +35555,7 @@
             <param name="x">Predictor (independent)</param>
             <param name="y">Response (dependent)</param>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.SimpleRegression.Fit(System.Collections.Generic.IEnumerable{System.Tuple{System.Double,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearRegression.SimpleRegression.Fit(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Double,System.Double}})">
             <summary>
             Least-Squares fitting the points (x,y) to a line y : x -> a+b*x,
             returning its best fitting parameters as (a, b) tuple,
@@ -34734,7 +35588,7 @@
             <param name="w">Weight matrix W, usually diagonal with an entry for each predictor (row).</param>
             <param name="intercept">True if an intercept should be added as first artificial predictor value. Default = false.</param>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.WeightedRegression.Weighted``1(System.Collections.Generic.IEnumerable{System.Tuple{``0[],``0}},``0[],System.Boolean)">
+        <member name="M:MathNet.Numerics.LinearRegression.WeightedRegression.Weighted``1(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{``0[],``0}},``0[],System.Boolean)">
             <summary>
             Weighted Linear Regression using normal equations.
             </summary>
@@ -38425,9 +39279,9 @@
             <param name="vectorEv">On output, the eigen values (λ) of matrix in ascending value. The length of the arry must <paramref name="order"/>.</param>
             <param name="matrixD">On output, the block diagonal eigenvalue matrix. The lenth of the array must be order * order.</param>
         </member>
-        <member name="T:MathNet.Numerics.Random.Mcg31m1">
+        <member name="T:MathNet.Numerics.Random.CryptoRandomSource">
             <summary>
-            Multiplicative congruential generator using a modulus of 2^31-1 and a multiplier of 1132489760.
+            A random number generator based on the <see cref="T:System.Security.Cryptography.RandomNumberGenerator"/> class in the .NET library.
             </summary>
         </member>
         <member name="T:MathNet.Numerics.Random.RandomSource">
@@ -38490,6 +39344,21 @@
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="minValue"/> is greater than <paramref name="maxValue"/>. </exception>
         </member>
+        <member name="M:MathNet.Numerics.Random.RandomSource.NextInt32s(System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Fills an array with random numbers within a specified range.
+            </summary>
+            <param name="values">The array to fill with random values.</param>
+            <param name="minValue">The inclusive lower bound of the random number returned.</param>
+            <param name="maxValue">The exclusive upper bound of the random number returned. <paramref name="maxValue"/> must be greater than or equal to <paramref name="minValue"/>.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Random.RandomSource.NextInt32Sequence(System.Int32,System.Int32)">
+            <summary>
+            Returns an infinite sequence of random numbers within a specified range.
+            </summary>
+            <param name="minValue">The inclusive lower bound of the random number returned.</param>
+            <param name="maxValue">The exclusive upper bound of the random number returned. <paramref name="maxValue"/> must be greater than or equal to <paramref name="minValue"/>.</param>
+        </member>
         <member name="M:MathNet.Numerics.Random.RandomSource.NextBytes(System.Byte[])">
             <summary>
             Fills the elements of a specified array of bytes with random numbers.
@@ -38510,6 +39379,65 @@
             <returns>
             A double-precision floating point number greater than or equal to 0.0, and less than 1.0.
             </returns>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.#ctor">
+            <summary>
+            Construct a new random number generator with a random seed.
+            </summary>
+            <remarks>Uses <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider"/> and uses the value of
+            <see cref="P:MathNet.Numerics.Control.ThreadSafeRandomNumberGenerators"/> to set whether the instance is thread safe.</remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.#ctor(System.Security.Cryptography.RandomNumberGenerator)">
+            <summary>
+            Construct a new random number generator with random seed.
+            </summary>
+            <param name="rng">The <see cref="T:System.Security.Cryptography.RandomNumberGenerator"/> to use.</param>
+            <remarks>Uses the value of  <see cref="P:MathNet.Numerics.Control.ThreadSafeRandomNumberGenerators"/> to set whether the instance is thread safe.</remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.#ctor(System.Boolean)">
+            <summary>
+            Construct a new random number generator with random seed.
+            </summary>
+            <remarks>Uses <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider"/></remarks>
+            <param name="threadSafe">if set to <c>true</c> , the class is thread safe.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.#ctor(System.Security.Cryptography.RandomNumberGenerator,System.Boolean)">
+            <summary>
+            Construct a new random number generator with random seed.
+            </summary>
+            <param name="rng">The <see cref="T:System.Security.Cryptography.RandomNumberGenerator"/> to use.</param>
+            <param name="threadSafe">if set to <c>true</c> , the class is thread safe.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.DoSample">
+            <summary>
+            Returns a random number between 0.0 and 1.0.
+            </summary>
+            <returns>
+            A double-precision floating point number greater than or equal to 0.0, and less than 1.0.
+            </returns>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.Doubles(System.Double[])">
+            <summary>
+            Fills an array with random numbers greater than or equal to 0.0 and less than 1.0.
+            </summary>
+            <remarks>Supports being called in parallel from multiple threads.</remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.Doubles(System.Int32)">
+            <summary>
+            Returns an array of random numbers greater than or equal to 0.0 and less than 1.0.
+            </summary>
+            <remarks>Supports being called in parallel from multiple threads.</remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.DoubleSequence">
+            <summary>
+            Returns an infinite sequence of random numbers greater than or equal to 0.0 and less than 1.0.
+            </summary>
+            <remarks>Supports being called in parallel from multiple threads.</remarks>
+        </member>
+        <member name="T:MathNet.Numerics.Random.Mcg31m1">
+            <summary>
+            Multiplicative congruential generator using a modulus of 2^31-1 and a multiplier of 1132489760.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Random.Mcg31m1.#ctor">
             <summary>
@@ -38740,9 +39668,9 @@
             </summary>
         </member>
         <member name="T:MathNet.Numerics.Random.Mrg32k3a">
-             <summary>
-             A 32-bit combined multiple recursive generator with 2 components of order 3.
-             </summary>
+            <summary>
+            A 32-bit combined multiple recursive generator with 2 components of order 3.
+            </summary>
             <remarks>Based off of P. L'Ecuyer, "Combined Multiple Recursive Random Number Generators," Operations Research, 44, 5 (1996), 816--822. </remarks>
         </member>
         <member name="M:MathNet.Numerics.Random.Mrg32k3a.#ctor">
@@ -38973,6 +39901,28 @@
             generator provided by Math.NET Numerics or derived from the RandomSource class.
             </remarks>
         </member>
+        <member name="M:MathNet.Numerics.Random.RandomExtensions.NextInt32s(System.Random,System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Fills an array with uniform random numbers greater than or equal to 0.0 and less than 1.0.
+            </summary>
+            <param name="rnd">The random number generator.</param>
+            <param name="values">The array to fill with random values.</param>
+            <param name="minInclusive">Lower bound, inclusive.</param>
+            <param name="maxExclusive">Upper bound, exclusive.</param>
+            <remarks>
+            This extension is thread-safe if and only if called on an random number
+            generator provided by Math.NET Numerics or derived from the RandomSource class.
+            </remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Random.RandomExtensions.NextInt32Sequence(System.Random,System.Int32,System.Int32)">
+            <summary>
+            Returns an infinite sequence of uniform random numbers greater than or equal to 0.0 and less than 1.0.
+            </summary>
+            <remarks>
+            This extension is thread-safe if and only if called on an random number
+            generator provided by Math.NET Numerics or derived from the RandomSource class.
+            </remarks>
+        </member>
         <member name="M:MathNet.Numerics.Random.RandomExtensions.NextInt64(System.Random)">
             <summary>
             Returns a nonnegative random number less than <see cref="F:System.Int64.MaxValue"/>.
@@ -39134,11 +40084,11 @@
             </summary>
         </member>
         <member name="T:MathNet.Numerics.Random.WH1982">
-             <summary>
-             Wichmann-Hill’s 1982 combined multiplicative congruential generator. 
-             </summary>
-             <remarks>See: Wichmann, B. A. &amp; Hill, I. D. (1982), "Algorithm AS 183:
-             An efficient and portable pseudo-random number generator". Applied Statistics 31 (1982) 188-190
+            <summary>
+            Wichmann-Hill’s 1982 combined multiplicative congruential generator. 
+            </summary>
+            <remarks>See: Wichmann, B. A. &amp; Hill, I. D. (1982), "Algorithm AS 183:
+            An efficient and portable pseudo-random number generator". Applied Statistics 31 (1982) 188-190
             </remarks>
         </member>
         <member name="M:MathNet.Numerics.Random.WH1982.#ctor">
@@ -39879,8 +40829,8 @@
             <returns>the error function evaluated at given value.</returns>
             <remarks>
                 <list type="bullet">
-                    <item>returns 1 if <c>x == Double.PositiveInfinity</c>.</item>
-                    <item>returns -1 if <c>x == Double.NegativeInfinity</c>.</item>
+                    <item>returns 1 if <c>x == double.PositiveInfinity</c>.</item>
+                    <item>returns -1 if <c>x == double.NegativeInfinity</c>.</item>
                 </list>
             </remarks>
         </member>
@@ -39890,20 +40840,20 @@
             <returns>the complementary error function evaluated at given value.</returns>
             <remarks>
                 <list type="bullet">
-                    <item>returns 0 if <c>x == Double.PositiveInfinity</c>.</item>
-                    <item>returns 2 if <c>x == Double.NegativeInfinity</c>.</item>
+                    <item>returns 0 if <c>x == double.PositiveInfinity</c>.</item>
+                    <item>returns 2 if <c>x == double.NegativeInfinity</c>.</item>
                 </list>
             </remarks>
         </member>
         <member name="M:MathNet.Numerics.SpecialFunctions.ErfInv(System.Double)">
             <summary>Calculates the inverse error function evaluated at z.</summary>
-             <returns>The inverse error function evaluated at given value.</returns>
-             <remarks>
-             	<list type="bullet">
-             		<item>returns Double.PositiveInfinity if <c>z &gt;= 1.0</c>.</item>
-             		<item>returns Double.NegativeInfinity if <c>z &lt;= -1.0</c>.</item>
-             	</list>
-             </remarks>
+            <returns>The inverse error function evaluated at given value.</returns>
+            <remarks>
+              <list type="bullet">
+                <item>returns double.PositiveInfinity if <c>z &gt;= 1.0</c>.</item>
+                <item>returns double.NegativeInfinity if <c>z &lt;= -1.0</c>.</item>
+              </list>
+            </remarks>
             <summary>Calculates the inverse error function evaluated at z.</summary>
             <param name="z">value to evaluate.</param>
             <returns>the inverse error function evaluated at Z.</returns>
@@ -39922,8 +40872,8 @@
             <remarks> We have tested this implementation against the arbitrary precision mpmath library
             and found cases where we can only guarantee 9 significant figures correct.
                 <list type="bullet">
-                    <item>returns Double.PositiveInfinity if <c>z &lt;= 0.0</c>.</item>
-                    <item>returns Double.NegativeInfinity if <c>z &gt;= 2.0</c>.</item>
+                    <item>returns double.PositiveInfinity if <c>z &lt;= 0.0</c>.</item>
+                    <item>returns double.NegativeInfinity if <c>z &gt;= 2.0</c>.</item>
                 </list>
             </remarks>
             <summary>calculates the complementary inverse error function evaluated at z.</summary>
@@ -40038,7 +40988,7 @@
         <member name="M:MathNet.Numerics.SpecialFunctions.GammaUpperIncomplete(System.Double,System.Double)">
             <summary>
             Returns the upper incomplete gamma function
-            Gamma(a,x) = 1/Gamma(a) * int(exp(-t)t^(a-1),t=0..x) for real a &gt; 0, x &gt; 0.
+            Gamma(a,x) = int(exp(-t)t^(a-1),t=0..x) for real a &gt; 0, x &gt; 0.
             </summary>
             <param name="a">The argument for the gamma function.</param>
             <param name="x">The lower integral limit.</param>
