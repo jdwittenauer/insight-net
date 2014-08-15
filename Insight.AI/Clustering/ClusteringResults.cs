@@ -36,14 +36,21 @@ namespace Insight.AI.Clustering
         public InsightVector ClusterAssignments { get; private set; }
 
         /// <summary>
+        /// Gets the total distortion (error) between each cluster centroid
+        /// and instances assigned to that cluster.
+        /// </summary>
+        public double Distortion { get; private set; }
+
+        /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="centroids">Matrix of the centroids for each cluster</param>
         /// <param name="assignments">Cluster assignments</param>
-        public ClusteringResults(InsightMatrix centroids, InsightVector assignments) 
+        public ClusteringResults(InsightMatrix centroids, InsightVector assignments, double distortion) 
         {
             Centroids = centroids;
             ClusterAssignments = assignments;
+            Distortion = distortion;
         }
     }
 }

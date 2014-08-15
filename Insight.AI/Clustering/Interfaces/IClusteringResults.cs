@@ -33,5 +33,11 @@ namespace Insight.AI.Clustering.Interfaces
         /// Gets a vector with the cluster assignments.
         /// </summary>
         InsightVector ClusterAssignments { get; }
+
+        /// <summary>
+        /// Gets the total distortion (error) between each cluster centroid
+        /// and instances assigned to that cluster.
+        /// </summary>
+        double Distortion { get; }
     }
 }

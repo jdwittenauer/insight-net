@@ -48,22 +48,10 @@ namespace Insight.AI.Clustering
         /// Cluster the data set into groups of similar instances.
         /// </summary>
         /// <param name="matrix">Input matrix</param>
-        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
+        /// <returns>Result set that includes cluster centroids, cluster assignments, and total distortion</returns>
         public IClusteringResults Cluster(InsightMatrix matrix)
         {
-            return PerformKMeansClustering(matrix, null, null, null);
-        }
-
-        /// <summary>
-        /// Cluster the data set into groups of similar instances.
-        /// </summary>
-        /// <param name="matrix">Input matrix</param>
-        /// <param name="comparisonMethod">Similarity measure used to compare instances</param>
-        /// <param name="clusters">Number of desired clusters</param>
-        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusteringResults Cluster(InsightMatrix matrix, SimilarityMethod comparisonMethod, int clusters)
-        {
-            return PerformKMeansClustering(matrix, comparisonMethod, null, clusters);
+            return PerformKMeansClustering(matrix, null, null);
         }
 
         /// <summary>
@@ -72,10 +60,24 @@ namespace Insight.AI.Clustering
         /// <param name="matrix">Input matrix</param>
         /// <param name="comparisonMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
-        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
+        /// <returns>Result set that includes cluster centroids, cluster assignments, and total distortion</returns>
         public IClusteringResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters)
         {
-            return PerformKMeansClustering(matrix, null, comparisonMethod, clusters);
+            return PerformKMeansClustering(matrix, comparisonMethod, clusters);
+        }
+
+        /// <summary>
+        /// Cluster the data set into groups of similar instances.
+        /// </summary>
+        /// <param name="matrix">Input matrix</param>
+        /// <param name="comparisonMethod">Distance measure used to compare instances</param>
+        /// <param name="clusters">Number of desired clusters</param>
+        /// <param name="iterations">Number of times to run the algorithm</param>
+        /// <returns>Result set that includes cluster centroids, cluster assignments, and total distortion</returns>
+        public IClusteringResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters, int iterations)
+        {
+            // The iterations parameter doesn't have an effect on the base K-means algorithm
+            return PerformKMeansClustering(matrix, comparisonMethod, clusters);
         }
 
         /// <summary>
@@ -85,23 +87,14 @@ namespace Insight.AI.Clustering
         /// <param name="similarityMethod">Similarity measure used to compare instances</param>
         /// <param name="distanceMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
-        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        private IClusteringResults PerformKMeansClustering(InsightMatrix matrix, SimilarityMethod? similarityMethod,
+        /// <returns>Result set that includes cluster centroids, cluster assignments, and total distortion</returns>
+        private IClusteringResults PerformKMeansClustering(InsightMatrix matrix, 
             DistanceMethod? distanceMethod, int? clusters)
         {
-            bool useSimilarity;
-            if (similarityMethod != null)
+            if (distanceMethod == null)
             {
-                useSimilarity = true;
-            }
-            else if (distanceMethod != null)
-            {
-                useSimilarity = false;
-            }
-            else
-            {
-                similarityMethod = SimilarityMethod.PearsonCorrelation;
-                useSimilarity = true;
+                // Default to sum of squared error (equivalent to Euclidean distance)
+                distanceMethod = DistanceMethod.EuclideanDistance;
             }
 
             if (clusters == null)
@@ -114,6 +107,7 @@ namespace Insight.AI.Clustering
             var assignments = new InsightVector(matrix.RowCount);
             var centroids = new InsightMatrix(clusters.Value, matrix.ColumnCount);
             var random = new Random();
+            double distortion = -1;
 
             // Initialize means via random selection
             for (int i = 0; i < clusters; i++)
@@ -134,6 +128,9 @@ namespace Insight.AI.Clustering
             // Keep going until convergence point is reached
             while (true)
             {
+                // Re-initialize the distortion (total error)
+                distortion = 0;
+
                 // Assign each point to the nearest mean
                 for (int i = 0; i < matrix.RowCount; i++)
                 {
@@ -141,24 +138,22 @@ namespace Insight.AI.Clustering
                     double closestProximity = -1;
                     for (int j = 0; j < clusters; j++)
                     {
-                        double proximity;
-                        if (useSimilarity)
-                            proximity = matrix.Row(i).SimilarityTo(centroids.Row(j), similarityMethod.Value);
-                        else
-                            proximity = matrix.Row(i).DistanceFrom(centroids.Row(j), distanceMethod.Value);
+                        double proximity = matrix.Row(i).DistanceFrom(centroids.Row(j), distanceMethod.Value);
 
                         if (j == 0)
                         {
                             closestProximity = proximity;
                             assignments[i] = j;
                         }
-                        else if ((useSimilarity && proximity > closestProximity) || 
-                            (!useSimilarity && proximity < closestProximity))
+                        else if (proximity < closestProximity)
                         {
                             closestProximity = proximity;
                             assignments[i] = j;
                         }
                     }
+
+                    // Add the proximity value to the total distortion for this solution
+                    distortion += closestProximity;
                 }
 
                 // Calculate the new means for each centroid
@@ -194,7 +189,7 @@ namespace Insight.AI.Clustering
                 if (converged) break;
             }
 
-            return new ClusteringResults(centroids, assignments);
+            return new ClusteringResults(centroids, assignments, distortion);
         }
     }
 }

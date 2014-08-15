@@ -26,41 +26,29 @@ using Insight.AI.Metrics;
 namespace Insight.AI.Clustering
 {
     /// <summary>
-    /// Class that encapsulates the agglomerative clustering algorithm.
+    /// Class that encapsulates the meta K-means clustering algorithm.
     /// </summary>
     /// <remarks>
-    /// The agglomerative clustering algorithm is a heirarchical "bottom up"
-    /// approach to clustering where each observation begins in its own cluster
-    /// and pairs of clusters are merged as one moves up the hierarchy.
+    /// This algorithm is a wrapper around the K-means clustering algorithm that aims
+    /// to solve the bad convergence problem by running K-means with random initialization
+    /// some set number of times and selecting the solution that produces the lowest
+    /// amount of distortion.
     /// </remarks>
-    /// <seealso cref="http://en.wikipedia.org/wiki/Hierarchical_clustering"/>
-    public sealed class AgglomerativeClustering : IClusteringMethod
+    public sealed class MetaKMeansClustering : IClusteringMethod
     {
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public AgglomerativeClustering() { }
+        public MetaKMeansClustering() { }
 
         /// <summary>
         /// Cluster the data set into groups of similar instances.
         /// </summary>
         /// <param name="matrix">Input matrix</param>
-        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
+        /// <returns>Result set that includes cluster centroids, cluster assignments, and total distortion</returns>
         public IClusteringResults Cluster(InsightMatrix matrix)
         {
-            return PerformAgglomerativeClustering(matrix, null, null, null);
-        }
-
-        /// <summary>
-        /// Cluster the data set into groups of similar instances.
-        /// </summary>
-        /// <param name="matrix">Input matrix</param>
-        /// <param name="comparisonMethod">Similarity measure used to compare instances</param>
-        /// <param name="clusters">Number of desired clusters</param>
-        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        public IClusteringResults Cluster(InsightMatrix matrix, SimilarityMethod comparisonMethod, int clusters)
-        {
-            return PerformAgglomerativeClustering(matrix, comparisonMethod, null, clusters);
+            return PerformMetaKMeansClustering(matrix, null, null, null);
         }
 
         /// <summary>
@@ -69,22 +57,35 @@ namespace Insight.AI.Clustering
         /// <param name="matrix">Input matrix</param>
         /// <param name="comparisonMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
-        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
+        /// <returns>Result set that includes cluster centroids, cluster assignments, and total distortion</returns>
         public IClusteringResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters)
         {
-            return PerformAgglomerativeClustering(matrix, null, comparisonMethod, clusters);
+            return PerformMetaKMeansClustering(matrix, comparisonMethod, clusters, null);
         }
 
         /// <summary>
-        /// Performs the agglomerative clustering algorithm on the data set using the provided parameters.
+        /// Cluster the data set into groups of similar instances.
+        /// </summary>
+        /// <param name="matrix">Input matrix</param>
+        /// <param name="comparisonMethod">Distance measure used to compare instances</param>
+        /// <param name="clusters">Number of desired clusters</param>
+        /// <param name="iterations">Number of times to run the algorithm</param>
+        /// <returns>Result set that includes cluster centroids, cluster assignments, and total distortion</returns>
+        public IClusteringResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters, int iterations)
+        {
+            return PerformMetaKMeansClustering(matrix, comparisonMethod, clusters, iterations);
+        }
+
+        /// <summary>
+        /// Performs the meta K-Means clustering algorithm on the data set using the provided parameters.
         /// </summary>
         /// <param name="matrix">Input matrix</param>
         /// <param name="similarityMethod">Similarity measure used to compare instances</param>
         /// <param name="distanceMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
-        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        private IClusteringResults PerformAgglomerativeClustering(InsightMatrix matrix, SimilarityMethod? similarityMethod,
-            DistanceMethod? distanceMethod, int? clusters)
+        /// <returns>Result set that includes cluster centroids, cluster assignments, and total distortion</returns>
+        private IClusteringResults PerformMetaKMeansClustering(InsightMatrix matrix, 
+            DistanceMethod? distanceMethod, int? clusters, int? iterations)
         {
             // TODO
             throw new NotImplementedException();

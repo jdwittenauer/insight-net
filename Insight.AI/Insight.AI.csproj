@@ -50,7 +50,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clustering\AgglomerativeClustering.cs" />
+    <Compile Include="Clustering\MetaKMeansClustering.cs" />
     <Compile Include="DataStructures\MatrixFactorization.cs" />
     <Compile Include="Prediction\DecisionTree.cs" />
     <Compile Include="Prediction\Interfaces\IClassifier.cs" />

@@ -29,17 +29,8 @@ namespace Insight.AI.Clustering.Interfaces
         /// Cluster the data set into groups of similar instances.
         /// </summary>
         /// <param name="matrix">Input matrix</param>
-        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
+        /// <returns>Result set that includes cluster centroids, cluster assignments, and total distortion</returns>
         IClusteringResults Cluster(InsightMatrix matrix);
-
-        /// <summary>
-        /// Cluster the data set into groups of similar instances.
-        /// </summary>
-        /// <param name="matrix">Input matrix</param>
-        /// <param name="comparisonMethod">Similarity measure used to compare instances</param>
-        /// <param name="clusters">Number of desired clusters</param>
-        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
-        IClusteringResults Cluster(InsightMatrix matrix, SimilarityMethod comparisonMethod, int clusters);
 
         /// <summary>
         /// Cluster the data set into groups of similar instances.
@@ -47,7 +38,17 @@ namespace Insight.AI.Clustering.Interfaces
         /// <param name="matrix">Input matrix</param>
         /// <param name="comparisonMethod">Distance measure used to compare instances</param>
         /// <param name="clusters">Number of desired clusters</param>
-        /// <returns>Result set that includes the clusters defined by the algorithm</returns>
+        /// <returns>Result set that includes cluster centroids, cluster assignments, and total distortion</returns>
         IClusteringResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters);
+
+        /// <summary>
+        /// Cluster the data set into groups of similar instances.
+        /// </summary>
+        /// <param name="matrix">Input matrix</param>
+        /// <param name="comparisonMethod">Distance measure used to compare instances</param>
+        /// <param name="clusters">Number of desired clusters</param>
+        /// <param name="iterations">Number of times to run the algorithm</param>
+        /// <returns>Result set that includes cluster centroids, cluster assignments, and total distortion</returns>
+        IClusteringResults Cluster(InsightMatrix matrix, DistanceMethod comparisonMethod, int clusters, int iterations);
     }
 }

@@ -192,6 +192,7 @@ namespace Insight.Samples
             Console.WriteLine(Environment.NewLine);
 
             var clusterResults = iris.Cluster(ClusteringMethod.KMeans);
+            Console.WriteLine("Distortion = {0}", clusterResults.Distortion);
             Console.WriteLine("Centroids:");
             Console.WriteLine(clusterResults.Centroids.ToString());
 

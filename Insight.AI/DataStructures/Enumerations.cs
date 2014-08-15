@@ -30,8 +30,8 @@ namespace Insight.AI.DataStructures
 
     public enum ClusteringMethod
     {
-        Agglomerative,
-        KMeans
+        KMeans,
+        MetaKMeans
     }
 
     public enum ExtractionMethod

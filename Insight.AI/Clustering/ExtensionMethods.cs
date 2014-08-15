@@ -38,30 +38,10 @@ namespace Insight.AI.Clustering
         {
             switch(clusteringMethod)
             {
-                case ClusteringMethod.Agglomerative:
-                    return new AgglomerativeClustering().Cluster(matrix);
-                default:
+                case ClusteringMethod.KMeans:
                     return new KMeansClustering().Cluster(matrix);
-            }
-        }
-
-        /// <summary>
-        /// Cluster the data set into groups of similar instances.
-        /// </summary>
-        /// <param name="matrix">Input matrix</param>
-        /// <param name="clusteringMethod">Algorithm to use for clustering</param>
-        /// <param name="comparisonMethod">Similarity measure used to compare instances</param>
-        /// <param name="clusters">Number of desired clusters</param>
-        /// <returns>Results of the cluster analysis</returns>
-        public static IClusteringResults Cluster(this InsightMatrix matrix, ClusteringMethod clusteringMethod, 
-            SimilarityMethod comparisonMethod, int clusters)
-        {
-            switch (clusteringMethod)
-            {
-                case ClusteringMethod.Agglomerative:
-                    return new AgglomerativeClustering().Cluster(matrix, comparisonMethod, clusters);
                 default:
-                    return new KMeansClustering().Cluster(matrix, comparisonMethod, clusters);
+                    return new MetaKMeansClustering().Cluster(matrix);
             }
         }
 
@@ -78,11 +58,26 @@ namespace Insight.AI.Clustering
         {
             switch (clusteringMethod)
             {
-                case ClusteringMethod.Agglomerative:
-                    return new AgglomerativeClustering().Cluster(matrix, comparisonMethod, clusters);
-                default:
+                case ClusteringMethod.KMeans:
                     return new KMeansClustering().Cluster(matrix, comparisonMethod, clusters);
+                default:
+                    return new MetaKMeansClustering().Cluster(matrix, comparisonMethod, clusters);
             }
+        }
+
+        /// <summary>
+        /// Cluster the data set into groups of similar instances.
+        /// </summary>
+        /// <param name="matrix">Input matrix</param>
+        /// <param name="clusteringMethod">Algorithm to use for clustering</param>
+        /// <param name="distanceMethod">Distance measure used to compare instances</param>
+        /// <param name="clusters">Number of desired clusters</param>
+        /// <param name="iterations">Number of times to run the algorithm</param>
+        /// <returns>Results of the cluster analysis</returns>
+        public static IClusteringResults Cluster(this InsightMatrix matrix, ClusteringMethod clusteringMethod,
+            DistanceMethod comparisonMethod, int clusters, int iterations)
+        {
+            return new MetaKMeansClustering().Cluster(matrix, comparisonMethod, clusters, iterations);
         }
     }
 }
