@@ -87,8 +87,39 @@ namespace Insight.AI.Clustering
         private IClusteringResults PerformMetaKMeansClustering(InsightMatrix matrix, 
             DistanceMethod? distanceMethod, int? clusters, int? iterations)
         {
-            // TODO
-            throw new NotImplementedException();
+            if (distanceMethod == null)
+            {
+                // Default to sum of squared error (equivalent to Euclidean distance)
+                distanceMethod = DistanceMethod.EuclideanDistance;
+            }
+
+            if (clusters == null)
+            {
+                // Need to add some type of intelligent way to figure out a good number
+                // of clusters to use based on an analysis of the data
+                clusters = 3;
+            }
+
+            if (iterations == null)
+            {
+                // Default to 10 iterations
+                iterations = 10;
+            }
+
+            // Use the first iteration to initialize the results
+            var bestResults = new KMeansClustering().Cluster(matrix, distanceMethod.Value, clusters.Value);
+
+            for (int i = 1; i < iterations; i++)
+            {
+                var results = new KMeansClustering().Cluster(matrix, distanceMethod.Value, clusters.Value);
+
+                if (results.Distortion < bestResults.Distortion)
+                {
+                    bestResults = results;
+                }
+            }
+
+            return bestResults;
         }
     }
 }

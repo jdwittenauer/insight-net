@@ -192,11 +192,18 @@ namespace Insight.Samples
             Console.WriteLine(Environment.NewLine);
 
             var clusterResults = iris.Cluster(ClusteringMethod.KMeans);
+            Console.WriteLine("K-Means");
             Console.WriteLine("Distortion = {0}", clusterResults.Distortion);
             Console.WriteLine("Centroids:");
             Console.WriteLine(clusterResults.Centroids.ToString());
 
             Console.ReadKey();
+
+            var clusterResults2 = iris.Cluster(ClusteringMethod.KMeans, DistanceMethod.EuclideanDistance, 3, 10);
+            Console.WriteLine("K-Means (best of 10)");
+            Console.WriteLine("Distortion = {0}", clusterResults.Distortion);
+            Console.WriteLine("Centroids:");
+            Console.WriteLine(clusterResults.Centroids.ToString());
         }
     }
 }
