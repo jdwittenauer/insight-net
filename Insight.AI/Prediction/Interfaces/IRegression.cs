@@ -29,7 +29,7 @@ namespace Insight.AI.Prediction.Interfaces
         void Train(InsightMatrix data);
 
         /// <summary>
-        /// Predicts a new instance of the data using the regression algorithm's trained model.
+        /// Predicts the target for a new instance of the data using the algorithm's trained model.
         /// </summary>
         /// <param name="instance">New instance</param>
         /// <returns>Prediction</returns>
