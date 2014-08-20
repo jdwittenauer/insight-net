@@ -89,7 +89,17 @@ namespace Insight.AI.Prediction
         /// <returns>Prediction</returns>
         public double Predict(InsightVector instance)
         {
-            throw new NotImplementedException();
+            return (instance.ToRowMatrix() * Theta.ToColumnMatrix())[0, 0];
+        }
+
+        /// <summary>
+        /// Predicts the target for a new batch of instances of the data using the algorithm's trained model.
+        /// </summary>
+        /// <param name="instances">New instances</param>
+        /// <returns>Predictions</returns>
+        public List<double> Predict(InsightMatrix instances)
+        {
+            return (instances * Theta.ToColumnMatrix()).Column(0).ToList();
         }
 
         /// <summary>
@@ -101,6 +111,9 @@ namespace Insight.AI.Prediction
         /// <returns>Tuple containing the parameter and error vectors</returns>
         private Tuple<InsightVector, InsightVector> PerformLinearRegression(InsightMatrix data, double alpha, int iters)
         {
+            // First add a ones column for the intercept term
+            data = data.InsertColumn(0, 1);
+
             throw new NotImplementedException();
         }
 
@@ -112,6 +125,9 @@ namespace Insight.AI.Prediction
         /// <returns>Solution error</returns>
         private double ComputeError(InsightMatrix data, InsightVector theta)
         {
+            var X = data.RemoveColumn(data.Label);
+            var y = data.Column(data.Label);
+
             throw new NotImplementedException();
         }
     }

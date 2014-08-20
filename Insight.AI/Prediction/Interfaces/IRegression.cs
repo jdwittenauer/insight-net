@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with Insight.NET.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Collections.Generic;
 using Insight.AI.DataStructures;
 
 namespace Insight.AI.Prediction.Interfaces
@@ -34,5 +35,12 @@ namespace Insight.AI.Prediction.Interfaces
         /// <param name="instance">New instance</param>
         /// <returns>Prediction</returns>
         double Predict(InsightVector instance);
+
+        /// <summary>
+        /// Predicts the target for a new batch of instances of the data using the algorithm's trained model.
+        /// </summary>
+        /// <param name="instances">New instances</param>
+        /// <returns>Predictions</returns>
+        List<double> Predict(InsightMatrix instances);
     }
 }

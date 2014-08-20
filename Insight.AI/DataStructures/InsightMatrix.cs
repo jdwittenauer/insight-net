@@ -118,13 +118,45 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
+        /// Copies the provided value into each row of the specified column.
+        /// </summary>
+        /// <param name="index">Column index</param>
+        /// <param name="value">Column value</param>
+        public void SetColumn(int index, double value)
+        {
+            var vector = new InsightVector(this.RowCount);
+            for (int i = 0; i < vector.Count; i++)
+            {
+                vector[i] = value;
+            }
+
+            this.Data.SetColumn(index, vector.Data);
+        }
+
+        /// <summary>
         /// Copies the values of the given vector to the specified column.
         /// </summary>
-        /// <param name="columnIndex"><Column index/param>
+        /// <param name="index">Column index</param>
         /// <param name="vector">Column vector</param>
         public void SetColumn(int index, InsightVector vector)
         {
             this.Data.SetColumn(index, vector.Data);
+        }
+
+        /// <summary>
+        /// Copies the provided value into each column of the specified row.
+        /// </summary>
+        /// <param name="index">Row index</param>
+        /// <param name="value">Row value</param>
+        public void SetRow(int index, double value)
+        {
+            var vector = new InsightVector(this.ColumnCount);
+            for (int i = 0; i < vector.Count; i++)
+            {
+                vector[i] = value;
+            }
+
+            this.Data.SetRow(index, vector.Data);
         }
 
         /// <summary>
@@ -158,6 +190,23 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
+        /// Creates a new matrix with the provided value inserted as a column at the given index.
+        /// </summary>
+        /// <param name="index">Column index</param>
+        /// <param name="value">Column value</param>
+        /// <returns>Result matrix</returns>
+        public InsightMatrix InsertColumn(int index, double value)
+        {
+            var vector = new InsightVector(this.RowCount);
+            for (int i = 0; i < vector.Count; i++)
+            {
+                vector[i] = value;
+            }
+
+            return new InsightMatrix(this.Data.InsertColumn(index, vector.Data));
+        }
+
+        /// <summary>
         /// Creates a new matrix with the provided column inserted at the given index.
         /// </summary>
         /// <param name="index">Column index</param>
@@ -169,6 +218,23 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
+        /// Creates a new matrix with the provided value inserted as a row at the given index.
+        /// </summary>
+        /// <param name="index">Row index</param>
+        /// <param name="value">Row value</param>
+        /// <returns>Result matrix</returns>
+        public InsightMatrix InsertRow(int index, double value)
+        {
+            var vector = new InsightVector(this.ColumnCount);
+            for (int i = 0; i < vector.Count; i++)
+            {
+                vector[i] = value;
+            }
+
+            return new InsightMatrix(this.Data.InsertRow(index, vector.Data));
+        }
+
+        /// <summary>
         /// Creates a new matrix with the provided row inserted at the given index.
         /// </summary>
         /// <param name="index">Row index</param>
@@ -177,6 +243,26 @@ namespace Insight.AI.DataStructures
         public InsightMatrix InsertRow(int index, InsightVector vector)
         {
             return new InsightMatrix(this.Data.InsertRow(index, vector.Data));
+        }
+
+        /// <summary>
+        /// Creates a new matrix with the specified column removed.
+        /// </summary>
+        /// <param name="index">Column index</param>
+        /// <returns>Result matrix</returns>
+        public InsightMatrix RemoveColumn(int index)
+        {
+            return new InsightMatrix(this.Data.RemoveColumn(index));
+        }
+
+        /// <summary>
+        /// Creates a new matrix with the specified row removed.
+        /// </summary>
+        /// <param name="index">Row index</param>
+        /// <returns>Result matrix</returns>
+        public InsightMatrix RemoveRow(int index)
+        {
+            return new InsightMatrix(this.Data.RemoveRow(index));
         }
 
         /// <summary>
