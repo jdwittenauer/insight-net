@@ -114,21 +114,44 @@ namespace Insight.AI.Prediction
             // First add a ones column for the intercept term
             data = data.InsertColumn(0, 1);
 
-            throw new NotImplementedException();
+            // Split the data into training data and the target variable
+            var X = data.RemoveColumn(data.Label);
+            var y = data.Column(data.Label);
+
+            // Initialize several variables needed for the computation
+            var theta = new InsightVector(X.ColumnCount);
+            var temp = new InsightVector(X.ColumnCount);
+            var error = new InsightVector(iters);
+
+            // Perform gradient descent on the parameters theta
+            for (int i = 0; i < iters; i++)
+            {
+                var delta = (X * theta.ToColumnMatrix()) - y.ToColumnMatrix();
+
+                for (int j = 0; j < theta.Count; j++)
+                {
+                    var inner = delta.Multiply(X.SubMatrix(0, X.RowCount, j, 1));
+                    temp[j] = theta[j] - ((alpha / X.RowCount) * inner.Column(0).Sum());
+                }
+
+                theta = temp.Clone();
+                error[i] = ComputeError(X, y, theta);
+            }
+
+            return new Tuple<InsightVector, InsightVector>(theta, error);
         }
 
         /// <summary>
         /// Computes the total error of the solution with parameters theta.
         /// </summary>
-        /// <param name="data">Training data</param>
+        /// <param name="X">Training data</param>
+        /// <param name="y">Target variable</param>
         /// <param name="theta">Model parameters</param>
         /// <returns>Solution error</returns>
-        private double ComputeError(InsightMatrix data, InsightVector theta)
+        private double ComputeError(InsightMatrix X, InsightVector y, InsightVector theta)
         {
-            var X = data.RemoveColumn(data.Label);
-            var y = data.Column(data.Label);
-
-            throw new NotImplementedException();
+            var inner = ((X * theta.ToColumnMatrix()) - y.ToColumnMatrix()).Power(2);
+            return inner.Column(0).Sum() / (2 * X.RowCount);
         }
     }
 }

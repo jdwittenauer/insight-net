@@ -49,6 +49,22 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
+        /// Create a new vector with the given length.  Cells will be initalized
+        /// to the provided initial value.
+        /// </summary>
+        /// <param name="length">Vector length</param>
+        /// <param name="value">Initial value</param>
+        public InsightVector(int length, int value)
+        {
+            Data = new DenseVector(length);
+
+            for (int i = 0; i < Data.Count; i++)
+            {
+                Data[i] = value;
+            }
+        }
+
+        /// <summary>
         /// Create a new vector that directly binds to the raw array passed in.
         /// </summary>
         /// <param name="storage">Raw data array</param>
@@ -154,6 +170,45 @@ namespace Insight.AI.DataStructures
         public int MaxIndex()
         {
             return this.Data.MaximumIndex();
+        }
+
+        /// <summary>
+        /// Returns a deep copy clone of the vector.
+        /// </summary>
+        /// <returns></returns>
+        public InsightVector Clone()
+        {
+            return new InsightVector(this.Data.Clone());
+        }
+
+        /// <summary>
+        /// Element-wise multiplies two vectors together.
+        /// </summary>
+        /// <param name="vector">2nd vector</param>
+        /// <returns>Result vector</returns>
+        public InsightVector Multiply(InsightVector vector)
+        {
+            return new InsightVector(this.Data.PointwiseMultiply(vector.Data));
+        }
+
+        /// <summary>
+        /// Element-wise divides the original vector by the provided vector.
+        /// </summary>
+        /// <param name="vector">2nd vector</param>
+        /// <returns>Result vector</returns>
+        public InsightVector Divide(InsightVector vector)
+        {
+            return new InsightVector(this.Data.PointwiseDivide(vector.Data));
+        }
+
+        /// <summary>
+        /// Element-wise raises the vector to the given exponent.
+        /// </summary>
+        /// <param name="exponent">Exponent</param>
+        /// <returns>Result vector</returns>
+        public InsightVector Power(int exponent)
+        {
+            return new InsightVector(this.Data.PointwisePower(exponent));
         }
 
         /// <summary>

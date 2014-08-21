@@ -190,6 +190,15 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
+        /// Returns a deep copy clone of the matrix.
+        /// </summary>
+        /// <returns></returns>
+        public InsightMatrix Clone()
+        {
+            return new InsightMatrix(this.Data.Clone());
+        }
+
+        /// <summary>
         /// Creates a new matrix with the provided value inserted as a column at the given index.
         /// </summary>
         /// <param name="index">Column index</param>
@@ -314,6 +323,36 @@ namespace Insight.AI.DataStructures
         public InsightMatrix SubMatrix(int rowIndex, int rowCount, int columnIndex, int columnCount)
         {
             return new InsightMatrix(this.Data.SubMatrix(rowIndex, rowCount, columnIndex, columnCount));
+        }
+
+        /// <summary>
+        /// Element-wise multiplies two matrices together.
+        /// </summary>
+        /// <param name="matrix">2nd matrix</param>
+        /// <returns>Result matrix</returns>
+        public InsightMatrix Multiply(InsightMatrix matrix)
+        {
+            return new InsightMatrix(this.Data.PointwiseMultiply(matrix.Data));
+        }
+
+        /// <summary>
+        /// Element-wise divides the original matrix by the provided matrix.
+        /// </summary>
+        /// <param name="matrix">2nd matrix</param>
+        /// <returns>Result matrix</returns>
+        public InsightMatrix Divide(InsightMatrix matrix)
+        {
+            return new InsightMatrix(this.Data.PointwiseDivide(matrix.Data));
+        }
+
+        /// <summary>
+        /// Element-wise raises the matrix to the given exponent.
+        /// </summary>
+        /// <param name="exponent">Exponent</param>
+        /// <returns>Result matrix</returns>
+        public InsightMatrix Power(int exponent)
+        {
+            return new InsightMatrix(this.Data.PointwisePower(exponent));
         }
 
         /// <summary>
