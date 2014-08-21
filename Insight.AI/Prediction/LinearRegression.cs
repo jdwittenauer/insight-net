@@ -89,7 +89,7 @@ namespace Insight.AI.Prediction
         /// <returns>Prediction</returns>
         public double Predict(InsightVector instance)
         {
-            return (instance.ToRowMatrix() * Theta.ToColumnMatrix())[0, 0];
+            return Predict(instance.ToRowMatrix())[0];
         }
 
         /// <summary>
@@ -99,6 +99,7 @@ namespace Insight.AI.Prediction
         /// <returns>Predictions</returns>
         public List<double> Predict(InsightMatrix instances)
         {
+            instances = instances.InsertColumn(0, 1);
             return (instances * Theta.ToColumnMatrix()).Column(0).ToList();
         }
 
