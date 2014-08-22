@@ -1,0 +1,1 @@
+Data sets in this directory are sample data sets used in the exercises for Andrew Ng's machine learning class on Coursera (https://www.coursera.org/course/ml).
