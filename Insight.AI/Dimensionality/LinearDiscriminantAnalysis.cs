@@ -88,28 +88,26 @@ namespace Insight.AI.Dimensionality
         /// <returns>Transformed matrix with reduced number of dimensions</returns>
         private InsightMatrix PerformLDA(InsightMatrix matrix, int? featureLimit, double? percentThreshold)
         {
-            // Calculate the mean vector for the entire data set (skipping the first
-            // column which has the class designation)
-            int meanColumnCount = matrix.ColumnCount - 1;
-            InsightVector totalMean = new InsightVector(meanColumnCount);
-            for (int i = 0; i < meanColumnCount; i++)
+            // Calculate the mean vector for the entire data set (skipping the class column)
+            int columnCount = matrix.ColumnCount - 1;
+            InsightVector totalMean = new InsightVector(columnCount);
+            for (int i = 0; i < columnCount; i++)
             {
-                totalMean[i] = matrix.Column(i + 1).Mean();
+                totalMean[i] = matrix.Column(i).Mean();
             }
 
             // Derive a sub-matrix for each class in the data set
-            List<InsightMatrix> classes = matrix.Decompose(matrix.Label);
+            List<InsightMatrix> classes = matrix.Decompose(columnCount);
 
             // Calculate the mean and covariance matrix for each class
             var meanVectors = new List<KeyValuePair<int, InsightVector>>();
             var covariances = new List<InsightMatrix>();
             foreach (var classMatrix in classes)
             {
-                // Skip the first column in the class vector which has the class designation
-                InsightVector means = new InsightVector(meanColumnCount);
-                for (int i = 0; i < meanColumnCount; i++)
+                InsightVector means = new InsightVector(columnCount);
+                for (int i = 0; i < columnCount; i++)
                 {
-                    means[i] = classMatrix.Column(i + 1).Mean();
+                    means[i] = classMatrix.Column(i).Mean();
                 }
 
                 // Using a dictionary to keep the number of samples in the class in 
@@ -117,7 +115,7 @@ namespace Insight.AI.Dimensionality
                 meanVectors.Add(new KeyValuePair<int, InsightVector>(classMatrix.RowCount, means));
 
                 // Drop the class column then compute the covariance matrix for this class
-                InsightMatrix covariance = classMatrix.SubMatrix(0, classMatrix.RowCount, 1, classMatrix.ColumnCount - 1);
+                InsightMatrix covariance = classMatrix.SubMatrix(0, classMatrix.RowCount, 0, classMatrix.ColumnCount - 1);
                 covariance = covariance.Center().CovarianceMatrix(true);
                 covariances.Add(covariance);
             }

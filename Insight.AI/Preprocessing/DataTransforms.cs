@@ -25,15 +25,6 @@ namespace Insight.AI.Preprocessing
 {
     public static class DataTransforms
     {
-        /// <summary>
-        /// Add a column of integer-based zero-indexed row identifiers to a data set.
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <returns></returns>
-        public static InsightMatrix AddIdentityColumn(InsightMatrix matrix)
-        {
-            // TODO
-            throw new NotImplementedException();
-        }
+        // TODO
     }
 }

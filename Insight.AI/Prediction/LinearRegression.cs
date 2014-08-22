@@ -116,8 +116,8 @@ namespace Insight.AI.Prediction
             data = data.InsertColumn(0, 1);
 
             // Split the data into training data and the target variable
-            var X = data.RemoveColumn(data.Label);
-            var y = data.Column(data.Label);
+            var X = data.RemoveColumn(data.ColumnCount - 1);
+            var y = data.Column(data.ColumnCount - 1);
 
             // Initialize several variables needed for the computation
             var theta = new InsightVector(X.ColumnCount);

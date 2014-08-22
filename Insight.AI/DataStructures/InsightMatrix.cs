@@ -40,12 +40,6 @@ namespace Insight.AI.DataStructures
         public int RowCount { get { return Data.RowCount; } }
 
         /// <summary>
-        /// Indicates which column in the data set contains the class label or predicted
-        /// value.  Used for supervised learning tasks.
-        /// </summary>
-        public int Label { get; set; }
-
-        /// <summary>
         /// Math.NET matrix implementation.  Used for all matrix calculations.
         /// </summary>
         public Matrix Data { get; private set; }
@@ -361,20 +355,21 @@ namespace Insight.AI.DataStructures
         /// <returns>Column-centered matrix</returns>
         public InsightMatrix Center()
         {
-            int colLength = this.Data.ColumnCount;
+            var matrix = new InsightMatrix(this.Data);
+            int colLength = matrix.Data.ColumnCount;
 
             for (int i = 0; i < colLength; i++)
             {
-                int length = this.Data.RowCount;
-                double mean = this.Data.Column(i).Mean();
+                int length = matrix.Data.RowCount;
+                double mean = matrix.Data.Column(i).Mean();
 
                 for (int j = 0; j < length; j++)
                 {
-                    this.Data[j, i] = this.Data[j, i] - mean;
+                    this.Data[j, i] = matrix.Data[j, i] - mean;
                 }
             }
 
-            return this;
+            return matrix;
         }
 
         /// <summary>
@@ -384,19 +379,20 @@ namespace Insight.AI.DataStructures
         /// <returns>Column-centered matrix</returns>
         public InsightMatrix Center(InsightVector meanVector)
         {
-            int colLength = this.Data.ColumnCount;
+            var matrix = new InsightMatrix(this.Data);
+            int colLength = matrix.Data.ColumnCount;
 
             for (int i = 0; i < colLength; i++)
             {
-                int length = this.Data.RowCount;
+                int length = matrix.Data.RowCount;
 
                 for (int j = 0; j < length; j++)
                 {
-                    this.Data[j, i] = this.Data[j, i] - meanVector.Data[i];
+                    matrix.Data[j, i] = matrix.Data[j, i] - meanVector.Data[i];
                 }
             }
 
-            return this;
+            return matrix;
         }
 
         /// <summary>
@@ -407,27 +403,28 @@ namespace Insight.AI.DataStructures
         /// <returns>Column-scaled matrix</returns>
         public InsightMatrix Scale()
         {
-            int colLength = this.Data.ColumnCount;
+            var matrix = new InsightMatrix(this.Data);
+            int colLength = matrix.Data.ColumnCount;
 
             for (int i = 0; i < colLength; i++)
             {
-                int length = this.Data.RowCount;
+                int length = matrix.Data.RowCount;
                 double ss = 0;
 
                 for (int j = 0; j < length; j++)
                 {
-                    ss += this.Data[j, i] * this.Data[j, i];
+                    ss += matrix.Data[j, i] * matrix.Data[j, i];
                 }
 
                 double ss2 = Math.Sqrt(ss);
 
                 for (int j = 0; j < length; j++)
                 {
-                    this.Data[j, i] = this.Data[j, i] / ss2;
+                    matrix.Data[j, i] = matrix.Data[j, i] / ss2;
                 }
             }
 
-            return this;
+            return matrix;
         }
 
         /// <summary>
@@ -536,11 +533,13 @@ namespace Insight.AI.DataStructures
         /// <returns>Row-sorted matrix</returns>
         public InsightMatrix Sort(int columnIndex)
         {
-            var sortKeys = Enumerable.Range(0, this.Data.RowCount)
+            var matrix = new InsightMatrix(this.Data);
+
+            var sortKeys = Enumerable.Range(0, matrix.Data.RowCount)
                 .Select(x => new
                 {
                     Index = x,
-                    Value = this.Data[x, columnIndex]
+                    Value = matrix.Data[x, columnIndex]
                 })
                 .OrderBy(x => x.Value)
                 .ToList();
@@ -558,23 +557,23 @@ namespace Insight.AI.DataStructures
                 .Select(x => x.OldIndex)
                 .ToList();
 
-            for (int i = 0; i < this.Data.RowCount; i++)
+            for (int i = 0; i < matrix.Data.RowCount; i++)
             {
                 // Save the row at the current index
-                InsightVector temp = new InsightVector(this.Data.Row(i));
+                InsightVector temp = new InsightVector(matrix.Data.Row(i));
 
                 // Copy the row from the new index to the current index
-                this.Data.SetRow(i, this.Data.Row(sortKeys3[i]));
+                matrix.Data.SetRow(i, matrix.Data.Row(sortKeys3[i]));
 
                 // Copy the saved row to the new index
-                this.Data.SetRow(sortKeys3[i], temp.Data);
+                matrix.Data.SetRow(sortKeys3[i], temp.Data);
 
                 // Update the index to show row at position i is now at sortkeys[i]
                 int position = sortKeys3.IndexOf(i, i);
                 sortKeys3[position] = sortKeys3[i];
             }
 
-            return this;
+            return matrix;
         }
 
         /// <summary>
