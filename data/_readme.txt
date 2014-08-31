@@ -1,1 +1,1 @@
-All data sets were copied from the UCI Machine Learning Repository at https://archive.ics.uci.edu/ml/index.html.
+Data sets were copied from the UCI Machine Learning Repository at https://archive.ics.uci.edu/ml/index.html.  Files labeled ex1* and ex2* come from exercises for Andrew Ng's machine learning class on Coursera (https://www.coursera.org/course/ml).
