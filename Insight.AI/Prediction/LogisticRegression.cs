@@ -19,11 +19,84 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Insight.AI.DataStructures;
+using Insight.AI.Prediction.Interfaces;
 
 namespace Insight.AI.Prediction
 {
-    public class LogisticRegression
+    /// <summary>
+    /// Class that encapsulates the logistic regression algorithm.
+    /// </summary>
+    /// <remarks>
+    /// Logistic regression is a type of probablistic statistical classification model.
+    /// </remarks>
+    /// <seealso cref="http://en.wikipedia.org/wiki/Logistic_regression"/>
+    public sealed class LogisticRegression : IClassifier
     {
-        // TODO
+        /// <summary>
+        /// The learning rate for the algorithm.
+        /// </summary>
+        public double Alpha { get; set; }
+
+        /// <summary>
+        /// Regularization term for the algorithm.  Defaults to zero (no regularization).
+        /// </summary>
+        public double Lambda { get; set; }
+
+        /// <summary>
+        /// The number of training iterations to run.
+        /// </summary>
+        public int Iterations { get; set; }
+
+        /// <summary>
+        /// The parameter vector for the algorithm.
+        /// </summary>
+        public InsightVector Theta { get; private set; }
+
+        /// <summary>
+        /// A vector of the total error at each training iteration.
+        /// </summary>
+        public InsightVector Error { get; private set; }
+
+                /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public LogisticRegression() 
+        {
+            // Default to reasonable starting values
+            Alpha = 0.01;
+            Lambda = 0;
+            Iterations = 1000;
+        }
+
+        /// <summary>
+        /// Trains the model using the supplied data.  Uses the default training
+        /// parameters for the model.
+        /// </summary>
+        /// <param name="data">Training data</param>
+        public void Train(InsightMatrix data)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Classifies a new instance of the data using the algorithm's trained model.
+        /// </summary>
+        /// <param name="instance">New instance</param>
+        /// <returns>Classification</returns>
+        public int Classify(InsightVector instance)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Classifies a new batch of instances of the data using the algorithm's trained model.
+        /// </summary>
+        /// <param name="instances">New instances</param>
+        /// <returns>Classifications</returns>
+        public List<int> Classify(InsightMatrix instances)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

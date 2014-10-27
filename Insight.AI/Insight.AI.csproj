@@ -55,10 +55,8 @@
     <Compile Include="Prediction\DecisionTree.cs" />
     <Compile Include="Prediction\Interfaces\IClassifier.cs" />
     <Compile Include="Prediction\KNearestNeighbor.cs" />
-    <Compile Include="Prediction\RidgeRegression.cs" />
     <Compile Include="Prediction\NaiveBayes.cs" />
     <Compile Include="Prediction\NeuralNetwork.cs" />
-    <Compile Include="Prediction\StochasticGradientDescent.cs" />
     <Compile Include="Prediction\SupportVectorMachine.cs" />
     <Compile Include="Clustering\ClusteringResults.cs" />
     <Compile Include="DataStructures\Enumerations.cs" />

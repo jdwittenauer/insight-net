@@ -24,12 +24,32 @@ using Insight.AI.Prediction.Interfaces;
 
 namespace Insight.AI.Prediction
 {
-    public class LinearRegression : IRegression
+    /// <summary>
+    /// Class that encapsulates the linear regression algorithm.
+    /// </summary>
+    /// <remarks>
+    /// Linear regression is an approach to modeling the relationship between a scalar
+    /// dependent variable (what you want to predict) and one or more independent 
+    /// variables (features).  Linear regression works by minimizing the L2 loss function,
+    /// or the squared error, between the target and the estimated value predicted by the
+    /// model.
+    /// 
+    /// There are multiple training algorithms that can be used to build a linear regression
+    /// model.  This implementation uses batch gradient descent to learn the model parameters.
+    /// A regularization term can optionally be included to encourage smaller parameter values.
+    /// </remarks>
+    /// <seealso cref="http://en.wikipedia.org/wiki/Linear_regression"/>
+    public sealed class LinearRegression : IRegression
     {
         /// <summary>
         /// The learning rate for the algorithm.
         /// </summary>
         public double Alpha { get; set; }
+
+        /// <summary>
+        /// Regularization term for the algorithm.  Defaults to zero (no regularization).
+        /// </summary>
+        public double Lambda { get; set; }
 
         /// <summary>
         /// The number of training iterations to run.
@@ -53,6 +73,7 @@ namespace Insight.AI.Prediction
         {
             // Default to reasonable starting values
             Alpha = 0.01;
+            Lambda = 0;
             Iterations = 1000;
         }
 
@@ -63,7 +84,7 @@ namespace Insight.AI.Prediction
         /// <param name="data">Training data</param>
         public void Train(InsightMatrix data)
         {
-            var results = PerformLinearRegression(data, Alpha, Iterations);
+            var results = PerformLinearRegression(data, Alpha, Lambda, Iterations);
             Theta = results.Item1;
             Error = results.Item2;
         }
@@ -110,7 +131,8 @@ namespace Insight.AI.Prediction
         /// <param name="alpha">The learning rate for the algorithm</param>
         /// <param name="iters">The number of training iterations to run</param>
         /// <returns>Tuple containing the parameter and error vectors</returns>
-        private Tuple<InsightVector, InsightVector> PerformLinearRegression(InsightMatrix data, double alpha, int iters)
+        private Tuple<InsightVector, InsightVector> PerformLinearRegression(InsightMatrix data, double alpha,
+            double lambda, int iters)
         {
             // First add a ones column for the intercept term
             data = data.InsertColumn(0, 1);
@@ -132,11 +154,20 @@ namespace Insight.AI.Prediction
                 for (int j = 0; j < theta.Count; j++)
                 {
                     var inner = delta.Multiply(X.SubMatrix(0, X.RowCount, j, 1));
-                    temp[j] = theta[j] - ((alpha / X.RowCount) * inner.Column(0).Sum());
+
+                    if (j == 0)
+                    {
+                        temp[j] = theta[j] - ((alpha / X.RowCount) * inner.Column(0).Sum());
+                    }
+                    else
+                    {
+                        var reg = 0; // TODO
+                        temp[j] = theta[j] - ((alpha / X.RowCount) * inner.Column(0).Sum()) + reg;
+                    }
                 }
 
                 theta = temp.Clone();
-                error[i] = ComputeError(X, y, theta);
+                error[i] = ComputeError(X, y, theta, lambda);
             }
 
             return new Tuple<InsightVector, InsightVector>(theta, error);
@@ -149,10 +180,11 @@ namespace Insight.AI.Prediction
         /// <param name="y">Target variable</param>
         /// <param name="theta">Model parameters</param>
         /// <returns>Solution error</returns>
-        private double ComputeError(InsightMatrix X, InsightVector y, InsightVector theta)
+        private double ComputeError(InsightMatrix X, InsightVector y, InsightVector theta, double lambda)
         {
             var inner = ((X * theta.ToColumnMatrix()) - y.ToColumnMatrix()).Power(2);
-            return inner.Column(0).Sum() / (2 * X.RowCount);
+            var reg = 0; // TODO
+            return (inner.Column(0).Sum() / (2 * X.RowCount)) + reg;
         }
     }
 }

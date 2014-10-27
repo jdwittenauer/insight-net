@@ -20,6 +20,9 @@ using Insight.AI.DataStructures;
 
 namespace Insight.AI.Prediction.Interfaces
 {
+    /// <summary>
+    /// Interface for a regression model.
+    /// </summary>
     public interface IRegression
     {
         /// <summary>
