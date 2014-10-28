@@ -212,6 +212,17 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
+        /// Returns a sub-vector of the original using the provided start index and count.
+        /// </summary>
+        /// <param name="index">Start index</param>
+        /// <param name="count">Number of elements</param>
+        /// <returns>Result vector</returns>
+        public InsightVector SubVector(int index, int count)
+        {
+            return new InsightVector(this.Data.SubVector(index, count));
+        }
+
+        /// <summary>
         /// Converts the vector to a column matrix.
         /// </summary>
         /// <returns>Column matrix</returns>

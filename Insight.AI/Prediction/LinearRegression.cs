@@ -94,10 +94,12 @@ namespace Insight.AI.Prediction
         /// </summary>
         /// <param name="data">Training data</param>
         /// <param name="alpha">The learning rate for the algorithm</param>
+        /// <param name="lambda">The regularization weight for the algorithm</param>
         /// <param name="iters">The number of training iterations to run</param>
-        public void Train(InsightMatrix data, double? alpha, int? iters)
+        public void Train(InsightMatrix data, double? alpha, double? lambda, int? iters)
         {
             if (alpha != null) Alpha = alpha.Value;
+            if (lambda != null) Lambda = lambda.Value;
             if (iters != null) Iterations = iters.Value;
 
             Train(data);
@@ -129,6 +131,7 @@ namespace Insight.AI.Prediction
         /// </summary>
         /// <param name="data">Training data</param>
         /// <param name="alpha">The learning rate for the algorithm</param>
+        /// <param name="lambda">The regularization weight for the algorithm</param>
         /// <param name="iters">The number of training iterations to run</param>
         /// <returns>Tuple containing the parameter and error vectors</returns>
         private Tuple<InsightVector, InsightVector> PerformLinearRegression(InsightMatrix data, double alpha,
@@ -161,7 +164,7 @@ namespace Insight.AI.Prediction
                     }
                     else
                     {
-                        var reg = 0; // TODO
+                        var reg = (2 * lambda) * theta[i];
                         temp[j] = theta[j] - ((alpha / X.RowCount) * inner.Column(0).Sum()) + reg;
                     }
                 }
@@ -179,11 +182,13 @@ namespace Insight.AI.Prediction
         /// <param name="X">Training data</param>
         /// <param name="y">Target variable</param>
         /// <param name="theta">Model parameters</param>
+        /// <param name="lambda">Regularization weight</param
         /// <returns>Solution error</returns>
         private double ComputeError(InsightMatrix X, InsightVector y, InsightVector theta, double lambda)
         {
             var inner = ((X * theta.ToColumnMatrix()) - y.ToColumnMatrix()).Power(2);
-            var reg = 0; // TODO
+            var thetaSub = theta.SubVector(1, theta.Count - 1);
+            var reg = lambda * thetaSub.Multiply(thetaSub).Sum();
             return (inner.Column(0).Sum() / (2 * X.RowCount)) + reg;
         }
     }

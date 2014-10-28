@@ -29,6 +29,12 @@ namespace Insight.AI.Prediction
     /// </summary>
     /// <remarks>
     /// Logistic regression is a type of probablistic statistical classification model.
+    /// The technique is similar to linear regression except that the loss function being
+    /// minimized is based on the sigmoid (logit) of the hypothesis.  This has the effect
+    /// of optimizing for the probability that an instance of the data belongs to one of
+    /// the possible classes.
+    /// 
+    /// Note that the current implementation can only handle binary classification.
     /// </remarks>
     /// <seealso cref="http://en.wikipedia.org/wiki/Logistic_regression"/>
     public sealed class LogisticRegression : IClassifier
@@ -58,7 +64,7 @@ namespace Insight.AI.Prediction
         /// </summary>
         public InsightVector Error { get; private set; }
 
-                /// <summary>
+        /// <summary>
         /// Default constructor.
         /// </summary>
         public LogisticRegression() 
@@ -76,7 +82,25 @@ namespace Insight.AI.Prediction
         /// <param name="data">Training data</param>
         public void Train(InsightMatrix data)
         {
-            throw new NotImplementedException();
+            var results = PerformLogisticRegression(data, Alpha, Lambda, Iterations);
+            Theta = results.Item1;
+            Error = results.Item2;
+        }
+
+        /// <summary>
+        /// Trains the model using the supplied data.
+        /// </summary>
+        /// <param name="data">Training data</param>
+        /// <param name="alpha">The learning rate for the algorithm</param>
+        /// <param name="lambda">The regularization weight for the algorithm</param>
+        /// <param name="iters">The number of training iterations to run</param>
+        public void Train(InsightMatrix data, double? alpha, double? lambda, int? iters)
+        {
+            if (alpha != null) Alpha = alpha.Value;
+            if (lambda != null) Lambda = lambda.Value;
+            if (iters != null) Iterations = iters.Value;
+
+            Train(data);
         }
 
         /// <summary>
@@ -86,7 +110,7 @@ namespace Insight.AI.Prediction
         /// <returns>Classification</returns>
         public int Classify(InsightVector instance)
         {
-            throw new NotImplementedException();
+            return Classify(instance.ToRowMatrix())[0];
         }
 
         /// <summary>
@@ -97,6 +121,43 @@ namespace Insight.AI.Prediction
         public List<int> Classify(InsightMatrix instances)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Performs logistic regression on the input data.
+        /// </summary>
+        /// <param name="data">Training data</param>
+        /// <param name="alpha">The learning rate for the algorithm</param>
+        /// <param name="lambda">The regularization weight for the algorithm</param>
+        /// <param name="iters">The number of training iterations to run</param>
+        /// <returns>Tuple containing the parameter and error vectors</returns>
+        private Tuple<InsightVector, InsightVector> PerformLogisticRegression(InsightMatrix data, double alpha,
+            double lambda, int iters)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Computes the total error of the solution with parameters theta.
+        /// </summary>
+        /// <param name="X">Training data</param>
+        /// <param name="y">Target variable</param>
+        /// <param name="theta">Model parameters</param>
+        /// <param name="lambda">Regularization weight</param
+        /// <returns>Solution error</returns>
+        private double ComputeError(InsightMatrix X, InsightVector y, InsightVector theta, double lambda)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns the sigmoid (logit) of the original value.
+        /// </summary>
+        /// <param name="value">Original valud</param>
+        /// <returns>Sigmoid value</returns>
+        private double Sigmoid(double value)
+        {
+            return 1 / (1 + Math.Exp(-value));
         }
     }
 }
