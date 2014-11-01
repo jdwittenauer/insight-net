@@ -214,19 +214,41 @@ namespace Insight.Samples
             Console.WriteLine(Environment.NewLine);
 
             Console.WriteLine("Loading regression sample data...");
-            InsightMatrix data1 = DataLoader.ImportFromCSV("../../../data/ML/ex1data1.txt", ',', false, false);
+            InsightMatrix data1 = DataLoader.ImportFromCSV("../../../data/ex1data1.txt", ',', false, false);
 
             Console.WriteLine("Training model...");
-            var regression = new LinearRegression();
-            regression.Train(data1);
+            var model1 = new LinearRegression();
+            model1.Train(data1);
             Console.WriteLine("Model training complete.  Parameters:");
-            Console.WriteLine(regression.Theta.ToString());
-            Console.WriteLine(regression.Error.ToString());
+            Console.WriteLine(model1.Theta.ToString());
+            Console.WriteLine(model1.Error.ToString());
 
             Console.WriteLine("Predicting output for first data point...");
             data1 = data1.RemoveColumn(data1.ColumnCount - 1);
-            var prediction = regression.Predict(data1.Row(0));
+            var prediction = model1.Predict(data1.Row(0));
             Console.WriteLine("Prediction = {0}", prediction);
+
+            Console.ReadKey();
+
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Logistic Regression");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine(Environment.NewLine);
+
+            Console.WriteLine("Loading classification sample data...");
+            InsightMatrix data2 = DataLoader.ImportFromCSV("../../../data/ex2data1.txt", ',', false, false);
+
+            Console.WriteLine("Training model...");
+            var model2 = new LogisticRegression();
+            model2.Train(data2);
+            Console.WriteLine("Model training complete.  Parameters:");
+            Console.WriteLine(model2.Theta.ToString());
+            Console.WriteLine(model2.Error.ToString());
+
+            Console.WriteLine("Predicting output for first data point...");
+            data2 = data2.RemoveColumn(data2.ColumnCount - 1);
+            var classification = model2.Classify(data2.Row(0));
+            Console.WriteLine("Classification = {0}", classification);
 
             Console.ReadKey();
         }

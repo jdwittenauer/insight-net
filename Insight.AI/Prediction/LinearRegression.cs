@@ -164,7 +164,7 @@ namespace Insight.AI.Prediction
                     }
                     else
                     {
-                        var reg = (2 * lambda) * theta[i];
+                        var reg = (2 * lambda) * theta[j];
                         temp[j] = theta[j] - ((alpha / X.RowCount) * inner.Column(0).Sum()) + reg;
                     }
                 }

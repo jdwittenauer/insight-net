@@ -120,7 +120,9 @@ namespace Insight.AI.Prediction
         /// <returns>Classifications</returns>
         public List<int> Classify(InsightMatrix instances)
         {
-            throw new NotImplementedException();
+            instances = instances.InsertColumn(0, 1);
+            var probability = Sigmoid((instances * Theta.ToColumnMatrix()).Column(0));
+            return probability.Select(x => x >= 0.5 ? 1 : 0).ToList();
         }
 
         /// <summary>
@@ -134,7 +136,43 @@ namespace Insight.AI.Prediction
         private Tuple<InsightVector, InsightVector> PerformLogisticRegression(InsightMatrix data, double alpha,
             double lambda, int iters)
         {
-            throw new NotImplementedException();
+            // First add a ones column for the intercept term
+            data = data.InsertColumn(0, 1);
+
+            // Split the data into training data and the target variable
+            var X = data.RemoveColumn(data.ColumnCount - 1);
+            var y = data.Column(data.ColumnCount - 1);
+
+            // Initialize several variables needed for the computation
+            var theta = new InsightVector(X.ColumnCount);
+            var temp = new InsightVector(X.ColumnCount);
+            var error = new InsightVector(iters);
+
+            // Perform gradient descent on the parameters theta
+            for (int i = 0; i < iters; i++)
+            {
+                var delta = Sigmoid((X * theta.ToColumnMatrix()).Column(0)).ToColumnMatrix() - y.ToColumnMatrix();
+
+                for (int j = 0; j < theta.Count; j++)
+                {
+                    var inner = delta.Multiply(X.SubMatrix(0, X.RowCount, j, 1));
+
+                    if (j == 0)
+                    {
+                        temp[j] = theta[j] - ((alpha / X.RowCount) * inner.Column(0).Sum());
+                    }
+                    else
+                    {
+                        var reg = (lambda / X.RowCount) * theta[j];
+                        temp[j] = theta[j] - ((alpha / X.RowCount) * inner.Column(0).Sum()) + reg;
+                    }
+                }
+
+                theta = temp.Clone();
+                error[i] = ComputeError(X, y, theta, lambda);
+            }
+
+            return new Tuple<InsightVector, InsightVector>(theta, error);
         }
 
         /// <summary>
@@ -147,17 +185,31 @@ namespace Insight.AI.Prediction
         /// <returns>Solution error</returns>
         private double ComputeError(InsightMatrix X, InsightVector y, InsightVector theta, double lambda)
         {
-            throw new NotImplementedException();
+            var first = y.Multiply(Sigmoid((X * theta.ToColumnMatrix()).Column(0)).Log());
+            var second = (1 - y).Multiply(1 - Sigmoid((X * theta.ToColumnMatrix()).Column(0)).Log());
+            var thetaSub = theta.SubVector(1, theta.Count - 1);
+            var reg = (lambda / 2 * X.RowCount) * thetaSub.Power(2).Sum();
+            return (first - second).Sum() / X.RowCount + reg;
         }
 
         /// <summary>
         /// Returns the sigmoid (logit) of the original value.
         /// </summary>
-        /// <param name="value">Original valud</param>
+        /// <param name="value">Original value</param>
         /// <returns>Sigmoid value</returns>
         private double Sigmoid(double value)
         {
             return 1 / (1 + Math.Exp(-value));
+        }
+
+        /// <summary>
+        /// Returns the sigmoid (logit) of the original vector.
+        /// </summary>
+        /// <param name="value">Original vector</param>
+        /// <returns>Sigmoid vector</returns>
+        private InsightVector Sigmoid(InsightVector values)
+        {
+            return new InsightVector(values.Select(x => 1 / (1 + Math.Exp(-x))).ToList());
         }
     }
 }

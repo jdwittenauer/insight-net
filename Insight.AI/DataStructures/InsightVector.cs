@@ -212,6 +212,15 @@ namespace Insight.AI.DataStructures
         }
 
         /// <summary>
+        /// Element-wise computes the natural logarithm.
+        /// </summary>
+        /// <returns>Result vector</returns>
+        public InsightVector Log()
+        {
+            return new InsightVector(this.Data.PointwiseLog());
+        }
+
+        /// <summary>
         /// Returns a sub-vector of the original using the provided start index and count.
         /// </summary>
         /// <param name="index">Start index</param>
