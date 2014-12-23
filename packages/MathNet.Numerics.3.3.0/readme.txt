@@ -8,7 +8,46 @@
  Math.NET Numerics - http://numerics.mathdotnet.com
  Copyright (c) Math.NET - Open Source MIT/X11 License
 
- Math.NET Numerics v3.1.0
+ Math.NET Numerics v3.3.0
+
+### 3.3.0 - 2014-11-26
+* Linear Algebra: Vector.Fold2 (fold2 in F#), storage optimized
+* Linear Algebra: Minor change how matrix products call the LA provider
+* Linear Algebra: Random generation now leveraging array sampling routines
+* Linear Algebra: fix bug when manually assigning System.Random to random distribution
+* Root Finding: Change Brent tolerance check, add bracked check *~Hythen Sidky*
+* Root Finding: Auto zero-crossing bracketing in FindRoots facade (not in algorithms)
+* Statistics: RootMeanSquare (RMS)
+* Distributions: Array sampling routines now available through interface
+* Distributions: Categorical sampling now explicitly skips p=0 categories
+* Generate: leverage array sampling routines for random data generation
+* Generate: square, triangle and sawtooth waves
+* Distance: Jaccard Index
+* F#: explicitly depend on official FSharp.Core NuGet packages
+* F#: NuGet package with iPython IfSharp F# module integration load script
+* F#: load scripts with better packet support (and NuGet with -ExcludeVersion)
+* Build: unified build.sh and buildn.sh into combined build.sh
+* Build: use Paket instead of NuGet to maintain NuGet dependencies
+* Build: for core add PCL profiles 7, 78 and 259; for F# extensions drop PCL profile 328
+
+### 3.2.3 - 2014-09-06
+* Bug fix: MatrixNormal distribution: density for non-square matrices *~Evelina Gabasova*
+
+### 3.2.2 - 2014-09-05
+* Bug fix: MatrixNormal distribution: density computation switched row and column covariance *~Evelina Gabasova*
+
+### 3.2.1 - 2014-08-05
+* Package fix: make sure .Net 3.5-only dependencies are not installed on .Net 4 and newer.
+
+### 3.2.0 - 2014-08-05
+* Linear Algebra: Vector.Map2 (map2 in F#), storage-optimized
+* Linear Algebra: fix RemoveColumn/Row early index bound check (was not strict enough)
+* Statistics: Entropy *~Jeff Mastry*
+* Interpolation: use Array.BinarySearch instead of local implementation *~Candy Chiu*
+* Resources: fix a corrupted exception message string
+* Portable Build: support .Net 4.0 as well by using profile 328 instead of 344.
+* .Net 3.5: F# extensions now support .Net 3.5 as well
+* .Net 3.5: NuGet package now contains proper 3.5-only TPL package dependency; also in Zip package
 
 ### 3.1.0 - 2014-07-20
 * Random: generate a sequence of integers within a range in one go
@@ -17,7 +56,7 @@
 * Linear Algebra: fix vector DoOuterProduct *~mjmckp*
 * Linear Algebra: enumerators accept Zeros-parameter (like map/fold already does)
 * Linear Algebra: Vector.MapConvert (consistency)
-* Linear Algebra: proper term for "conjugate symmetric" is "Hermitian""
+* Linear Algebra: proper term for 'conjugate symmetric' is 'Hermitian'
 * Interpolation: new Step, LogLinear and transformed interpolators *~Candy Chiu*
 * Interpolation: check for min required number of data points, throw ArgumentException if not.
 * Root Finding: F# FindRoots.broyden module function *~teramonagi*

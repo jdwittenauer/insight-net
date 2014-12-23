@@ -2372,6 +2372,11 @@
             </summary>
             <value>Number of elements. Default 300, must be at least 3.</value>
         </member>
+        <member name="T:MathNet.Numerics.Distance">
+            <summary>
+            Metrics to measure the distance between two structures.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Distance.SAD``1(MathNet.Numerics.LinearAlgebra.Vector{``0},MathNet.Numerics.LinearAlgebra.Vector{``0})">
             <summary>
             Sum of Absolute Difference (SAD), i.e. the L1-norm (Manhattan) of the difference.
@@ -2527,6 +2532,22 @@
             Pearson's distance, i.e. 1 - the person correlation coefficient.
             </summary>
         </member>
+        <member name="M:MathNet.Numerics.Distance.Jaccard(System.Double[],System.Double[])">
+            <summary>
+            Jaccard distance, i.e. 1 - the Jaccard index.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Thrown if a or b are null.</exception>
+            <exception cref="T:System.ArgumentException">Throw if a and b are of different lengths.</exception>
+            <returns>Jaccard distance.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distance.Jaccard(System.Single[],System.Single[])">
+            <summary>
+            Jaccard distance, i.e. 1 - the Jaccard index.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Thrown if a or b are null.</exception>
+            <exception cref="T:System.ArgumentException">Throw if a and b are of different lengths.</exception>
+            <returns>Jaccard distance.</returns>
+        </member>
         <member name="T:MathNet.Numerics.Distributions.Bernoulli">
             <summary>
             Discrete Univariate Bernoulli distribution.
@@ -2616,6 +2637,11 @@
             Draws a random sample from the distribution.
             </summary>
             <returns>a sample from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.IDiscreteDistribution.Samples(System.Int32[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Distributions.IDiscreteDistribution.Samples">
             <summary>
@@ -2883,6 +2909,11 @@
             Draws a random sample from the distribution.
             </summary>
             <returns>a sample from the distribution.</returns>
+        </member>
+        <member name="M:MathNet.Numerics.Distributions.IContinuousDistribution.Samples(System.Double[])">
+            <summary>
+            Fills an array with samples generated from the distribution.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Distributions.IContinuousDistribution.Samples">
             <summary>
@@ -11079,70 +11110,131 @@
         </member>
         <member name="M:MathNet.Numerics.Generate.Periodic(System.Int32,System.Double,System.Double,System.Double,System.Double,System.Int32)">
             <summary>
-            Create a periodic sample vector.
+            Create a periodic wave.
             </summary>
             <param name="length">The number of samples to generate.</param>
             <param name="samplingRate">Samples per time unit (Hz). Must be larger than twice the frequency to satisfy the Nyquist criterion.</param>
             <param name="frequency">Frequency in periods per time unit (Hz).</param>
-            <param name="amplitude">The lenght of the period when sampled at one sample per time unit. This is the interval of the periodic domain, a typical value is 1.0, or 2*Pi for angular functions.</param>
+            <param name="amplitude">The length of the period when sampled at one sample per time unit. This is the interval of the periodic domain, a typical value is 1.0, or 2*Pi for angular functions.</param>
             <param name="phase">Optional phase offset.</param>
             <param name="delay">Optional delay, relative to the phase.</param>
         </member>
         <member name="M:MathNet.Numerics.Generate.PeriodicMap``1(System.Int32,System.Func{System.Double,``0},System.Double,System.Double,System.Double,System.Double,System.Int32)">
             <summary>
-            Create a periodic sample vector.
+            Create a periodic wave.
             </summary>
             <param name="length">The number of samples to generate.</param>
             <param name="map">The function to apply to each of the values and evaluate the resulting sample.</param>
             <param name="samplingRate">Samples per time unit (Hz). Must be larger than twice the frequency to satisfy the Nyquist criterion.</param>
             <param name="frequency">Frequency in periods per time unit (Hz).</param>
-            <param name="amplitude">The lenght of the period when sampled at one sample per time unit. This is the interval of the periodic domain, a typical value is 1.0, or 2*Pi for angular functions.</param>
+            <param name="amplitude">The length of the period when sampled at one sample per time unit. This is the interval of the periodic domain, a typical value is 1.0, or 2*Pi for angular functions.</param>
             <param name="phase">Optional phase offset.</param>
             <param name="delay">Optional delay, relative to the phase.</param>
         </member>
         <member name="M:MathNet.Numerics.Generate.PeriodicSequence(System.Double,System.Double,System.Double,System.Double,System.Int32)">
             <summary>
-            Create an infinite periodic sample sequence.
+            Create an infinite periodic wave sequence.
             </summary>
             <param name="samplingRate">Samples per time unit (Hz). Must be larger than twice the frequency to satisfy the Nyquist criterion.</param>
             <param name="frequency">Frequency in periods per time unit (Hz).</param>
-            <param name="amplitude">The lenght of the period when sampled at one sample per time unit. This is the interval of the periodic domain, a typical value is 1.0, or 2*Pi for angular functions.</param>
+            <param name="amplitude">The length of the period when sampled at one sample per time unit. This is the interval of the periodic domain, a typical value is 1.0, or 2*Pi for angular functions.</param>
             <param name="phase">Optional phase offset.</param>
             <param name="delay">Optional delay, relative to the phase.</param>
         </member>
         <member name="M:MathNet.Numerics.Generate.PeriodicMapSequence``1(System.Func{System.Double,``0},System.Double,System.Double,System.Double,System.Double,System.Int32)">
             <summary>
-            Create an infinite periodic sample sequence.
+            Create an infinite periodic wave sequence.
             </summary>
             <param name="map">The function to apply to each of the values and evaluate the resulting sample.</param>
             <param name="samplingRate">Samples per time unit (Hz). Must be larger than twice the frequency to satisfy the Nyquist criterion.</param>
             <param name="frequency">Frequency in periods per time unit (Hz).</param>
-            <param name="amplitude">The lenght of the period when sampled at one sample per time unit. This is the interval of the periodic domain, a typical value is 1.0, or 2*Pi for angular functions.</param>
+            <param name="amplitude">The length of the period when sampled at one sample per time unit. This is the interval of the periodic domain, a typical value is 1.0, or 2*Pi for angular functions.</param>
             <param name="phase">Optional phase offset.</param>
             <param name="delay">Optional delay, relative to the phase.</param>
         </member>
         <member name="M:MathNet.Numerics.Generate.Sinusoidal(System.Int32,System.Double,System.Double,System.Double,System.Double,System.Double,System.Int32)">
             <summary>
-            Create a Sine sample vector.
+            Create a Sine wave.
             </summary>
             <param name="length">The number of samples to generate.</param>
             <param name="samplingRate">Samples per time unit (Hz). Must be larger than twice the frequency to satisfy the Nyquist criterion.</param>
             <param name="frequency">Frequency in periods per time unit (Hz).</param>
             <param name="amplitude">The maximal reached peak.</param>
-            <param name="mean">The mean, or dc part, of the signal.</param>
+            <param name="mean">The mean, or DC part, of the signal.</param>
             <param name="phase">Optional phase offset.</param>
             <param name="delay">Optional delay, relative to the phase.</param>
         </member>
         <member name="M:MathNet.Numerics.Generate.SinusoidalSequence(System.Double,System.Double,System.Double,System.Double,System.Double,System.Int32)">
             <summary>
-            Create an infinite Sine sample sequence.
+            Create an infinite Sine wave sequence.
             </summary>
             <param name="samplingRate">Samples per unit.</param>
             <param name="frequency">Frequency in samples per unit.</param>
             <param name="amplitude">The maximal reached peak.</param>
-            <param name="mean">The mean, or dc part, of the signal.</param>
+            <param name="mean">The mean, or DC part, of the signal.</param>
             <param name="phase">Optional phase offset.</param>
             <param name="delay">Optional delay, relative to the phase.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Generate.Square(System.Int32,System.Int32,System.Int32,System.Double,System.Double,System.Int32)">
+            <summary>
+            Create a periodic square wave, starting with the high phase.
+            </summary>
+            <param name="length">The number of samples to generate.</param>
+            <param name="highDuration">Number of samples of the high phase.</param>
+            <param name="lowDuration">Number of samples of the low phase.</param>
+            <param name="lowValue">Sample value to be emitted during the low phase.</param>
+            <param name="highValue">Sample value to be emitted during the high phase.</param>
+            <param name="delay">Optional delay.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Generate.SquareSequence(System.Int32,System.Int32,System.Double,System.Double,System.Int32)">
+            <summary>
+            Create an infinite periodic square wave sequence, starting with the high phase.
+            </summary>
+            <param name="highDuration">Number of samples of the high phase.</param>
+            <param name="lowDuration">Number of samples of the low phase.</param>
+            <param name="lowValue">Sample value to be emitted during the low phase.</param>
+            <param name="highValue">Sample value to be emitted during the high phase.</param>
+            <param name="delay">Optional delay.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Generate.Triangle(System.Int32,System.Int32,System.Int32,System.Double,System.Double,System.Int32)">
+            <summary>
+            Create a periodic triangle wave, starting with the raise phase from the lowest sample.
+            </summary>
+            <param name="length">The number of samples to generate.</param>
+            <param name="raiseDuration">Number of samples of the raise phase.</param>
+            <param name="fallDuration">Number of samples of the fall phase.</param>
+            <param name="lowValue">Lowest sample value.</param>
+            <param name="highValue">Highest sample value.</param>
+            <param name="delay">Optional delay.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Generate.TriangleSequence(System.Int32,System.Int32,System.Double,System.Double,System.Int32)">
+            <summary>
+            Create an infinite periodic triangle wave sequence, starting with the raise phase from the lowest sample.
+            </summary>
+            <param name="raiseDuration">Number of samples of the raise phase.</param>
+            <param name="fallDuration">Number of samples of the fall phase.</param>
+            <param name="lowValue">Lowest sample value.</param>
+            <param name="highValue">Highest sample value.</param>
+            <param name="delay">Optional delay.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Generate.Sawtooth(System.Int32,System.Int32,System.Double,System.Double,System.Int32)">
+            <summary>
+            Create a periodic sawtooth wave, starting with the lowest sample.
+            </summary>
+            <param name="length">The number of samples to generate.</param>
+            <param name="period">Number of samples a full sawtooth period.</param>
+            <param name="lowValue">Lowest sample value.</param>
+            <param name="highValue">Highest sample value.</param>
+            <param name="delay">Optional delay.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Generate.SawtoothSequence(System.Int32,System.Double,System.Double,System.Int32)">
+            <summary>
+            Create an infinite periodic sawtooth wave sequence, starting with the lowest sample.
+            </summary>
+            <param name="period">Number of samples a full sawtooth period.</param>
+            <param name="lowValue">Lowest sample value.</param>
+            <param name="highValue">Highest sample value.</param>
+            <param name="delay">Optional delay.</param>
         </member>
         <member name="M:MathNet.Numerics.Generate.Repeat``1(System.Int32,``0)">
             <summary>
@@ -11279,12 +11371,32 @@
             Create an infinite random sample sequence.
             </summary>
         </member>
+        <member name="M:MathNet.Numerics.Generate.RandomSingle(System.Int32,MathNet.Numerics.Distributions.IContinuousDistribution)">
+            <summary>
+            Create random samples.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Generate.RandomSingle(MathNet.Numerics.Distributions.IContinuousDistribution)">
+            <summary>
+            Create an infinite random sample sequence.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.Generate.RandomComplex(System.Int32,MathNet.Numerics.Distributions.IContinuousDistribution)">
             <summary>
             Create random samples.
             </summary>
         </member>
         <member name="M:MathNet.Numerics.Generate.RandomComplex(MathNet.Numerics.Distributions.IContinuousDistribution)">
+            <summary>
+            Create an infinite random sample sequence.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Generate.RandomComplex32(System.Int32,MathNet.Numerics.Distributions.IContinuousDistribution)">
+            <summary>
+            Create random samples.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.Generate.RandomComplex32(MathNet.Numerics.Distributions.IContinuousDistribution)">
             <summary>
             Create an infinite random sample sequence.
             </summary>
@@ -11354,20 +11466,22 @@
             <param name="keywords">List of keywords to tokenize by.</param>
             <param name="skip">keywords to skip looking for (because they've already been handled).</param>
         </member>
-        <member name="M:MathNet.Numerics.GlobalizationHelper.ParseDouble(System.Collections.Generic.LinkedListNode{System.String}@)">
+        <member name="M:MathNet.Numerics.GlobalizationHelper.ParseDouble(System.Collections.Generic.LinkedListNode{System.String}@,System.Globalization.CultureInfo)">
             <summary>
             Globalized Parsing: Parse a double number
             </summary>
             <param name="token">First token of the number.</param>
-            <returns>The parsed double number using the current culture information.</returns>
+            <param name="culture">Culture Info.</param>
+            <returns>The parsed double number using the given culture information.</returns>
             <exception cref="T:System.FormatException"/>
         </member>
-        <member name="M:MathNet.Numerics.GlobalizationHelper.ParseSingle(System.Collections.Generic.LinkedListNode{System.String}@)">
+        <member name="M:MathNet.Numerics.GlobalizationHelper.ParseSingle(System.Collections.Generic.LinkedListNode{System.String}@,System.Globalization.CultureInfo)">
             <summary>
             Globalized Parsing: Parse a float number
             </summary>
             <param name="token">First token of the number.</param>
-            <returns>The parsed float number using the current culture information.</returns>
+            <param name="culture">Culture Info.</param>
+            <returns>The parsed float number using the given culture information.</returns>
             <exception cref="T:System.FormatException"/>
         </member>
         <member name="M:MathNet.Numerics.GoodnessOfFit.RSquared(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
@@ -13011,7 +13125,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.MatrixBuilder`1.DenseOfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,`0}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.MatrixBuilder`1.DenseOfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,`0}})">
             <summary>
             Create a new dense matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -13215,7 +13329,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.MatrixBuilder`1.SparseOfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,`0}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.MatrixBuilder`1.SparseOfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,`0}})">
             <summary>
             Create a new sparse matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -13562,7 +13676,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.VectorBuilder`1.DenseOfIndexed(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,`0}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.VectorBuilder`1.DenseOfIndexed(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,`0}})">
             <summary>
             Create a new dense vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -13615,7 +13729,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.VectorBuilder`1.SparseOfIndexed(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,`0}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.VectorBuilder`1.SparseOfIndexed(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,`0}})">
             <summary>
             Create a new sparse vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -14521,6 +14635,14 @@
             A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
             </returns>
         </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.System#ICloneable#Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+            A new object that is a copy of this instance.
+            </returns>
+        </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.ToTypeString">
             <summary>
             Returns a string that describes the type, dimensions and shape of this matrix.
@@ -14869,7 +14991,7 @@
             </summary>
             <param name="columnIndex">The index of the column to remove.</param>
             <returns>A new matrix without the chosen column.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="columnIndex"/> is &lt; zero or &gt; the number of columns.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="columnIndex"/> is &lt; zero or &gt;= the number of columns.</exception>
         </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.SetColumn(System.Int32,MathNet.Numerics.LinearAlgebra.Vector{`0})">
             <summary>
@@ -14928,7 +15050,7 @@
             </summary>
             <param name="rowIndex">The index of the row to remove.</param>
             <returns>A new matrix without the chosen row.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="rowIndex"/> is &lt; zero or &gt; the number of rows.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="rowIndex"/> is &lt; zero or &gt;= the number of rows.</exception>
         </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Matrix`1.SetRow(System.Int32,MathNet.Numerics.LinearAlgebra.Vector{`0})">
             <summary>
@@ -16149,7 +16271,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex32}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex32}})">
             <summary>
             Create a new dense matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -17239,6 +17361,14 @@
             A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
             </returns>
         </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.System#ICloneable#Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+            A new object that is a copy of this instance.
+            </returns>
+        </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
             <summary>
             Returns an enumerator that iterates through the collection.
@@ -17519,6 +17649,21 @@
             on the actual data storage implementation (relevant mostly for sparse vectors).
             </summary>
         </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.Map2(System.Func{`0,`0,`0},MathNet.Numerics.LinearAlgebra.Vector{`0},MathNet.Numerics.LinearAlgebra.Vector{`0},MathNet.Numerics.LinearAlgebra.Zeros)">
+            <summary>
+            Applies a function to each value pair of two vectors and replaces the value in the result vector.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.Map2(System.Func{`0,`0,`0},MathNet.Numerics.LinearAlgebra.Vector{`0},MathNet.Numerics.LinearAlgebra.Zeros)">
+            <summary>
+            Applies a function to each value pair of two vectors and returns the results as a new vector.
+            </summary>
+        </member>
+        <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.Fold2``2(System.Func{``1,`0,``0,``1},``1,MathNet.Numerics.LinearAlgebra.Vector{``0},MathNet.Numerics.LinearAlgebra.Zeros)">
+            <summary>
+            Applies a function to update the status with each value pair of two vectors and returns the resulting status.
+            </summary>
+        </member>
         <member name="M:MathNet.Numerics.LinearAlgebra.Vector`1.op_UnaryPlus(MathNet.Numerics.LinearAlgebra.Vector{`0})">
             <summary>
             Returns a <strong>Vector</strong> containing the same values of <paramref name="rightSide"/>.
@@ -17683,7 +17828,7 @@
         </member>
         <member name="P:MathNet.Numerics.LinearAlgebra.Vector`1.Count">
             <summary>
-            Gets the number of items.
+            Gets the length or number of dimensions of this vector.
             </summary>
         </member>
         <member name="P:MathNet.Numerics.LinearAlgebra.Vector`1.Item(System.Int32)">
@@ -18019,7 +18164,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
             <summary>
             Create a new dense vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -18386,7 +18531,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
             <summary>
             Create a new diagonal matrix and initialize each diagonal value from the provided indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -19153,7 +19298,7 @@
             </summary>
             <value><c>true</c> if the matrix is full rank; otherwise <c>false</c>.</value>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.Factorization.DenseGramSchmidt.Create(MathNet.Numerics.LinearAlgebra.Complex32.DenseMatrix)">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.Factorization.DenseGramSchmidt.Create(MathNet.Numerics.LinearAlgebra.Matrix{MathNet.Numerics.Complex32})">
             <summary>
             Initializes a new instance of the <see cref="T:MathNet.Numerics.LinearAlgebra.Complex32.Factorization.DenseGramSchmidt"/> class. This object creates an unitary matrix 
             using the modified Gram-Schmidt method.
@@ -20807,7 +20952,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex32}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex32}})">
             <summary>
             Create a new sparse matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -21282,7 +21427,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex32.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex32}})">
             <summary>
             Create a new sparse vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -21920,7 +22065,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex}})">
             <summary>
             Create a new dense matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -22679,7 +22824,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex}})">
             <summary>
             Create a new dense vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -23046,7 +23191,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex}})">
             <summary>
             Create a new diagonal matrix and initialize each diagonal value from the provided indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -23568,7 +23713,7 @@
             </summary>
             <value><c>true</c> if the matrix is full rank; otherwise <c>false</c>.</value>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.Factorization.DenseGramSchmidt.Create(MathNet.Numerics.LinearAlgebra.Complex.DenseMatrix)">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.Factorization.DenseGramSchmidt.Create(MathNet.Numerics.LinearAlgebra.Matrix{MathNet.Numerics.Complex})">
             <summary>
             Initializes a new instance of the <see cref="T:MathNet.Numerics.LinearAlgebra.Complex.Factorization.DenseGramSchmidt"/> class. This object creates an unitary matrix 
             using the modified Gram-Schmidt method.
@@ -25013,7 +25158,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,MathNet.Numerics.Complex}})">
             <summary>
             Create a new sparse matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -25488,7 +25633,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,MathNet.Numerics.Complex}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Complex.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,MathNet.Numerics.Complex}})">
             <summary>
             Create a new sparse vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -26126,7 +26271,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,System.Double}})">
             <summary>
             Create a new dense matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -26885,7 +27030,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Double}})">
             <summary>
             Create a new dense vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -27276,7 +27421,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Double}})">
             <summary>
             Create a new diagonal matrix and initialize each diagonal value from the provided indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -27800,9 +27945,9 @@
             </summary>
             <value><c>true</c> if the matrix is full rank; otherwise <c>false</c>.</value>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.Factorization.DenseGramSchmidt.Create(MathNet.Numerics.LinearAlgebra.Double.DenseMatrix)">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.Factorization.DenseGramSchmidt.Create(MathNet.Numerics.LinearAlgebra.Matrix{System.Double})">
             <summary>
-            Initializes a new instance of the <see cref="T:MathNet.Numerics.LinearAlgebra.Double.Factorization.DenseGramSchmidt"/> class. This object creates an orthogonal matrix 
+            Initializes a new instance of the <see cref="T:MathNet.Numerics.LinearAlgebra.Double.Factorization.DenseGramSchmidt"/> class. This object creates an orthogonal matrix
             using the modified Gram-Schmidt method.
             </summary>
             <param name="matrix">The matrix to factor.</param>
@@ -29242,7 +29387,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,System.Double}})">
             <summary>
             Create a new sparse matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -29728,7 +29873,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Double.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Double.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Double}})">
             <summary>
             Create a new sparse vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -30467,7 +30612,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,System.Single}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DenseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,System.Single}})">
             <summary>
             Create a new dense matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -31226,7 +31371,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Single}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DenseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Single}})">
             <summary>
             Create a new dense vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -31618,7 +31763,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Single}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.DiagonalMatrix.OfIndexedDiagonal(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Single}})">
             <summary>
             Create a new diagonal matrix and initialize each diagonal value from the provided indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -32138,7 +32283,7 @@
             </summary>
             <value><c>true</c> if the matrix is full rank; otherwise <c>false</c>.</value>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.Factorization.DenseGramSchmidt.Create(MathNet.Numerics.LinearAlgebra.Single.DenseMatrix)">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.Factorization.DenseGramSchmidt.Create(MathNet.Numerics.LinearAlgebra.Matrix{System.Single})">
             <summary>
             Initializes a new instance of the <see cref="T:MathNet.Numerics.LinearAlgebra.Single.Factorization.DenseGramSchmidt"/> class. This object creates an orthogonal matrix 
             using the modified Gram-Schmidt method.
@@ -33580,7 +33725,7 @@
             A new memory block will be allocated for storing the matrix.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Int32,System.Single}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.SparseMatrix.OfIndexed(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Int32,System.Single}})">
             <summary>
             Create a new sparse matrix as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -34066,7 +34211,7 @@
             A new memory block will be allocated for storing the vector.
             </summary>
         </member>
-        <member name="M:MathNet.Numerics.LinearAlgebra.Single.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,System.Single}})">
+        <member name="M:MathNet.Numerics.LinearAlgebra.Single.SparseVector.OfIndexedEnumerable(System.Int32,System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Int32,System.Single}})">
             <summary>
             Create a new sparse vector as a copy of the given indexed enumerable.
             Keys must be provided at most once, zero is assumed if a key is omitted.
@@ -35407,7 +35552,7 @@
             <param name="method">The direct method to be used to compute the regression.</param>
             <returns>Best fitting list of model parameters β for each element in the predictor-arrays.</returns>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.DirectMethod``1(System.Collections.Generic.IEnumerable{System.Tuple{``0[],``0}},System.Boolean,MathNet.Numerics.LinearRegression.DirectRegressionMethod)">
+        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.DirectMethod``1(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{``0[],``0}},System.Boolean,MathNet.Numerics.LinearRegression.DirectRegressionMethod)">
             <summary>
             Find the model parameters β such that their linear combination with all predictor-arrays in X become as close to their response in Y as possible, with least squares residuals.
             Uses the cholesky decomposition of the normal equations.
@@ -35445,7 +35590,7 @@
             <param name="intercept">True if an intercept should be added as first artificial predictor value. Default = false.</param>
             <returns>Best fitting list of model parameters β for each element in the predictor-arrays.</returns>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.NormalEquations``1(System.Collections.Generic.IEnumerable{System.Tuple{``0[],``0}},System.Boolean)">
+        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.NormalEquations``1(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{``0[],``0}},System.Boolean)">
             <summary>
             Find the model parameters β such that their linear combination with all predictor-arrays in X become as close to their response in Y as possible, with least squares residuals.
             Uses the cholesky decomposition of the normal equations.
@@ -35482,7 +35627,7 @@
             <param name="intercept">True if an intercept should be added as first artificial predictor value. Default = false.</param>
             <returns>Best fitting list of model parameters β for each element in the predictor-arrays.</returns>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.QR``1(System.Collections.Generic.IEnumerable{System.Tuple{``0[],``0}},System.Boolean)">
+        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.QR``1(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{``0[],``0}},System.Boolean)">
             <summary>
             Find the model parameters β such that their linear combination with all predictor-arrays in X become as close to their response in Y as possible, with least squares residuals.
             Uses an orthogonal decomposition and is therefore more numerically stable than the normal equations but also slower.
@@ -35519,7 +35664,7 @@
             <param name="intercept">True if an intercept should be added as first artificial predictor value. Default = false.</param>
             <returns>Best fitting list of model parameters β for each element in the predictor-arrays.</returns>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.Svd``1(System.Collections.Generic.IEnumerable{System.Tuple{``0[],``0}},System.Boolean)">
+        <member name="M:MathNet.Numerics.LinearRegression.MultipleRegression.Svd``1(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{``0[],``0}},System.Boolean)">
             <summary>
             Find the model parameters β such that their linear combination with all predictor-arrays in X become as close to their response in Y as possible, with least squares residuals.
             Uses a singular value decomposition and is therefore more numerically stable (especially if ill-conditioned) than the normal equations or QR but also slower.
@@ -35537,7 +35682,7 @@
             <param name="x">Predictor (independent)</param>
             <param name="y">Response (dependent)</param>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.SimpleRegression.Fit(System.Collections.Generic.IEnumerable{System.Tuple{System.Double,System.Double}})">
+        <member name="M:MathNet.Numerics.LinearRegression.SimpleRegression.Fit(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{System.Double,System.Double}})">
             <summary>
             Least-Squares fitting the points (x,y) to a line y : x -> a+b*x,
             returning its best fitting parameters as (a, b) tuple,
@@ -35570,7 +35715,7 @@
             <param name="w">Weight matrix W, usually diagonal with an entry for each predictor (row).</param>
             <param name="intercept">True if an intercept should be added as first artificial predictor value. Default = false.</param>
         </member>
-        <member name="M:MathNet.Numerics.LinearRegression.WeightedRegression.Weighted``1(System.Collections.Generic.IEnumerable{System.Tuple{``0[],``0}},``0[],System.Boolean)">
+        <member name="M:MathNet.Numerics.LinearRegression.WeightedRegression.Weighted``1(System.Collections.Generic.IEnumerable{MathNet.Numerics.Tuple{``0[],``0}},``0[],System.Boolean)">
             <summary>
             Weighted Linear Regression using normal equations.
             </summary>
@@ -37269,7 +37414,7 @@
         </member>
         <member name="M:MathNet.Numerics.Providers.LinearAlgebra.ILinearAlgebraProvider.InitializeVerify">
             <summary>
-            Initialize and verify that the provided is indeed available. If not, fall back to alernatives like the managed provider
+            Initialize and verify that the provided is indeed available. If not, fall back to alternatives like the managed provider
             </summary>
         </member>
         <member name="T:MathNet.Numerics.Providers.LinearAlgebra.ManagedLinearAlgebraProvider">
@@ -39261,9 +39406,9 @@
             <param name="vectorEv">On output, the eigen values (λ) of matrix in ascending value. The length of the arry must <paramref name="order"/>.</param>
             <param name="matrixD">On output, the block diagonal eigenvalue matrix. The lenth of the array must be order * order.</param>
         </member>
-        <member name="T:MathNet.Numerics.Random.Mcg31m1">
+        <member name="T:MathNet.Numerics.Random.CryptoRandomSource">
             <summary>
-            Multiplicative congruential generator using a modulus of 2^31-1 and a multiplier of 1132489760.
+            A random number generator based on the <see cref="T:System.Security.Cryptography.RandomNumberGenerator"/> class in the .NET library.
             </summary>
         </member>
         <member name="T:MathNet.Numerics.Random.RandomSource">
@@ -39361,6 +39506,65 @@
             <returns>
             A double-precision floating point number greater than or equal to 0.0, and less than 1.0.
             </returns>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.#ctor">
+            <summary>
+            Construct a new random number generator with a random seed.
+            </summary>
+            <remarks>Uses <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider"/> and uses the value of
+            <see cref="P:MathNet.Numerics.Control.ThreadSafeRandomNumberGenerators"/> to set whether the instance is thread safe.</remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.#ctor(System.Security.Cryptography.RandomNumberGenerator)">
+            <summary>
+            Construct a new random number generator with random seed.
+            </summary>
+            <param name="rng">The <see cref="T:System.Security.Cryptography.RandomNumberGenerator"/> to use.</param>
+            <remarks>Uses the value of  <see cref="P:MathNet.Numerics.Control.ThreadSafeRandomNumberGenerators"/> to set whether the instance is thread safe.</remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.#ctor(System.Boolean)">
+            <summary>
+            Construct a new random number generator with random seed.
+            </summary>
+            <remarks>Uses <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider"/></remarks>
+            <param name="threadSafe">if set to <c>true</c> , the class is thread safe.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.#ctor(System.Security.Cryptography.RandomNumberGenerator,System.Boolean)">
+            <summary>
+            Construct a new random number generator with random seed.
+            </summary>
+            <param name="rng">The <see cref="T:System.Security.Cryptography.RandomNumberGenerator"/> to use.</param>
+            <param name="threadSafe">if set to <c>true</c> , the class is thread safe.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.DoSample">
+            <summary>
+            Returns a random number between 0.0 and 1.0.
+            </summary>
+            <returns>
+            A double-precision floating point number greater than or equal to 0.0, and less than 1.0.
+            </returns>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.Doubles(System.Double[])">
+            <summary>
+            Fills an array with random numbers greater than or equal to 0.0 and less than 1.0.
+            </summary>
+            <remarks>Supports being called in parallel from multiple threads.</remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.Doubles(System.Int32)">
+            <summary>
+            Returns an array of random numbers greater than or equal to 0.0 and less than 1.0.
+            </summary>
+            <remarks>Supports being called in parallel from multiple threads.</remarks>
+        </member>
+        <member name="M:MathNet.Numerics.Random.CryptoRandomSource.DoubleSequence">
+            <summary>
+            Returns an infinite sequence of random numbers greater than or equal to 0.0 and less than 1.0.
+            </summary>
+            <remarks>Supports being called in parallel from multiple threads.</remarks>
+        </member>
+        <member name="T:MathNet.Numerics.Random.Mcg31m1">
+            <summary>
+            Multiplicative congruential generator using a modulus of 2^31-1 and a multiplier of 1132489760.
+            </summary>
         </member>
         <member name="M:MathNet.Numerics.Random.Mcg31m1.#ctor">
             <summary>
@@ -40334,7 +40538,7 @@
         </member>
         <member name="T:MathNet.Numerics.RootFinding.Bisection">
             <summary>
-            Bisection root-finding algorithm without any recovery measures in case of lacking bracketing.
+            Bisection root-finding algorithm.
             </summary>
         </member>
         <member name="M:MathNet.Numerics.RootFinding.Bisection.FindRootExpand(System.Func{System.Double,System.Double},System.Double,System.Double,System.Double,System.Int32,System.Double,System.Int32)">
@@ -40374,6 +40578,18 @@
             Algorithm by by Brent, Van Wijngaarden, Dekker et al.
             Implementation inspired by Press, Teukolsky, Vetterling, and Flannery, "Numerical Recipes in C", 2nd edition, Cambridge University Press
             </summary>
+        </member>
+        <member name="M:MathNet.Numerics.RootFinding.Brent.FindRootExpand(System.Func{System.Double,System.Double},System.Double,System.Double,System.Double,System.Int32,System.Double,System.Int32)">
+            <summary>Find a solution of the equation f(x)=0.</summary>
+            <param name="f">The function to find roots from.</param>
+            <param name="guessLowerBound">Guess for the low value of the range where the root is supposed to be. Will be expanded if needed.</param>
+            <param name="guessUpperBound">Guess for the  high value of the range where the root is supposed to be. Will be expanded if needed.</param>
+            <param name="accuracy">Desired accuracy. The root will be refined until the accuracy or the maximum number of iterations is reached. Default 1e-8.</param>
+            <param name="maxIterations">Maximum number of iterations. Default 100.</param>
+            <param name="expandFactor">Factor at which to expand the bounds, if needed. Default 1.6.</param>
+            <param name="maxExpandIteratons">Maximum number of expand iterations. Default 100.</param>
+            <returns>Returns the root with the specified accuracy.</returns>
+            <exception cref="T:MathNet.Numerics.NonConvergenceException"></exception>
         </member>
         <member name="M:MathNet.Numerics.RootFinding.Brent.FindRoot(System.Func{System.Double,System.Double},System.Double,System.Double,System.Double,System.Int32)">
             <summary>Find a solution of the equation f(x)=0.</summary>
@@ -41495,6 +41711,13 @@
             <param name="population1">First population array.</param>
             <param name="population2">Second population array.</param>
         </member>
+        <member name="M:MathNet.Numerics.Statistics.ArrayStatistics.RootMeanSquare(System.Double[])">
+            <summary>
+            Estimates the root mean square (RMS) also known as quadratic mean from the unsorted data array.
+            Returns NaN if data is empty or any entry is NaN.
+            </summary>
+            <param name="data">Sample array, no sorting is assumed.</param>
+        </member>
         <member name="M:MathNet.Numerics.Statistics.ArrayStatistics.OrderStatisticInplace(System.Double[],System.Int32)">
             <summary>
             Returns the order statistic (order 1..N) from the unsorted data array.
@@ -41587,7 +41810,7 @@
             <summary>
             Estimates the tau-th quantile from the unsorted data array.
             The tau-th quantile is the data value where the cumulative distribution
-            function crosses tau. The quantile definition can be specificed to be compatible
+            function crosses tau. The quantile definition can be specified to be compatible
             with an existing system.
             WARNING: Works inplace and can thus causes the data array to be reordered.
             </summary>
@@ -41598,7 +41821,7 @@
         <member name="M:MathNet.Numerics.Statistics.ArrayStatistics.RanksInplace(System.Double[],MathNet.Numerics.Statistics.RankDefinition)">
             <summary>
             Evaluates the rank of each entry of the unsorted data array.
-            The rank definition can be specificed to be compatible
+            The rank definition can be specified to be compatible
             with an existing system.
             WARNING: Works inplace and can thus causes the data array to be reordered.
             </summary>
@@ -41777,7 +42000,7 @@
         </member>
         <member name="T:MathNet.Numerics.Statistics.Bucket">
             <summary>
-            A <see cref="T:MathNet.Numerics.Statistics.Histogram"/> consists of a series of <see cref="T:MathNet.Numerics.Statistics.Bucket"/>s, 
+            A <see cref="T:MathNet.Numerics.Statistics.Histogram"/> consists of a series of <see cref="T:MathNet.Numerics.Statistics.Bucket"/>s,
             each representing a region limited by a lower bound (exclusive) and an upper bound (inclusive).
             </summary>
         </member>
@@ -41808,7 +42031,7 @@
         <member name="M:MathNet.Numerics.Statistics.Bucket.Equals(System.Object)">
             <summary>
             Checks whether two Buckets are equal; this method tolerates a difference in lowerbound, upperbound
-            and count given by <seealso cref="M:MathNet.Numerics.Precision.AlmostEqual(System.Double,System.Double)"/>. 
+            and count given by <seealso cref="M:MathNet.Numerics.Precision.AlmostEqual(System.Double,System.Double)"/>.
             </summary>
         </member>
         <member name="M:MathNet.Numerics.Statistics.Bucket.GetHashCode">
@@ -41922,7 +42145,7 @@
         </member>
         <member name="M:MathNet.Numerics.Statistics.Histogram.GetBucketOf(System.Double)">
             <summary>
-            Returns the <c>Bucket</c> that contains the value <c>v</c>. 
+            Returns the <c>Bucket</c> that contains the value <c>v</c>.
             </summary>
             <param name="v">The point to search the bucket for.</param>
             <returns>A copy of the bucket containing point <paramref name="v"/>.</returns>
@@ -42993,7 +43216,7 @@
             <summary>
             Estimates the tau-th quantile from the sorted data array (ascending).
             The tau-th quantile is the data value where the cumulative distribution
-            function crosses tau. The quantile definition can be specificed to be compatible
+            function crosses tau. The quantile definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">Sample array, must be sorted ascendingly.</param>
@@ -43002,7 +43225,7 @@
         </member>
         <member name="M:MathNet.Numerics.Statistics.SortedArrayStatistics.EmpiricalCDF(System.Double[],System.Double)">
             <summary>
-            Estimates the empirical cummulative distribution function (CDF) at x from the sorted data array (ascending).
+            Estimates the empirical cumulative distribution function (CDF) at x from the sorted data array (ascending).
             </summary>
             <param name="data">The data sample sequence.</param>
             <param name="x">The value where to estimate the CDF at.</param>
@@ -43011,7 +43234,7 @@
             <summary>
             Estimates the quantile tau from the sorted data array (ascending).
             The tau-th quantile is the data value where the cumulative distribution
-            function crosses tau. The quantile definition can be specificed to be compatible
+            function crosses tau. The quantile definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">The data sample sequence.</param>
@@ -43021,7 +43244,7 @@
         <member name="M:MathNet.Numerics.Statistics.SortedArrayStatistics.Ranks(System.Double[],MathNet.Numerics.Statistics.RankDefinition)">
             <summary>
             Evaluates the rank of each entry of the sorted data array (ascending).
-            The rank definition can be specificed to be compatible
+            The rank definition can be specified to be compatible
             with an existing system.
             </summary>
         </member>
@@ -43287,6 +43510,21 @@
             <param name="population1">The full population data.</param>
             <param name="population2">The full population data.</param>
         </member>
+        <member name="M:MathNet.Numerics.Statistics.Statistics.RootMeanSquare(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Evaluates the root mean square (RMS) also known as quadratic mean.
+            Returns NaN if data is empty or if any entry is NaN.
+            </summary>
+            <param name="data">The data to calculate the RMS of.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Statistics.Statistics.RootMeanSquare(System.Collections.Generic.IEnumerable{System.Nullable{System.Double}})">
+            <summary>
+            Evaluates the root mean square (RMS) also known as quadratic mean.
+            Returns NaN if data is empty or if any entry is NaN.
+            Null-entries are ignored.
+            </summary>
+            <param name="data">The data to calculate the mean of.</param>
+        </member>
         <member name="M:MathNet.Numerics.Statistics.Statistics.Median(System.Collections.Generic.IEnumerable{System.Double})">
             <summary>
             Estimates the sample median from the provided samples (R8).
@@ -43341,7 +43579,7 @@
             <summary>
             Estimates the tau-th quantile from the provided samples.
             The tau-th quantile is the data value where the cumulative distribution
-            function crosses tau. The quantile definition can be specificed to be compatible
+            function crosses tau. The quantile definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">The data sample sequence.</param>
@@ -43352,7 +43590,7 @@
             <summary>
             Estimates the tau-th quantile from the provided samples.
             The tau-th quantile is the data value where the cumulative distribution
-            function crosses tau. The quantile definition can be specificed to be compatible
+            function crosses tau. The quantile definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">The data sample sequence.</param>
@@ -43363,7 +43601,7 @@
             <summary>
             Estimates the tau-th quantile from the provided samples.
             The tau-th quantile is the data value where the cumulative distribution
-            function crosses tau. The quantile definition can be specificed to be compatible
+            function crosses tau. The quantile definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">The data sample sequence.</param>
@@ -43373,7 +43611,7 @@
             <summary>
             Estimates the tau-th quantile from the provided samples.
             The tau-th quantile is the data value where the cumulative distribution
-            function crosses tau. The quantile definition can be specificed to be compatible
+            function crosses tau. The quantile definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">The data sample sequence.</param>
@@ -43485,7 +43723,7 @@
         <member name="M:MathNet.Numerics.Statistics.Statistics.Ranks(System.Collections.Generic.IEnumerable{System.Double},MathNet.Numerics.Statistics.RankDefinition)">
             <summary>
             Evaluates the rank of each entry of the provided samples.
-            The rank definition can be specificed to be compatible
+            The rank definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">The data sample sequence.</param>
@@ -43494,7 +43732,7 @@
         <member name="M:MathNet.Numerics.Statistics.Statistics.Ranks(System.Collections.Generic.IEnumerable{System.Nullable{System.Double}},MathNet.Numerics.Statistics.RankDefinition)">
             <summary>
             Evaluates the rank of each entry of the provided samples.
-            The rank definition can be specificed to be compatible
+            The rank definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">The data sample sequence.</param>
@@ -43504,7 +43742,7 @@
             <summary>
             Estimates the quantile tau from the provided samples.
             The tau-th quantile is the data value where the cumulative distribution
-            function crosses tau. The quantile definition can be specificed to be compatible
+            function crosses tau. The quantile definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">The data sample sequence.</param>
@@ -43515,7 +43753,7 @@
             <summary>
             Estimates the quantile tau from the provided samples.
             The tau-th quantile is the data value where the cumulative distribution
-            function crosses tau. The quantile definition can be specificed to be compatible
+            function crosses tau. The quantile definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">The data sample sequence.</param>
@@ -43526,7 +43764,7 @@
             <summary>
             Estimates the quantile tau from the provided samples.
             The tau-th quantile is the data value where the cumulative distribution
-            function crosses tau. The quantile definition can be specificed to be compatible
+            function crosses tau. The quantile definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">The data sample sequence.</param>
@@ -43536,7 +43774,7 @@
             <summary>
             Estimates the quantile tau from the provided samples.
             The tau-th quantile is the data value where the cumulative distribution
-            function crosses tau. The quantile definition can be specificed to be compatible
+            function crosses tau. The quantile definition can be specified to be compatible
             with an existing system.
             </summary>
             <param name="data">The data sample sequence.</param>
@@ -43544,27 +43782,27 @@
         </member>
         <member name="M:MathNet.Numerics.Statistics.Statistics.EmpiricalCDF(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
             <summary>
-            Estimates the empirical cummulative distribution function (CDF) at x from the provided samples.
+            Estimates the empirical cumulative distribution function (CDF) at x from the provided samples.
             </summary>
             <param name="data">The data sample sequence.</param>
             <param name="x">The value where to estimate the CDF at.</param>
         </member>
         <member name="M:MathNet.Numerics.Statistics.Statistics.EmpiricalCDF(System.Collections.Generic.IEnumerable{System.Nullable{System.Double}},System.Double)">
             <summary>
-            Estimates the empirical cummulative distribution function (CDF) at x from the provided samples.
+            Estimates the empirical cumulative distribution function (CDF) at x from the provided samples.
             </summary>
             <param name="data">The data sample sequence.</param>
             <param name="x">The value where to estimate the CDF at.</param>
         </member>
         <member name="M:MathNet.Numerics.Statistics.Statistics.EmpiricalCDFFunc(System.Collections.Generic.IEnumerable{System.Double})">
             <summary>
-            Estimates the empirical cummulative distribution function (CDF) at x from the provided samples.
+            Estimates the empirical cumulative distribution function (CDF) at x from the provided samples.
             </summary>
             <param name="data">The data sample sequence.</param>
         </member>
         <member name="M:MathNet.Numerics.Statistics.Statistics.EmpiricalCDFFunc(System.Collections.Generic.IEnumerable{System.Nullable{System.Double}})">
             <summary>
-            Estimates the empirical cummulative distribution function (CDF) at x from the provided samples.
+            Estimates the empirical cumulative distribution function (CDF) at x from the provided samples.
             </summary>
             <param name="data">The data sample sequence.</param>
         </member>
@@ -43591,6 +43829,21 @@
         <member name="M:MathNet.Numerics.Statistics.Statistics.EmpiricalInvCDFFunc(System.Collections.Generic.IEnumerable{System.Nullable{System.Double}})">
             <summary>
             Estimates the empirical inverse CDF at tau from the provided samples.
+            </summary>
+            <param name="data">The data sample sequence.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Statistics.Statistics.Entropy(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Calculates the entropy of a stream of double values in bits.
+            Returns NaN if any of the values in the stream are NaN.
+            </summary>
+            <param name="data">The data sample sequence.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Statistics.Statistics.Entropy(System.Collections.Generic.IEnumerable{System.Nullable{System.Double}})">
+            <summary>
+            Calculates the entropy of a stream of double values in bits.
+            Returns NaN if any of the values in the stream are NaN.
+            Null-entries are ignored.
             </summary>
             <param name="data">The data sample sequence.</param>
         </member>
@@ -43689,6 +43942,21 @@
             </summary>
             <param name="population1">First population stream.</param>
             <param name="population2">Second population stream.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Statistics.StreamingStatistics.RootMeanSquare(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Estimates the root mean square (RMS) also known as quadratic mean from the enumerable, in a single pass without memoization.
+            Returns NaN if data is empty or any entry is NaN.
+            </summary>
+            <param name="stream">Sample stream, no sorting is assumed.</param>
+        </member>
+        <member name="M:MathNet.Numerics.Statistics.StreamingStatistics.Entropy(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Calculates the entropy of a stream of double values.
+            Returns NaN if any of the values in the stream are NaN.
+            </summary>
+            <param name="stream">The input stream to evaluate.</param>
+            <returns></returns>
         </member>
         <member name="T:MathNet.Numerics.Threading.CommonParallel">
             <summary>
@@ -44289,11 +44557,6 @@
               Looks up a localized string similar to Value must be greater than or equal to one..
             </summary>
         </member>
-        <member name="P:MathNet.Numerics.Properties.Resources.ArgumentLowerBoundLargerThanUpperBound">
-            <summary>
-              Looks up a localized string similar to han the given upper bound..
-            </summary>
-        </member>
         <member name="P:MathNet.Numerics.Properties.Resources.ArgumentMatrixDimensions">
             <summary>
               Looks up a localized string similar to Matrix dimensions must agree..
@@ -44472,6 +44735,16 @@
         <member name="P:MathNet.Numerics.Properties.Resources.ArgumentTypeMismatch">
             <summary>
               Looks up a localized string similar to Type mismatch..
+            </summary>
+        </member>
+        <member name="P:MathNet.Numerics.Properties.Resources.ArgumentUpperBoundMustBeLargerThanLowerBound">
+            <summary>
+              Looks up a localized string similar to The upper bound must be strictly larger than the lower bound..
+            </summary>
+        </member>
+        <member name="P:MathNet.Numerics.Properties.Resources.ArgumentUpperBoundMustBeLargerThanOrEqualToLowerBound">
+            <summary>
+              Looks up a localized string similar to The upper bound must be at least as large as the lower bound..
             </summary>
         </member>
         <member name="P:MathNet.Numerics.Properties.Resources.ArgumentVectorLengthsMultipleOf">
